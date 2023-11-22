@@ -6,5 +6,6 @@ for (let i = 0; i < n; i++) {
     newDivObject.textContent = '1';
     newDivObject.style.margin = `${Math.sqrt(n)}px`
     newDivObject.style.padding = `15px`;
+    newDivObject.style.position = `relative`;
     innerDiv.appendChild(newDivObject);
 }
