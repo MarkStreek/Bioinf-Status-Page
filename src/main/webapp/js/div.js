@@ -1,5 +1,4 @@
-document.getElementById("mybutton").
-addEventListener("click", function () {
+for (let i = 0; i < 10; i++) {
     document.getElementById("innerdiv").
-        innerHTML += "<h3>Hello geeks</h3>";
-});
+        innerHTML += "<div class='col border border-1 border-primary'>Hello geeks</div>";
+}
