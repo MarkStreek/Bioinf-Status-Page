@@ -12,6 +12,7 @@ for (let i = 0; i < n; i++) {
     const newDiv1 = document.createElement('div');
     newDiv1.classList.add('card', 'border-1');
     newDiv1.style.backgroundColor = `#4a5766`;
+    newDiv1.style.height = `100px`;
 
     // New Subdiv - card body
     const newDiv2 = document.createElement('div');
@@ -24,7 +25,7 @@ for (let i = 0; i < n; i++) {
     PCTitle.classList.add('card-title');
     PCTitle.style.color = `#f9f9f9`;
 
-    // Title for the stus
+    // Title for the status
     const StatusTitle = document.createElement('p');
     StatusTitle.classList.add('card-text');
     StatusTitle.style.color = `#f9f9f9`;
@@ -33,22 +34,34 @@ for (let i = 0; i < n; i++) {
     // Status element red/green
     const statusTextObject = document.createElement('span');
     statusTextObject.textContent = `${chooseRandomStatus}`;
-    statusTextObject.classList.add("status")
+    statusTextObject.classList.add("status");
+
+    // Logo element for aesthetics
+    const logoImageObject = document.createElement("img");
+    logoImageObject.classList.add("logo");
+    logoImageObject.style.height = `40px`;
+    logoImageObject.style.width = `40px`;
+    logoImageObject.style.float = `right`;
+    logoImageObject.style.position = `relative`;
+    logoImageObject.style.bottom = `60px`;
 
     // append all elements to the right parent elements
     newDivMain.appendChild(newDiv1);
     newDiv1.appendChild(newDiv2);
     newDiv2.appendChild(PCTitle);
     newDiv2.appendChild(StatusTitle);
+    newDiv2.appendChild(logoImageObject);
     StatusTitle.appendChild(statusTextObject);
 
     // Changing the color
     if (chooseRandomStatus === "ONLINE") {
         statusTextObject.style.color = `#3cb371`;
         newDiv1.style.borderColor = `#3cb371`;
+        logoImageObject.setAttribute("src", "../../images/logo_ONLINE.png");
     } else {
         statusTextObject.style.color = `#ff0000`;
         newDiv1.style.borderColor = `#ff0000`;
+        logoImageObject.setAttribute("src", "../../images/logo_OFFLINE.png");
     }
     // Inserting new div
     innerDiv.appendChild(newDivMain);
