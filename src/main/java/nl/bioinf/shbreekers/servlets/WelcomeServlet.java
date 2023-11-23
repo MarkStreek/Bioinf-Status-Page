@@ -35,6 +35,6 @@ public class WelcomeServlet extends HttpServlet {
                 request.getLocale());
         ctx.setVariable("currentDate", new Date());
         WebConfig.createTemplateEngine(getServletContext()).
-                process("welcome", ctx, response.getWriter());
+                process("index", ctx, response.getWriter());
     }
 }
