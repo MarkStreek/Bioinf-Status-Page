@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @WebServlet("/D108")
 public class AjaxCall extends HttpServlet {
@@ -26,7 +24,12 @@ public class AjaxCall extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
         String text = String.valueOf(Math.random());
-        String json = new Gson().toJson(text);
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("text", text);
+        params.put("url", "test2");
+        String json = new Gson().toJson(params);
+
+        System.out.println(json);
 
 
         response.setContentType("text/json");
