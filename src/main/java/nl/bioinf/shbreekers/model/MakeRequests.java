@@ -32,4 +32,10 @@ public class MakeRequests {
         }
         return "FAILED";
     }
+
+    public static void main(String[] args) {
+        System.out.println("HERE");
+        MakeRequests makeRequests = new MakeRequests("http://monitor:9090/api/v1/query?query=node_dmi_info");
+        System.out.println(makeRequests.getData().getClass());
+    }
 }
