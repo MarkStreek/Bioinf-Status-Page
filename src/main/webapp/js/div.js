@@ -1,8 +1,10 @@
-const n = 200;
-const status = ['ONLINE', 'OFFLINE'];
-const innerDiv = document.getElementById("innerdiv");
-for (let i = 0; i < n; i++) {
-    const chooseRandomStatus = status[Math.floor(Math.random() * status.length)];
+function makeDiv() {
+
+    const n = 200;
+    const status = ['ONLINE', 'OFFLINE'];
+    const innerDiv = document.getElementById("innerdiv");
+    for (let i = 0; i < n; i++) {
+        const chooseRandomStatus = status[Math.floor(Math.random() * status.length)];
 
     // New main div
     const newDivMain = document.createElement('div');
@@ -29,7 +31,8 @@ for (let i = 0; i < n; i++) {
     const StatusTitle = document.createElement('p');
     StatusTitle.classList.add('card-text');
     StatusTitle.style.color = `#f9f9f9`;
-    StatusTitle.textContent = `Server Status: `;
+    //StatusTitle.textContent = `Server Status: `;
+    StatusTitle.textContent = Math.random() + ""
 
     // Status element red/green
     const statusTextObject = document.createElement('span');
@@ -65,4 +68,4 @@ for (let i = 0; i < n; i++) {
     }
     // Inserting new div
     innerDiv.appendChild(newDivMain);
-}
+}}
