@@ -41,23 +41,23 @@ public class WelcomeServlet extends HttpServlet {
             throws IOException {
         //this step is optional; standard settings also suffice
 
-        HttpClient httpClient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet("https://google.com");
-
-        try {
-            HttpResponse responses = httpClient.execute(httpGet);
-
-            if (responses.getStatusLine().getStatusCode() == 200) {
-                String jsonResponse = EntityUtils.toString(responses.getEntity());
-                System.out.println("Response:");
-                System.out.println(jsonResponse);
-                // Verwerk de JSON-respons zoals nodig
-            } else {
-                System.out.println("HTTP Request failed: " + responses.getStatusLine().getReasonPhrase());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        HttpClient httpClient = HttpClients.createDefault();
+//        HttpGet httpGet = new HttpGet("https://google.com");
+//
+//        try {
+//            HttpResponse responses = httpClient.execute(httpGet);
+//
+//            if (responses.getStatusLine().getStatusCode() == 200) {
+//                String jsonResponse = EntityUtils.toString(responses.getEntity());
+//                System.out.println("Response:");
+//                System.out.println(jsonResponse);
+//                // Verwerk de JSON-respons zoals nodig
+//            } else {
+//                System.out.println("HTTP Request failed: " + responses.getStatusLine().getReasonPhrase());
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
 
         WebConfig.configureResponse(response);
@@ -66,8 +66,8 @@ public class WelcomeServlet extends HttpServlet {
                 response,
                 request.getServletContext(),
                 request.getLocale());
-        ctx.setVariable("currentDate", new Date());
+
         WebConfig.createTemplateEngine(getServletContext()).
-                process("index", ctx, response.getWriter());
+                process("D108", ctx, response.getWriter());
     }
 }

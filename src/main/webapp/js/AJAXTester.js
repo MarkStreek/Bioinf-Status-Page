@@ -1,6 +1,9 @@
 async function updateElement() {
+
     let response = await fetch("/D108");
     let movies = await response.json();
+
+    alert(movies);
 
 
     let div = document.getElementById("somediv");
