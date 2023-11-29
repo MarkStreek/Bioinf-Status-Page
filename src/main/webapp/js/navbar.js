@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     dropdownToggles.forEach(function(toggle) {
         toggle.addEventListener('click', toggleDropdownMenu);
-    });
+    })
 
     window.addEventListener('resize', function() {
         var dropdownMenus = document.querySelectorAll('.dropdown-menu');
