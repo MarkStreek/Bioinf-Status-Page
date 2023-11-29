@@ -1,0 +1,37 @@
+{
+  "data" : {
+    "room" : {
+      "D108" : [
+        "bin300.bin.bioinf.nl",
+        "bin301.bin.bioinf.nl",
+        "bin302.bin.bioinf.nl",
+        "bin303.bin.bioinf.nl",
+        "bin304.bin.bioinf.nl",
+        "bin305.bin.bioinf.nl",
+        "bin306.bin.bioinf.nl",
+        "bin307.bin.bioinf.nl"
+      ],
+      "D107" : [
+        "nuc107.bin.bioinf.nl",
+        "nuc108.bin.bioinf.nl",
+        "nuc109.bin.bioinf.nl",
+        "nuc110.bin.bioinf.nl"
+      ],
+      "H186" : [
+        "nuc111.bin.bioinf.nl",
+        "nuc112.bin.bioinf.nl",
+        "nuc113.bin.bioinf.nl"
+      ],
+      "H188A" : [
+        "nuc114.bin.bioinf.nl",
+        "nuc115.bin.bioinf.nl",
+        "nuc116.bin.bioinf.nl"
+      ],
+      "H1122" : [
+        "nuc117.bin.bioinf.nl",
+        "nuc118.bin.bioinf.nl",
+        "nuc119.bin.bioinf.nl"
+      ]
+    }
+  }
+}
