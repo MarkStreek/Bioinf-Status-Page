@@ -1,4 +1,4 @@
-async function logMovies() {
+async function updateElement() {
     let response = await fetch("/D108");
     let movies = await response.json();
 
@@ -14,4 +14,4 @@ async function logMovies() {
     div.appendChild(someh3);
 }
 
-setInterval(logMovies, 2000);
+setInterval(updateElement, 2000);

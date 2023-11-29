@@ -69,14 +69,3 @@ function makeDiv() {
     // Inserting new div
     innerDiv.appendChild(newDivMain);
 }}
-
-// async function updateGet() {
-//     let response = await fetch("/D108");
-//     let movies = await response.json();
-//     //let div = document.getElementById("somediv").textContent = movies.url;
-//
-//     makeDiv(movies);
-// }
-
-
-setInterval(makeDiv, 2000);
