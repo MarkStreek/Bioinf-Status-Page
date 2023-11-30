@@ -1,7 +1,10 @@
 package nl.bioinf.shbreekers.model;
 
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,62 +49,77 @@ public class CombineJsonObjects {
         System.out.println(mergedJson);
     }
 
+    public void testGson() {
+        String json =
+                """
+                {
+                    "__name__": "node_load1",
+                    "instance": "bin305.bin.bioinf.nl",
+                    "job": "node_exporter"
+                },
+                """;
+
+        JsonObject results = JsonParser.parseString(json).getAsJsonObject();
+    }
+
     public static void main(String[] args) {
         CombineJsonObjects combineJsonObjects = new CombineJsonObjects();
-        combineJsonObjects.combineMultipleJsonObjects(List.of(
-                """
-                                {
-                                         "metric": {
-                                           "__name__": "process_cpu_seconds_total",
-                                           "instance": "bin305.bin.bioinf.nl",
-                                           "job": "promtail_exporter"
-                                         },
-                                         "value": [
-                                           1701351511.15,
-                                           "17471.38"
-                                         ]
-                                       }
-                        """,
-                """
-                                {
-                                         "metric": {
-                                           "__name__": "node_load1",
-                                           "instance": "bin305.bin.bioinf.nl",
-                                           "job": "node_exporter"
-                                         },
-                                         "value": [
-                                           1701356426.099,
-                                           "56"
-                                         ]
-                                       }
-                        """,
-                """
-                                {
-                                         "metric": {
-                                           "__name__": "node_load1",
-                                           "instance": "bin306.bin.bioinf.nl",
-                                           "job": "node_exporter"
-                                         },
-                                         "value": [
-                                           1701356426.099,
-                                           "100"
-                                         ]
-                                       }
-                        """,
-                """
-                        {
-                                "metric": {
-                                  "__name__": "node_load5",
-                                  "instance": "bin305.bin.bioinf.nl",
-                                  "job": "node_exporter"
-                                },
-                                "value": [
-                                  1701358223.862,
-                                  "0"
-                                ]
-                              }
-                        """
-
-        ));
+        combineJsonObjects.testGson();
+//        CombineJsonObjects combineJsonObjects = new CombineJsonObjects();
+//        combineJsonObjects.combineMultipleJsonObjects(List.of(
+//                """
+//                                {
+//                                         "metric": {
+//                                           "__name__": "process_cpu_seconds_total",
+//                                           "instance": "bin305.bin.bioinf.nl",
+//                                           "job": "promtail_exporter"
+//                                         },
+//                                         "value": [
+//                                           1701351511.15,
+//                                           "17471.38"
+//                                         ]
+//                                       }
+//                        """,
+//                """
+//                                {
+//                                         "metric": {
+//                                           "__name__": "node_load1",
+//                                           "instance": "bin305.bin.bioinf.nl",
+//                                           "job": "node_exporter"
+//                                         },
+//                                         "value": [
+//                                           1701356426.099,
+//                                           "56"
+//                                         ]
+//                                       }
+//                        """,
+//                """
+//                                {
+//                                         "metric": {
+//                                           "__name__": "node_load1",
+//                                           "instance": "bin306.bin.bioinf.nl",
+//                                           "job": "node_exporter"
+//                                         },
+//                                         "value": [
+//                                           1701356426.099,
+//                                           "100"
+//                                         ]
+//                                       }
+//                        """,
+//                """
+//                        {
+//                                "metric": {
+//                                  "__name__": "node_load5",
+//                                  "instance": "bin305.bin.bioinf.nl",
+//                                  "job": "node_exporter"
+//                                },
+//                                "value": [
+//                                  1701358223.862,
+//                                  "0"
+//                                ]
+//                              }
+//                        """
+//
+//        ));
     }
 }
