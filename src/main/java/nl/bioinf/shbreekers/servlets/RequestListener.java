@@ -59,7 +59,7 @@ public class RequestListener extends HttpServlet {
         // Set the data to the response
         response.setContentType("text/json");
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write("null");
+        response.getWriter().write(json);
     }
 
     /**
