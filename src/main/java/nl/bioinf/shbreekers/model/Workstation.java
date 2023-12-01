@@ -12,14 +12,9 @@ public record Workstation(
         String instance,
 
         @SerializedName("job")
-        String job
-//        String _computer_,
-//        boolean _status_,
-//        boolean _inUse_,
-//        int _processorLoad_,
-//        int _temperature_,
-//        int _uptime_,
-//        List<String> _users_,
-//        String _classroom_
+        String job,
+
+        @SerializedName("value")
+        List<String> load
 ) {
 }
