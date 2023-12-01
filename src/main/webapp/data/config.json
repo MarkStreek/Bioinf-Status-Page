@@ -2,6 +2,33 @@
   "data" : {
     "room" : {
       "D108" : [
+        "nuc001.bin.bioinf.nl",
+        "nuc002.bin.bioinf.nl",
+        "nuc003.bin.bioinf.nl",
+        "nuc005.bin.bioinf.nl",
+        "nuc007.bin.bioinf.nl",
+        "nuc020.bin.bioinf.nl",
+        "nuc100.bin.bioinf.nl",
+        "nuc101.bin.bioinf.nl",
+        "nuc102.bin.bioinf.nl",
+        "nuc103.bin.bioinf.nl",
+        "nuc104.bin.bioinf.nl",
+        "nuc105.bin.bioinf.nl",
+        "nuc106.bin.bioinf.nl",
+        "nuc107.bin.bioinf.nl",
+        "nuc108.bin.bioinf.nl",
+        "nuc109.bin.bioinf.nl",
+        "nuc111.bin.bioinf.nl",
+        "nuc112.bin.bioinf.nl",
+        "nuc113.bin.bioinf.nl",
+        "nuc114.bin.bioinf.nl",
+        "nuc115.bin.bioinf.nl",
+        "nuc116.bin.bioinf.nl",
+        "nuc117.bin.bioinf.nl",
+        "nuc118.bin.bioinf.nl",
+        "nuc119.bin.bioinf.nl"
+      ],
+      "D107" : [
         "bin300.bin.bioinf.nl",
         "bin301.bin.bioinf.nl",
         "bin302.bin.bioinf.nl",
@@ -11,27 +38,77 @@
         "bin306.bin.bioinf.nl",
         "bin307.bin.bioinf.nl"
       ],
-      "D107" : [
-        "nuc107.bin.bioinf.nl",
-        "nuc108.bin.bioinf.nl",
-        "nuc109.bin.bioinf.nl",
-        "nuc110.bin.bioinf.nl"
-      ],
       "H186" : [
-        "nuc111.bin.bioinf.nl",
-        "nuc112.bin.bioinf.nl",
-        "nuc113.bin.bioinf.nl"
+        "nuc404.bin.bioinf.nl",
+        "nuc405.bin.bioinf.nl",
+        "nuc406.bin.bioinf.nl",
+        "nuc407.bin.bioinf.nl",
+        "nuc408.bin.bioinf.nl",
+        "nuc409.bin.bioinf.nl",
+        "nuc410.bin.bioinf.nl",
+        "nuc411.bin.bioinf.nl",
+        "nuc412.bin.bioinf.nl",
+        "nuc413.bin.bioinf.nl",
+        "nuc414.bin.bioinf.nl",
+        "nuc415.bin.bioinf.nl",
+        "nuc416.bin.bioinf.nl",
+        "nuc417.bin.bioinf.nl",
+        "nuc418.bin.bioinf.nl",
+        "nuc419.bin.bioinf.nl",
+        "nuc420.bin.bioinf.nl",
+        "nuc421.bin.bioinf.nl",
+        "nuc422.bin.bioinf.nl",
+        "nuc423.bin.bioinf.nl",
+        "nuc424.bin.bioinf.nl",
+        "nuc425.bin.bioinf.nl",
+        "nuc426.bin.bioinf.nl",
+        "nuc427.bin.bioinf.nl",
+        "nuc428.bin.bioinf.nl",
+        "nuc429.bin.bioinf.nl",
+        "nuc430.bin.bioinf.nl",
+        "nuc431.bin.bioinf.nl",
+        "nuc501.bin.bioinf.nl",
+        "nuc502.bin.bioinf.nl",
+        "nuc503.bin.bioinf.nl",
+        "nuc504.bin.bioinf.nl",
+        "nuc505.bin.bioinf.nl"
       ],
       "H188A" : [
-        "nuc114.bin.bioinf.nl",
-        "nuc115.bin.bioinf.nl",
-        "nuc116.bin.bioinf.nl"
+        "nuc206.bin.bioinf.nl",
+        "nuc207.bin.bioinf.nl",
+        "nuc208.bin.bioinf.nl",
+        "nuc221.bin.bioinf.nl",
+        "nuc222.bin.bioinf.nl",
+        "nuc223.bin.bioinf.nl",
+        "nuc224.bin.bioinf.nl",
+        "nuc225.bin.bioinf.nl",
+        "nuc230.bin.bioinf.nl",
+        "nuc231.bin.bioinf.nl",
+        "nuc301.bin.bioinf.nl",
+        "nuc302.bin.bioinf.nl",
+        "nuc330.bin.bioinf.nl",
+        "nuc400.bin.bioinf.nl",
+        "nuc401.bin.bioinf.nl",
+        "nuc402.bin.bioinf.nl",
+        "nuc403.bin.bioinf.nl"
       ],
       "H1122" : [
-        "nuc117.bin.bioinf.nl",
-        "nuc118.bin.bioinf.nl",
-        "nuc119.bin.bioinf.nl"
+        "nuc120.bin.bioinf.nl",
+        "nuc121.bin.bioinf.nl",
+        "nuc122.bin.bioinf.nl",
+        "nuc130.bin.bioinf.nl",
+        "nuc200.bin.bioinf.nl",
+        "nuc201.bin.bioinf.nl",
+        "nuc202.bin.bioinf.nl",
+        "nuc203.bin.bioinf.nl",
+        "nuc204.bin.bioinf.nl",
+        "nuc205.bin.bioinf.nl"
       ]
-    }
+    },
+    "Server" : [
+      "assemblix2012.bin.bioinf.nl",
+      "assemblix2019.bin.bioinf.nl",
+      "mordor-vm.bin.bioinf.nl"
+    ]
   }
 }
