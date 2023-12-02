@@ -38,7 +38,7 @@ public class D108Listener extends HttpServlet {
 
         Gson gson = new Gson();
         String json = gson.toJson("D108");
-
+        System.out.println(json);
         response.setContentType("text/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);

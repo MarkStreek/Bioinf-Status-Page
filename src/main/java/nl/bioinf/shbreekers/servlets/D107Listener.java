@@ -1,5 +1,5 @@
-package nl.bioinf.shbreekers.servlets; //change to your situation!
-import com.google.gson.Gson;
+package nl.bioinf.shbreekers.servlets;
+
 import nl.bioinf.shbreekers.config.WebConfig;
 import org.thymeleaf.context.WebContext;
 import javax.servlet.ServletContext;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "WelcomeServlet", urlPatterns = "/give.welcome", loadOnStartup = 1)
-public class WelcomeServlet extends HttpServlet {
+@WebServlet(name = "D107Listener", urlPatterns = "/give.D107", loadOnStartup = 1)
+public class D107Listener extends HttpServlet {
     @Override
     public void init() throws ServletException {
         System.out.println("Initializing Thymeleaf template engine");
@@ -35,6 +35,6 @@ public class WelcomeServlet extends HttpServlet {
                 request.getLocale());
 
         WebConfig.createTemplateEngine(getServletContext()).
-                process("index", ctx, response.getWriter());
+                process("D107", ctx, response.getWriter());
     }
 }
