@@ -24,6 +24,15 @@ public class LoginServlet extends HttpServlet {
     }
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
         process(request, response);
+        WebConfig.configureResponse(response);
+        WebContext ctx = new WebContext(
+                request,
+                response,
+                request.getServletContext(),
+                request.getLocale());
+
+        WebConfig.createTemplateEngine(getServletContext()).
+                process("index", ctx, response.getWriter());
     }
     public void process(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
