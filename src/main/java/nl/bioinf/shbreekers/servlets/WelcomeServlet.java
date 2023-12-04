@@ -39,6 +39,6 @@ public class WelcomeServlet extends HttpServlet {
                 request.getLocale());
 
         WebConfig.createTemplateEngine(getServletContext()).
-                process("index", ctx, response.getWriter());
+                process("checkboxTest", ctx, response.getWriter());
     }
 }
