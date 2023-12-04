@@ -5,8 +5,8 @@ import java.util.List;
 public class Workstation {
 
     private String instance;
-    private String CurrnetLoad;
-    private String CurrentLoad5;
+    private String currentLoad;
+    private String currentLoad5;
     private boolean isUP;
     private String currentAvailableMemory;
     private String currentFreeMemory;
@@ -20,20 +20,20 @@ public class Workstation {
         return instance;
     }
 
-    public String getCurrnetLoad() {
-        return CurrnetLoad;
+    public String getCurrentLoad() {
+        return currentLoad;
     }
 
-    public void setCurrnetLoad(String currnetLoad) {
-        CurrnetLoad = currnetLoad;
+    public void setCurrentLoad(String currentLoad) {
+        this.currentLoad = currentLoad;
     }
 
     public String getCurrentLoad5() {
-        return CurrentLoad5;
+        return currentLoad5;
     }
 
     public void setCurrentLoad5(String currentLoad5) {
-        CurrentLoad5 = currentLoad5;
+        this.currentLoad5 = currentLoad5;
     }
 
     public boolean isUP() {

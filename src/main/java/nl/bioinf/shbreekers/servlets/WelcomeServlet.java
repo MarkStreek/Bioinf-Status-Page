@@ -31,21 +31,6 @@ public class WelcomeServlet extends HttpServlet {
     }
     public void process(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        ParseJsonRequests parseJsonRequests = new ParseJsonRequests();
-        MakeRequests makeRequests = new MakeRequests();
-
-        String data = makeRequests.getData("http://localhost:9090/api/v1/query?query=node_load1");
-        parseJsonRequests.parseJsonToRecord(data);
-
-        List<Workstation> workstations = parseJsonRequests.getWorkstations();
-        for (Workstation w : workstations) {
-            System.out.println("w.getInstance() = " + w.getInstance());
-            System.out.println("w.getCurrnetLoad() = " + w.getCurrnetLoad());
-        }
-
-
-
-
         WebConfig.configureResponse(response);
         WebContext ctx = new WebContext(
                 request,

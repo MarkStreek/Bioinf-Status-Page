@@ -13,9 +13,8 @@ public class ParseJsonRequests {
     /**
      * Parse json to record list.
      *
-     * @return the list
      */
-    public List<Workstation> parseJsonToRecord(String requestBody) {
+    public void parseJsonToRecord(String requestBody) {
         // Defining a Test request
 //        String json =
 //                """
@@ -42,25 +41,25 @@ public class ParseJsonRequests {
             List<String> value = gson.fromJson(resultObj.getAsJsonArray("value"), new TypeToken<List<String>>() {
             }.getType());
 
+            Workstation newStation = new Workstation(instance);
+
+            if (!workstations.contains(newStation)) {
+                workstations.add(newStation);
+            }
+
             for (Workstation station : workstations) {
-                if (!station.getInstance().equals(instance)) {
-                    workstations.add(new Workstation(instance));
-                } else if (name.equals("node_load1")) {
-                    station.setCurrnetLoad(value.get(1));
-                } else if (name.equals("node_load5")) {
-                    station.setCurrentLoad5(value.get(1));
-                } else if (name.equals("up")) {
-                    station.setUP(value.get(1).equals("1"));
-                } else if (name.equals("node_memory_MemAvailable_bytes")) {
-                    station.setCurrentAvailableMemory(value.get(1));
-                } else if (name.equals("node_memory_MemFree_bytes")) {
-                    station.setCurrentFreeMemory(value.get(1));
-                } else if (name.equals("smartmon_temperature_celsius_raw_value")) {
-                    station.setTemperature(value.get(1));
+                if (station.getInstance().equals(instance)) {
+                    switch (name) {
+                        case "node_load1" -> station.setCurrentLoad(value.get(1));
+                        case "node_load5" -> station.setCurrentLoad5(value.get(1));
+                        case "up" -> station.setUP(value.get(1).equals("1"));
+                        case "node_memory_MemAvailable_bytes" -> station.setCurrentAvailableMemory(value.get(1));
+                        case "node_memory_MemFree_bytes" -> station.setCurrentFreeMemory(value.get(1));
+                        case "smartmon_temperature_celsius_raw_value" -> station.setTemperature(value.get(1));
+                    }
                 }
             }
         }
-        return workstations;
     }
 
     public List<Workstation> getWorkstations() {
@@ -68,8 +67,16 @@ public class ParseJsonRequests {
     }
 
     public static void main(String[] args) {
-//        ParseJsonRequests parseJsonRequests = new ParseJsonRequests();
-//        List<Workstation> workstations= parseJsonRequests.parseJsonToRecord();
-//        System.out.println(workstations);
+        ParseJsonRequests parseJsonRequests = new ParseJsonRequests();
+        MakeRequests makeRequests = new MakeRequests();
+
+        String data = makeRequests.getData("http://localhost:9090/api/v1/query?query=node_load1");
+        parseJsonRequests.parseJsonToRecord(data);
+
+        List<Workstation> workstations = parseJsonRequests.getWorkstations();
+        for (Workstation w : workstations) {
+            System.out.println("w.getInstance() = " + w.getInstance());
+            System.out.println("w.getCurrnetLoad() = " + w.getCurrentLoad());
+        }
     }
 }
