@@ -1,23 +1,23 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerFragment">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bootstrap demo</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
-
+  <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+  <link rel="stylesheet" type="text/css" th:href="@{../../style/custom.css}">
+  <script type="application/javascript" src="js/navbar.js"></script>
+  <script type="application/javascript" src="js/div.js"></script>
+  <script type="application/javascript" src="js/AJAXTester.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </head>
-<style>
-  /* Adjust styles as needed */
-  .dropdown:hover .dropdown-menu {
-    display: block;
-  }
-  .custom-bg-color {
-    background-color: #ee7f00;
-  }
-</style>
-<nav class="navbar navbar-expand-lg custom-bg-color py-3">
+
+<body>
+<nav th:fragment="navbarFragment" class="navbar navbar-expand-lg custom-bg-color py-3">
   <div class="container-fluid">
     <a class="navbar-brand text-light position-static" href="/give.welcome">Bio-inf server status</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,10 +42,10 @@
         </li>
 
         <li class="nav-item position-absolute top-0 end-0">
-        <a class="navbar-brand" href="#">
-          <img src="https://static1.squarespace.com/static/609509792278787105a2228b/t/6098dc5b92caf154da722f83/1689847796687/" alt="Bootstrap" width="140" height="40">
-        </a>
-      </li>
+          <a class="navbar-brand" href="#">
+            <img src="https://static1.squarespace.com/static/609509792278787105a2228b/t/6098dc5b92caf154da722f83/1689847796687/" alt="Bootstrap" width="140" height="40">
+          </a>
+        </li>
       </ul>
     </div>
   </div>
@@ -56,19 +56,13 @@
   </div>
 </div>
 
-<body>
-
-</body>
 <br><br><br>
-<footer class="custom-bg-color text-center text-lg-start">
+<footer th:fragment="footerFragment" class="custom-bg-color text-center text-lg-start">
   <div class="text-center text-light p-3" style="background-color: rgba(0, 0, 0, 0.05);">
     © 2023 BFV3:
     <p class="text-light"><b>Bioinf.nl</b></p>
   </div>
   <!-- Copyright -->
 </footer>
-<script type="application/javascript" src="js/navbar.js"></script>
-<script type="application/javascript" src="js/div.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
 </html>

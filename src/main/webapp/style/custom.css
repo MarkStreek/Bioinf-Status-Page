@@ -2,3 +2,10 @@
     background-color: #c01313; /* Nieuwe kleur bij hover */
 }
 
+/* Adjust styles as needed */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+.custom-bg-color {
+    background-color: #ee7f00;
+}
