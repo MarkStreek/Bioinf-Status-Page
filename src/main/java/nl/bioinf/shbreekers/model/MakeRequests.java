@@ -28,6 +28,7 @@ public class MakeRequests {
             }
         } catch (URISyntaxException | InterruptedException | IOException e) {
             e.printStackTrace();
+            // TODO: Proper error handling
         }
         return "FAILED";
     }
