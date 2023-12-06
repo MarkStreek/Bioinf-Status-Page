@@ -1,7 +1,9 @@
 package nl.bioinf.shbreekers.servlets;
 import com.google.gson.Gson;
+import nl.bioinf.shbreekers.config.XmlWebListener;
 import nl.bioinf.shbreekers.config.WebConfig;
 import nl.bioinf.shbreekers.model.MakeRequests;
+import nl.bioinf.shbreekers.model.Workstation;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 
 @WebServlet(name = "requestListener", urlPatterns = {"/requestListener"}, loadOnStartup = 1)
@@ -38,8 +41,6 @@ public class RequestListener extends HttpServlet {
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        // TODO: create some logical, that checks which data is needed for the front end
-
         // Or should we make a different servlet for each request?
         // i.e., servlet that listens to requests for room D1.08,
         // and a servlet that listens to requests for room D1.07 etc...
@@ -49,15 +50,15 @@ public class RequestListener extends HttpServlet {
         // otherwise we have to do a back-end check which data is necessary
 
         MakeRequests makeRequests = new MakeRequests();
-
-        // Construct the query link
+        List<String> links = XmlWebListener.getQueriesList();
+        List<Workstation> workstations = makeRequests.startRequests(links);
 
         // Make the call to the request function with the right query link
-        //String json = new Gson().toJson(makeRequests.getData(queryLink));
+        String json = new Gson().toJson(workstations);
 
         // Set the data to the response
         response.setContentType("text/json");
         response.setCharacterEncoding("UTF-8");
-        //response.getWriter().write(json);
+        response.getWriter().write(json);
     }
 }

@@ -2,7 +2,7 @@ package nl.bioinf.shbreekers.model;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import nl.bioinf.shbreekers.config.QueryListener;
+import nl.bioinf.shbreekers.config.XmlWebListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -73,7 +73,7 @@ public class ParseJsonRequests {
 //            parseJsonRequests.parseJsonToRecord(data);
 //        }
 
-        List<String> links = QueryListener.getQueriesList();
+        List<String> links = XmlWebListener.getQueriesList();
 
         List<Workstation> workstations = makeRequests.startRequests(links);
 

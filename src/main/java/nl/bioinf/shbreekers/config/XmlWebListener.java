@@ -1,7 +1,5 @@
 package nl.bioinf.shbreekers.config;
 
-import org.thymeleaf.TemplateEngine;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -11,10 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static nl.bioinf.shbreekers.config.WebConfig.createTemplateEngine;
-
 @WebListener
-public class QueryListener implements ServletContextListener {
+public class XmlWebListener implements ServletContextListener {
     public static List<String> queriesList = new ArrayList<>();
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {

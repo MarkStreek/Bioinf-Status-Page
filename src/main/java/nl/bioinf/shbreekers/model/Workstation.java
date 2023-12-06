@@ -39,7 +39,7 @@ public class Workstation {
     }
 
     public void setUP(String UP) {
-        isUP = UP.equalsIgnoreCase("1");
+        isUP = UP.equals("1");
     }
 
     public String getCurrentAvailableMemory() {
