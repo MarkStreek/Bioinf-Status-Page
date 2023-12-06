@@ -5,7 +5,6 @@ async function updateElement() {
     let selectedRooms = getSelectedRooms() || Object.keys(data.data.room);
     let serversDiv = document.getElementById("innerDiv");
     serversDiv.innerHTML = ''; // Leeg de div
-
     for (let room of selectedRooms) {
         let servers = data.data.room[room];
         if (servers) {
@@ -25,13 +24,12 @@ function createServerDiv(server, room) {
     let newDivMain = document.createElement('div');
     newDivMain.classList.add('col');
     newDivMain.setAttribute("id", server);
+    newDivMain.style.width = '25%';
 
     // new subdiv
     let newDiv1 = document.createElement('div');
     newDiv1.classList.add('card', 'border-1');
     newDiv1.style.backgroundColor = `#4a5766`;
-    newDiv1.style.height = `100px`;
-
     // new subdiv - card body
     let newDiv2 = document.createElement('div');
     newDiv2.classList.add('card-body');
@@ -42,12 +40,14 @@ function createServerDiv(server, room) {
     PCTitle.textContent = `Server ${server.split('.')[0]}`;
     PCTitle.classList.add('card-title');
     PCTitle.style.color = `#f9f9f9`;
+    PCTitle.style.width = '70%';
 
     // Title for the status
     let StatusTitle = document.createElement('p');
     StatusTitle.classList.add('card-text');
     StatusTitle.style.color = `#f9f9f9`;
     StatusTitle.textContent = `Room ${room}`;
+    StatusTitle.style.width = '70%';
 
     // status element red/green
     let statusTextObject = document.createElement('span');
@@ -66,6 +66,8 @@ function createServerDiv(server, room) {
     let buttonObject = document.createElement("button");
     buttonObject.classList.add("btn", "btn-primary");
     buttonObject.textContent = "More info";
+    buttonObject.style.position = 'relative';
+    buttonObject.style.right = '20%';
     buttonObject.addEventListener('click', () => {
         let modalBodyText = `Server: ${server}, Room: ${room}, Status: ${chooseRandomStatus}`;
         openModal(modalBodyText);
