@@ -14,6 +14,7 @@ async function updateElement() {
             }
         }
     }
+    document.body.appendChild(serversDiv);
 }
 
 function createServerDiv(server, room) {
@@ -122,6 +123,7 @@ function createServerDiv(server, room) {
 
     const currentLoad = document.createElement('p');
     currentLoad.textContent = 'Current load: ';
+    currentLoad.id = server + "_load";
 
     const currentFreeMemory = document.createElement('p');
     currentFreeMemory.textContent = 'Current free memory: ';
@@ -197,9 +199,9 @@ document.querySelectorAll('input[name="room"]').forEach(cb => {
 });
 
 
-function update() {
-    console.log("KOM HIER");
-    document.getElementById("currentFreeMemory").innerHTML = "HIER MOET WAT KOMEN";
-}
+setTimeout(function (){
 
-update();
+    document.getElementById("nuc001.bin.bioinf.nl_load").innerText = "DEZE TEKTS IS VERANDERD";
+}, 5000);
+
+
