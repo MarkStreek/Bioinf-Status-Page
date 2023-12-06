@@ -16,3 +16,11 @@
     z-index: 1; /* Zorgt ervoor dat het boven andere inhoud staat */
     display: none; /* Verbergt de overlay initieel */
 }
+
+.close {
+    cursor: pointer;
+}
+
+.close:hover {
+    color: dimgrey;
+}
