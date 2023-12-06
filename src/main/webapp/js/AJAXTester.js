@@ -73,6 +73,91 @@ function createServerDiv(server, room) {
         openModal(modalBodyText);
     });
 
+    ////////////////////////////////////
+
+    // MODAL STUFF
+
+    const button = document.createElement('button');
+    button.className = 'btn btn-primary';
+    button.setAttribute('data-bs-toggle', 'modal');
+    button.setAttribute('data-bs-target', '#reg-modal');
+    button.textContent = 'Show Status';
+
+    // Create modal element
+    const modal = document.createElement('div');
+    modal.className = 'modal fade';
+    modal.id = 'reg-modal';
+    modal.tabIndex = '-1';
+
+    // Create modal dialog
+    const modalDialog = document.createElement('div');
+    modalDialog.className = 'modal-dialog';
+
+    // Create modal content
+    const modalContent = document.createElement('div');
+    modalContent.className = 'modal-content';
+
+    // Create modal header
+    const modalHeader = document.createElement('div');
+    modalHeader.className = 'modal-header';
+
+    const title = document.createElement('h1');
+    title.className = 'modal-title';
+    title.textContent = 'Status of NUC 107';
+
+    const closeButton = document.createElement('button');
+    closeButton.className = 'btn-close';
+    closeButton.type = 'button';
+    closeButton.setAttribute('data-bs-dismiss', 'modal');
+
+    modalHeader.appendChild(title);
+    modalHeader.appendChild(closeButton);
+
+    // Create modal body
+    const modalBody = document.createElement('div');
+    modalBody.className = 'modal-body';
+
+    const instanceName = document.createElement('p');
+    instanceName.textContent = 'Instance name: ';
+
+    const currentLoad = document.createElement('p');
+    currentLoad.textContent = 'Current load: ';
+
+    const currentFreeMemory = document.createElement('p');
+    currentFreeMemory.textContent = 'Current free memory: ';
+    currentFreeMemory.setAttribute("id", "currentFreeMemory");
+
+    const freeMemoryLast5Minutes = document.createElement('p');
+    freeMemoryLast5Minutes.textContent = 'Free memory last 5 minutes: ';
+
+    modalBody.appendChild(instanceName);
+    modalBody.appendChild(currentLoad);
+    modalBody.appendChild(currentFreeMemory);
+    modalBody.appendChild(freeMemoryLast5Minutes);
+
+    // Create modal footer
+    const modalFooter = document.createElement('div');
+    modalFooter.className = 'modal-footer';
+
+    const closeButtonModal = document.createElement('button');
+    closeButtonModal.className = 'btn btn-primary';
+    closeButtonModal.type = 'button';
+    closeButtonModal.setAttribute('data-bs-dismiss', 'modal');
+    closeButtonModal.textContent = 'Close';
+
+    modalFooter.appendChild(closeButtonModal);
+
+    // Assemble modal components
+    modalContent.appendChild(modalHeader);
+    modalContent.appendChild(modalBody);
+    modalContent.appendChild(modalFooter);
+
+    modalDialog.appendChild(modalContent);
+    modal.appendChild(modalDialog);
+
+
+    ////////////////////////////////////
+
 
     // append all elements to the right parent elements
     newDivMain.appendChild(newDiv1);
@@ -83,6 +168,8 @@ function createServerDiv(server, room) {
     newDiv2.appendChild(buttonObject);
     StatusTitle.appendChild(statusTextObject);
 
+    newDivMain.appendChild(button);
+    newDivMain.appendChild(modal);
 
     // Changing the color
     if (chooseRandomStatus === "ONLINE") {
@@ -94,7 +181,6 @@ function createServerDiv(server, room) {
         newDiv1.style.borderColor = `#ff0000`;
         logoImageObject.setAttribute("src", "../../images/logo_OFFLINE.png");
     }
-
     return newDivMain;
 }
 
@@ -109,3 +195,11 @@ document.addEventListener('DOMContentLoaded', updateElement);
 document.querySelectorAll('input[name="room"]').forEach(cb => {
     cb.addEventListener('change', updateElement);
 });
+
+
+function update() {
+    console.log("KOM HIER");
+    document.getElementById("currentFreeMemory").innerHTML = "HIER MOET WAT KOMEN";
+}
+
+update();

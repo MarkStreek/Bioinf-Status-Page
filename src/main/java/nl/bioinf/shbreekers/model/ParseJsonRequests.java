@@ -2,7 +2,6 @@ package nl.bioinf.shbreekers.model;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import nl.bioinf.shbreekers.config.XmlWebListener;
 
 import java.util.*;
 
@@ -38,29 +37,28 @@ public class ParseJsonRequests {
             List<String> value = gson.fromJson(resultObj.getAsJsonArray("value"), new TypeToken<List<String>>() {
             }.getType());
 
+            System.out.println("instance: " + instance);
+            System.out.println("name: " + name);
+            System.out.println("job: " + job);
+            System.out.println("value: " + value);
+
             Workstation newStation = new Workstation(instance);
 
             if (!workstations.contains(newStation)) {
                 workstations.add(newStation);
             }
 
-            System.out.println();
-            System.out.println("instance = " + instance);
-            System.out.println("job = " + job);
-            System.out.println("name = " + name);
-            System.out.println("value = " + value);
-
             for (Workstation station : workstations) {
                 if (station.getInstance().equals(instance)) {
-                    if (job.equals("process_exporter")) {
-                    switch (name) {
-                        case "node_load1" -> station.setCurrentLoad(value.get(1));
-                        case "node_load5" -> station.setCurrentLoad5(value.get(1));
-                        case "up" -> station.setUP(value.get(1));
-                        case "node_memory_MemAvailable_bytes" -> station.setCurrentAvailableMemory(value.get(1));
-                        case "node_memory_MemFree_bytes" -> station.setCurrentFreeMemory(value.get(1));
-                        case "smartmon_temperature_celsius_raw_value" -> station.setTemperature(value.get(1));
-                    }
+                    if (job.equals("node_exporter")) {
+                        switch (name) {
+                            case "node_load1" -> station.setCurrentLoad(value.get(1));
+                            case "node_load5" -> station.setCurrentLoad5(value.get(1));
+                            case "up" -> station.setUP(value.get(1));
+                            case "node_memory_MemAvailable_bytes" -> station.setCurrentAvailableMemory(value.get(1));
+                            case "node_memory_MemFree_bytes" -> station.setCurrentFreeMemory(value.get(1));
+                            case "smartmon_temperature_celsius_raw_value" -> station.setTemperature(value.get(1));
+                        }
                     }
                 }
             }
