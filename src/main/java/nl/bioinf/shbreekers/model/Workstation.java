@@ -5,7 +5,7 @@ public class Workstation {
     private String instance;
     private String currentLoad;
     private String currentLoad5;
-    private boolean isUP = false;
+    private boolean isUP;
     private String currentAvailableMemory;
     private String currentFreeMemory;
     private String temperature;

@@ -65,13 +65,14 @@ public class ParseJsonRequests {
         ParseJsonRequests parseJsonRequests = new ParseJsonRequests();
         MakeRequests makeRequests = new MakeRequests();
 
-        String data = makeRequests.getData("http://localhost:9090/api/v1/query?query=node_load1");
-        parseJsonRequests.parseJsonToRecord(data);
+        List<String> links = List.of("http://monitor:9090/api/v1/query?query=up", "http://monitor:9090/api/v1/query?query=smartmon_temperature_celsius_raw_value", "http://monitor:9090/api/v1/query?query=node_load1", "http://monitor:9090/api/v1/query?query=node_load5", "http://monitor:9090/api/v1/query?query=node_memory_MemFree_bytes", "http://monitor:9090/api/v1/query?query=node_memory_MemAvailable_bytes");
 
-        List<Workstation> workstations = parseJsonRequests.getWorkstations();
+        List<Workstation> workstations = makeRequests.startRequests(links);
+
         for (Workstation w : workstations) {
             System.out.println("w.getInstance() = " + w.getInstance());
-            System.out.println("w.getCurrnetLoad() = " + w.getCurrentLoad());
+            System.out.println("w.getCurrnetAvailableMemory() = " + w.getCurrentAvailableMemory());
+            System.out.println("w.isUP() = " + w.isUP());
         }
     }
 }

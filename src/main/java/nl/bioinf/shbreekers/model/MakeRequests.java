@@ -29,7 +29,7 @@ public class MakeRequests {
                 return dataResponse.body();
             }
         } catch (URISyntaxException | InterruptedException | IOException e) {
-            System.err.println((String.format("Something went wrong while making a request (Line: %d): %s: %s",
+            System.out.println((String.format("Something went wrong while making a request (Line: %d): %s: %s",
                     e.getStackTrace()[0].getLineNumber(),
                     e.getClass().getSimpleName(), e.getMessage())));
             System.exit(1);
@@ -48,17 +48,16 @@ public class MakeRequests {
      */
     public List<Workstation> startRequests(List<String> queryLinks) {
         ParseJsonRequests parseJsonRequests = new ParseJsonRequests();
-        try {
             for (String link : queryLinks) {
-                String data = getData(link);
-                parseJsonRequests.parseJsonToRecord(data);
+                try {
+                    String data = getData(link);
+                    parseJsonRequests.parseJsonToRecord(data);
+                } catch (Exception e) {
+                    System.out.println((String.format("Something went wrong while making a request (Line: %d): %s: %s",
+                            e.getStackTrace()[0].getLineNumber(),
+                            e.getClass().getSimpleName(), e.getMessage())));
+                }
             }
-        } catch (Exception e) {
-            System.err.println((String.format("Something went wrong while making a request (Line: %d): %s: %s",
-                    e.getStackTrace()[0].getLineNumber(),
-                    e.getClass().getSimpleName(), e.getMessage())));
-            System.exit(1);
-        }
         return parseJsonRequests.getWorkstations();
     }
 
