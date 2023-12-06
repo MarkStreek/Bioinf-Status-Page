@@ -2,5 +2,8 @@ async function handleRequest() {
     let response = await fetch("/requestListener");
     let data = await response.json();
 
-    alert(data)
+
+
+    console.log(JSON.stringify(data));
+
 }

@@ -16,16 +16,16 @@ public class XmlWebListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ServletContext ctx = servletContextEvent.getServletContext();
         queriesList.add(ctx.getInitParameter("up"));
-        queriesList.add(ctx.getInitParameter("temperature"));
-        queriesList.add(ctx.getInitParameter("currentLoad"));
-        queriesList.add(ctx.getInitParameter("loadLast5Minutes"));
-        queriesList.add(ctx.getInitParameter("currentFreeMemory"));
+        //queriesList.add(ctx.getInitParameter("temperature"));
+        //queriesList.add(ctx.getInitParameter("currentLoad"));
+        //queriesList.add(ctx.getInitParameter("loadLast5Minutes"));
+        //queriesList.add(ctx.getInitParameter("currentFreeMemory"));
         queriesList.add(ctx.getInitParameter("availableMemory"));
-        queriesList.add(ctx.getInitParameter("temperature"));
-        queriesList.add(ctx.getInitParameter("currentLoad"));
-        queriesList.add(ctx.getInitParameter("loadLast5Minutes"));
-        queriesList.add(ctx.getInitParameter("currentFreeMemory"));
-        queriesList.add(ctx.getInitParameter("availableMemory"));
+        //queriesList.add(ctx.getInitParameter("temperature"));
+        //queriesList.add(ctx.getInitParameter("currentLoad"));
+        //queriesList.add(ctx.getInitParameter("loadLast5Minutes"));
+        //queriesList.add(ctx.getInitParameter("currentFreeMemory"));
+        //queriesList.add(ctx.getInitParameter("availableMemory"));
         System.out.println("DatabaseWebListener.contextIntitialized");
     }
 

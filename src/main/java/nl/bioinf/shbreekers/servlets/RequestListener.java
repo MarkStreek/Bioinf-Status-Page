@@ -49,18 +49,18 @@ public class RequestListener extends HttpServlet {
         // inside the javascript front-end and then the specific function for that request is called.
         // Otherwise, we have to do a back-end check which data is necessary
 
-        MakeRequests makeRequests = new MakeRequests();
-        List<String> links = XmlWebListener.getQueriesList();
-        List<Workstation> workstations = makeRequests.startRequests(links);
-
-        System.out.println("WORKSTATIONS: " + workstations);
-
-        // Make the call to the request function with the right query link
-        String json = new Gson().toJson(workstations);
-
-        // Set the data to the response
-        response.setContentType("text/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(json);
+//        MakeRequests makeRequests = new MakeRequests();
+//        List<String> links = XmlWebListener.getQueriesList();
+//        List<Workstation> workstations = makeRequests.startRequests(links);
+//
+//        System.out.println("WORKSTATIONS: " + workstations);
+//
+//        // Make the call to the request function with the right query link
+//        String json = new Gson().toJson(workstations);
+//
+//        // Set the data to the response
+//        response.setContentType("text/json");
+//        response.setCharacterEncoding("UTF-8");
+//        response.getWriter().write(json);
     }
 }
