@@ -1,5 +1,7 @@
 package nl.bioinf.shbreekers.model;
 
+import java.util.Objects;
+
 public class Workstation {
 
     private String instance;
@@ -64,5 +66,18 @@ public class Workstation {
 
     public void setTemperature(String temperature) {
         this.temperature = temperature;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Workstation that = (Workstation) o;
+        return Objects.equals(instance, that.instance);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(instance);
     }
 }
