@@ -17,15 +17,11 @@ public class XmlWebListener implements ServletContextListener {
         ServletContext ctx = servletContextEvent.getServletContext();
         queriesList.add(ctx.getInitParameter("up"));
         //queriesList.add(ctx.getInitParameter("temperature"));
-        //queriesList.add(ctx.getInitParameter("currentLoad"));
-        //queriesList.add(ctx.getInitParameter("loadLast5Minutes"));
-        //queriesList.add(ctx.getInitParameter("currentFreeMemory"));
+        // TODO: 11/12/2018 add temperature to the list
+        queriesList.add(ctx.getInitParameter("currentLoad"));
+        queriesList.add(ctx.getInitParameter("loadLast5Minutes"));
+        queriesList.add(ctx.getInitParameter("currentFreeMemory"));
         queriesList.add(ctx.getInitParameter("availableMemory"));
-        //queriesList.add(ctx.getInitParameter("temperature"));
-        //queriesList.add(ctx.getInitParameter("currentLoad"));
-        //queriesList.add(ctx.getInitParameter("loadLast5Minutes"));
-        //queriesList.add(ctx.getInitParameter("currentFreeMemory"));
-        //queriesList.add(ctx.getInitParameter("availableMemory"));
         System.out.println("DatabaseWebListener.contextIntitialized");
     }
 

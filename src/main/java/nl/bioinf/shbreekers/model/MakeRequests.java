@@ -22,6 +22,7 @@ public class MakeRequests {
             HttpResponse<String> dataResponse = client.send(
                             HttpRequest
                             .newBuilder(workStationURI)
+                            .timeout(java.time.Duration.ofSeconds(10))
                             .GET().build(), HttpResponse
                             .BodyHandlers.ofString());
 

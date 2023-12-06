@@ -43,32 +43,12 @@ public class ParseJsonRequests {
             if (!workstations.contains(newStation)) {
                 workstations.add(newStation);
             }
-            
 
             System.out.println();
             System.out.println("instance = " + instance);
             System.out.println("job = " + job);
             System.out.println("name = " + name);
             System.out.println("value = " + value);
-
-            if (workstations.isEmpty()) {
-                for (Workstation workstation : workstations) {
-                    if (Objects.equals(workstation.getInstance(), instance)) {
-
-                    }
-                }
-                workstations.add(new Workstation(instance));
-            }
-
-//            if (!workstations.isEmpty()) {
-//                for (Workstation workstation : workstations) {
-//                    if (!workstation.getInstance().equals(instance)) {
-//                        this.workstations.add(new Workstation(instance));
-//                    } else continue;
-//                }
-//            } else this.workstations.add(new Workstation(instance));
-
-
 
             for (Workstation station : workstations) {
                 if (station.getInstance().equals(instance)) {
@@ -92,25 +72,5 @@ public class ParseJsonRequests {
     }
 
     public static void main(String[] args) {
-//        ParseJsonRequests = new ParseJsonRequests();
-//        MakeRequests makeRequests = new MakeRequests();
-//
-////        QueryListener queryListener = new QueryListener();
-////        for (String query: QueryListener.queriesList) {
-////            String data = makeRequests.getData(query);
-////            parseJsonRequests.parseJsonToRecord(data);
-////        }
-//
-//        List<String> links = XmlWebListener.getQueriesList();
-//        System.out.println(links);
-//
-//        List<Workstation> workstations = makeRequests.startRequests(links);
-//
-//        for (Workstation w : workstations) {
-//            System.out.println("w.getInstance() = " + w.getInstance());
-//            System.out.println("w.getCurrnetAvailableMemory() = " + w.getCurrentAvailableMemory());
-//            System.out.println("w.isUP() = " + w.isUP());
-//        }
-//    }
     }
 }
