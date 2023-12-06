@@ -2,6 +2,8 @@ package nl.bioinf.shbreekers.model;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import nl.bioinf.shbreekers.config.QueryListener;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -65,7 +67,13 @@ public class ParseJsonRequests {
         ParseJsonRequests parseJsonRequests = new ParseJsonRequests();
         MakeRequests makeRequests = new MakeRequests();
 
-        List<String> links = List.of("http://monitor:9090/api/v1/query?query=up", "http://monitor:9090/api/v1/query?query=smartmon_temperature_celsius_raw_value", "http://monitor:9090/api/v1/query?query=node_load1", "http://monitor:9090/api/v1/query?query=node_load5", "http://monitor:9090/api/v1/query?query=node_memory_MemFree_bytes", "http://monitor:9090/api/v1/query?query=node_memory_MemAvailable_bytes");
+//        QueryListener queryListener = new QueryListener();
+//        for (String query: QueryListener.queriesList) {
+//            String data = makeRequests.getData(query);
+//            parseJsonRequests.parseJsonToRecord(data);
+//        }
+
+        List<String> links = QueryListener.getQueriesList();
 
         List<Workstation> workstations = makeRequests.startRequests(links);
 

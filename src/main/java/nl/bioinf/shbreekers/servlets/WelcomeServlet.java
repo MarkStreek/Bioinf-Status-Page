@@ -1,5 +1,6 @@
 package nl.bioinf.shbreekers.servlets; //change to your situation!
 import com.google.gson.Gson;
+import nl.bioinf.shbreekers.config.QueryListener;
 import nl.bioinf.shbreekers.config.WebConfig;
 import nl.bioinf.shbreekers.model.MakeRequests;
 import nl.bioinf.shbreekers.model.ParseJsonRequests;
@@ -31,14 +32,33 @@ public class WelcomeServlet extends HttpServlet {
     }
     public void process(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        WebConfig.configureResponse(response);
-        WebContext ctx = new WebContext(
-                request,
-                response,
-                request.getServletContext(),
-                request.getLocale());
+        ParseJsonRequests parseJsonRequests = new ParseJsonRequests();
+        MakeRequests makeRequests = new MakeRequests();
 
-        WebConfig.createTemplateEngine(getServletContext()).
-                process("checkboxTest", ctx, response.getWriter());
+//        QueryListener queryListener = new QueryListener();
+//        for (String query: QueryListener.queriesList) {
+//            String data = makeRequests.getData(query);
+//            parseJsonRequests.parseJsonToRecord(data);
+//        }
+
+        List<String> links = QueryListener.getQueriesList();
+
+        List<Workstation> workstations = makeRequests.startRequests(links);
+
+        for (Workstation w : workstations) {
+            System.out.println("w.getInstance() = " + w.getInstance());
+            System.out.println("w.getCurrnetAvailableMemory() = " + w.getCurrentAvailableMemory());
+            System.out.println("w.isUP() = " + w.isUP());
+
+            WebConfig.configureResponse(response);
+            WebContext ctx = new WebContext(
+                    request,
+                    response,
+                    request.getServletContext(),
+                    request.getLocale());
+
+            WebConfig.createTemplateEngine(getServletContext()).
+                    process("checkboxTest", ctx, response.getWriter());
+        }
     }
 }
