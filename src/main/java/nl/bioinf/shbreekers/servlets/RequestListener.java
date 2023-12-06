@@ -47,11 +47,13 @@ public class RequestListener extends HttpServlet {
 
         // If we make a different servlet for each request, we can add some logical if/else,
         // inside the javascript front-end and then the specific function for that request is called.
-        // otherwise we have to do a back-end check which data is necessary
+        // Otherwise, we have to do a back-end check which data is necessary
 
         MakeRequests makeRequests = new MakeRequests();
         List<String> links = XmlWebListener.getQueriesList();
         List<Workstation> workstations = makeRequests.startRequests(links);
+
+        System.out.println("WORKSTATIONS: " + workstations);
 
         // Make the call to the request function with the right query link
         String json = new Gson().toJson(workstations);

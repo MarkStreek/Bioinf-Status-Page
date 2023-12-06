@@ -53,7 +53,7 @@ public class MakeRequests {
                     String data = getData(link);
                     parseJsonRequests.parseJsonToRecord(data);
                 } catch (Exception e) {
-                    System.out.println((String.format("Something went wrong while making a request (Line: %d): %s: %s",
+                    System.out.println((String.format("Something went wrong while start a request (Line: %d): %s: %s",
                             e.getStackTrace()[0].getLineNumber(),
                             e.getClass().getSimpleName(), e.getMessage())));
                 }
