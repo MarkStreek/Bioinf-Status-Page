@@ -43,6 +43,7 @@ public class ParseJsonRequests {
             if (!workstations.contains(newStation)) {
                 workstations.add(newStation);
             }
+            
 
             System.out.println();
             System.out.println("instance = " + instance);
@@ -66,6 +67,7 @@ public class ParseJsonRequests {
 //                    } else continue;
 //                }
 //            } else this.workstations.add(new Workstation(instance));
+
 
 
             for (Workstation station : workstations) {

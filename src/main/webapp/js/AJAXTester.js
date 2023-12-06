@@ -18,7 +18,7 @@ async function updateElement() {
 
 function createServerDiv(server, room) {
     let chooseRandomStatus = ['ONLINE', 'OFFLINE'][Math.floor(Math.random() * 2)];
-    let customID = server
+
 
     // new main div
     let newDivMain = document.createElement('div');
@@ -74,7 +74,6 @@ function createServerDiv(server, room) {
     });
 
 
-
     // append all elements to the right parent elements
     newDivMain.appendChild(newDiv1);
     newDiv1.appendChild(newDiv2);
@@ -95,11 +94,6 @@ function createServerDiv(server, room) {
         newDiv1.style.borderColor = `#ff0000`;
         logoImageObject.setAttribute("src", "../../images/logo_OFFLINE.png");
     }
-
-    // newDivMain.addEventListener('click', () => {
-    //     let modalBodyText = `Server: ${server}, Room: ${room}, Status: ${chooseRandomStatus}`;
-    //     openModal(modalBodyText);
-    // });
 
     return newDivMain;
 }

@@ -30,9 +30,9 @@ public class WelcomeServlet extends HttpServlet {
     }
     public void process(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        MakeRequests makeRequests = new MakeRequests();
-        List<String> links = XmlWebListener.getQueriesList();
-        List<Workstation> workstations = makeRequests.startRequests(links);
+//        MakeRequests makeRequests = new MakeRequests();
+//        List<String> links = XmlWebListener.getQueriesList();
+//        List<Workstation> workstations = makeRequests.startRequests(links);
 
 
             WebConfig.configureResponse(response);
