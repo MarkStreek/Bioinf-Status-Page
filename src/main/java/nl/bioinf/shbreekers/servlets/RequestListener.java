@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet("/requests")
+@WebServlet(name = "requestListener", urlPatterns = {"/requestListener"}, loadOnStartup = 1)
 public class RequestListener extends HttpServlet {
 
     @Override
@@ -51,27 +51,13 @@ public class RequestListener extends HttpServlet {
         MakeRequests makeRequests = new MakeRequests();
 
         // Construct the query link
-        String queryLink = constructQueryLink();
 
         // Make the call to the request function with the right query link
-        String json = new Gson().toJson(makeRequests.getData(queryLink));
+        //String json = new Gson().toJson(makeRequests.getData(queryLink));
 
         // Set the data to the response
         response.setContentType("text/json");
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(json);
-    }
-
-    /**
-     * This method constructs the query link. The right parameters are added.
-     * The base of the query link is:
-     *  http://monitor:9090/api/v1/query?query=
-     *  For every request, a certain query must be made. This is done inside this function
-     * @return String with the query link
-     */
-    private String constructQueryLink() {
-        String base = "http://monitor:9090/api/v1/query?query=";
-        // add query to the base query...
-        return null;
+        //response.getWriter().write(json);
     }
 }

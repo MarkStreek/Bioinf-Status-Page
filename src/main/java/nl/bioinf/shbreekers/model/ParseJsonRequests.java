@@ -15,11 +15,6 @@ public class ParseJsonRequests {
      *
      */
     public void parseJsonToRecord(String requestBody) {
-        // Defining a Test request
-//        String json =
-//                """
-//                {          "status": "success",          "data": {            "resultType": "vector",            "result": [              {                "metric": {                  "__name__": "node_load1",                  "instance": "assemblix2012.bin.bioinf.nl",                  "job": "node_exporter"                },                "value": [                  1701441032.4,                  "2.42"                ]              },              {                "metric": {                  "__name__": "node_load1",                  "instance": "assemblix2019.bin.bioinf.nl",                  "job": "node_exporter"                },                "value": [                  1701441032.4,                  "0.18"                ]              },              {                "metric": {                  "__name__": "node_load1",                  "instance": "bin302.bin.bioinf.nl",                  "job": "node_exporter"                },                "value": [                  1701441032.4,                  "0.81"                ]              },              {                "metric": {                  "__name__": "node_load1",                  "instance": "bin303.bin.bioinf.nl",                  "job": "node_exporter"                },                "value": [                  1701441032.4,                  "0"                ]              },              {                "metric": {                  "__name__": "node_load1",                  "instance": "bin305.bin.bioinf.nl",                  "job": "node_exporter"                },                "value": [                  1701441032.4,                  "0.07"                ]              },              {                "metric": {                  "__name__": "node_load1",                  "instance": "bin306.bin.bioinf.nl",                  "job": "node_exporter"                },                "value": [                  1701441032.4,                  "0"                ]              },              {                "metric": {                  "__name__": "node_load1",                  "instance": "bin307.bin.bioinf.nl",                  "job": "node_exporter"                },                "value": [                  1701441032.4,                  "0.61"                ]              },              {                "metric": {                  "__name__": "node_load1",                  "instance": "monitor",                  "job": "node_exporter"                },                "value": [                  1701441032.4,                  "0.9"                ]              },              {                "metric": {                  "__name__": "node_load1",                  "instance": "salt",                  "job": "node_exporter"                },                "value": [                  1701441032.4,                  "0.98"                ]              }            ]          }        }
-//                """;
         // New Gson object and list for the workstations
         Gson gson = new Gson();
 
@@ -52,7 +47,7 @@ public class ParseJsonRequests {
                     switch (name) {
                         case "node_load1" -> station.setCurrentLoad(value.get(1));
                         case "node_load5" -> station.setCurrentLoad5(value.get(1));
-                        case "up" -> station.setUP(value.get(1).equals("1"));
+                        case "up" -> station.setUP(value.get(1));
                         case "node_memory_MemAvailable_bytes" -> station.setCurrentAvailableMemory(value.get(1));
                         case "node_memory_MemFree_bytes" -> station.setCurrentFreeMemory(value.get(1));
                         case "smartmon_temperature_celsius_raw_value" -> station.setTemperature(value.get(1));

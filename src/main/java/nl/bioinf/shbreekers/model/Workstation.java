@@ -1,13 +1,11 @@
 package nl.bioinf.shbreekers.model;
 
-import java.util.List;
-
 public class Workstation {
 
     private String instance;
     private String currentLoad;
     private String currentLoad5;
-    private boolean isUP;
+    private boolean isUP = false;
     private String currentAvailableMemory;
     private String currentFreeMemory;
     private String temperature;
@@ -40,8 +38,8 @@ public class Workstation {
         return isUP;
     }
 
-    public void setUP(boolean UP) {
-        isUP = UP;
+    public void setUP(String UP) {
+        isUP = UP.equalsIgnoreCase("1");
     }
 
     public String getCurrentAvailableMemory() {

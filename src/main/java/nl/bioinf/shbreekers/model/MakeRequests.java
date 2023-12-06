@@ -8,6 +8,8 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MakeRequests {
@@ -27,10 +29,37 @@ public class MakeRequests {
                 return dataResponse.body();
             }
         } catch (URISyntaxException | InterruptedException | IOException e) {
-            e.printStackTrace();
-            // TODO: Proper error handling
+            System.err.println((String.format("Something went wrong while making a request (Line: %d): %s: %s",
+                    e.getStackTrace()[0].getLineNumber(),
+                    e.getClass().getSimpleName(), e.getMessage())));
+            System.exit(1);
         }
         return "FAILED";
+    }
+
+
+    /**
+     * Start the requests to the prometheus server.
+     * The input list contains the query links that are needed to get the right data.
+     * The output list contains the workstations with the right data set.
+     *
+     * @param queryLinks the query links
+     * @return the list
+     */
+    public List<Workstation> startRequests(List<String> queryLinks) {
+        ParseJsonRequests parseJsonRequests = new ParseJsonRequests();
+        try {
+            for (String link : queryLinks) {
+                String data = getData(link);
+                parseJsonRequests.parseJsonToRecord(data);
+            }
+        } catch (Exception e) {
+            System.err.println((String.format("Something went wrong while making a request (Line: %d): %s: %s",
+                    e.getStackTrace()[0].getLineNumber(),
+                    e.getClass().getSimpleName(), e.getMessage())));
+            System.exit(1);
+        }
+        return parseJsonRequests.getWorkstations();
     }
 
     public static void main(String[] args) {
