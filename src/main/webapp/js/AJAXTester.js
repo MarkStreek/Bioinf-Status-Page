@@ -14,7 +14,6 @@ async function updateElement() {
             }
         }
     }
-    document.body.appendChild(serversDiv);
 }
 
 function createServerDiv(server, room) {
@@ -81,13 +80,14 @@ function createServerDiv(server, room) {
     const button = document.createElement('button');
     button.className = 'btn btn-primary';
     button.setAttribute('data-bs-toggle', 'modal');
-    button.setAttribute('data-bs-target', '#reg-modal');
+    button.setAttribute('data-bs-target', '#reg-modal_' + server.split('.')[0]);
     button.textContent = 'Show Status';
 
     // Create modal element
     const modal = document.createElement('div');
-    modal.className = 'modal fade';
-    modal.id = 'reg-modal';
+    // it is possible to add a fade in here
+    modal.className = 'modal';
+    modal.id = 'reg-modal_' + server.split('.')[0];
     modal.tabIndex = '-1';
 
     // Create modal dialog
@@ -104,7 +104,7 @@ function createServerDiv(server, room) {
 
     const title = document.createElement('h1');
     title.className = 'modal-title';
-    title.textContent = 'Status of NUC 107';
+    title.textContent = 'Status of ' + server.split('.')[0];
 
     const closeButton = document.createElement('button');
     closeButton.className = 'btn-close';
@@ -167,11 +167,12 @@ function createServerDiv(server, room) {
     newDiv2.appendChild(PCTitle);
     newDiv2.appendChild(StatusTitle);
     newDiv2.appendChild(logoImageObject);
-    newDiv2.appendChild(buttonObject);
+    // button from modal
+    newDiv2.appendChild(button);
     StatusTitle.appendChild(statusTextObject);
 
-    newDivMain.appendChild(button);
-    newDivMain.appendChild(modal);
+    //newDivMain.appendChild(button);
+    newDiv1.appendChild(modal);
 
     // Changing the color
     if (chooseRandomStatus === "ONLINE") {
@@ -202,6 +203,6 @@ document.querySelectorAll('input[name="room"]').forEach(cb => {
 setTimeout(function (){
 
     document.getElementById("nuc001.bin.bioinf.nl_load").innerText = "DEZE TEKTS IS VERANDERD";
-}, 5000);
+}, 500);
 
 
