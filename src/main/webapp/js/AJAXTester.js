@@ -120,6 +120,7 @@ function createServerDiv(server, room) {
 
     const instanceName = document.createElement('p');
     instanceName.textContent = 'Instance name: ';
+    instanceName.id = server + "_instanceName"
 
     const currentLoad = document.createElement('p');
     currentLoad.textContent = 'Current load: ';
@@ -127,10 +128,13 @@ function createServerDiv(server, room) {
 
     const currentFreeMemory = document.createElement('p');
     currentFreeMemory.textContent = 'Current free memory: ';
-    currentFreeMemory.setAttribute("id", "currentFreeMemory");
+    // currentFreeMemory.setAttribute("id", "currentFreeMemory");
+    currentFreeMemory.id = server + "_currentFreeMemory";
 
     const freeMemoryLast5Minutes = document.createElement('p');
     freeMemoryLast5Minutes.textContent = 'Free memory last 5 minutes: ';
+    // freeMemoryLast5Minutes.setAttribute("id", "freeMemoryLast5minutes");
+    freeMemoryLast5Minutes.id = server + "_freeMemoryLast5Minutes";
 
     modalBody.appendChild(instanceName);
     modalBody.appendChild(currentLoad);
@@ -200,9 +204,9 @@ document.querySelectorAll('input[name="room"]').forEach(cb => {
 });
 
 
-setTimeout(function (){
-
-    document.getElementById("nuc001.bin.bioinf.nl_load").innerText = "DEZE TEKTS IS VERANDERD";
-}, 500);
+// setTimeout(function (){
+//
+//     document.getElementById("nuc001.bin.bioinf.nl_load").innerText = "DEZE TEKTS IS VERANDERD";
+// }, 500);
 
 
