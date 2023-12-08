@@ -1,3 +1,17 @@
+/*
+
+ID's of the elements:
+    1. ONLINE/OFFLINE span: "nuc001.bin.bioinf.nl_status"
+    2. Modal instance name: "nuc001.bin.bioinf.nl_instanceName"
+    3. Modal current load: "nuc001.bin.bioinf.nl_load"
+    4. Modal currnet free memory: "nuc001.bin.bioinf.nl_currentFreeMemory"
+    5. Modal free memory last 5 minutes: "nuc001.bin.bioinf.nl_freeMemoryLast5Minutes"
+    6. Modal temperature: "nuc001.bin.bioinf.nl_temperature"
+    7. NewDiv1/Card: "nuc001.bin.bioinf.nl_card" (We need this element to change the border color depending on the status)
+    8. Img/logo: "nuc001.bin.bioinf.nl_img" (We need this element to change the logo depending on the status)
+ */
+
+
 async function updateElement() {
     let response = await fetch("data/config.json");
     let data = await response.json();
@@ -20,16 +34,20 @@ function createServerDiv(server, room) {
     let chooseRandomStatus = ['ONLINE', 'OFFLINE'][Math.floor(Math.random() * 2)];
 
 
+    // TODO: does the newDivMain needs an ID?
     // new main div
     let newDivMain = document.createElement('div');
     newDivMain.classList.add('col');
     newDivMain.setAttribute("id", server);
     newDivMain.style.width = '25%';
 
+
     // new subdiv
     let newDiv1 = document.createElement('div');
     newDiv1.classList.add('card', 'border-1');
     newDiv1.style.backgroundColor = `#4a5766`;
+    newDiv1.id = server + "_card";
+
     // new subdiv - card body
     let newDiv2 = document.createElement('div');
     newDiv2.classList.add('card-body');
@@ -53,25 +71,14 @@ function createServerDiv(server, room) {
     let statusTextObject = document.createElement('span');
     statusTextObject.textContent = `${chooseRandomStatus}`;
     statusTextObject.classList.add("status");
+    statusTextObject.id = server + "_status";
 
     // Logo element for aesthetics
     let logoImageObject = document.createElement("img");
-    logoImageObject.classList.add("logo");
-    logoImageObject.style.height = `40px`;
-    logoImageObject.style.width = `40px`;
-    logoImageObject.style.float = `right`;
-    logoImageObject.style.position = `relative`;
-    logoImageObject.style.bottom = `60px`;
-
-    let buttonObject = document.createElement("button");
-    buttonObject.classList.add("btn", "btn-primary");
-    buttonObject.textContent = "More info";
-    buttonObject.style.position = 'relative';
-    buttonObject.style.right = '20%';
-    buttonObject.addEventListener('click', () => {
-        let modalBodyText = `Server: ${server}, Room: ${room}, Status: ${chooseRandomStatus}`;
-        openModal(modalBodyText);
-    });
+    logoImageObject.id = server + "_img";
+    logoImageObject.classList.add("logo") ;logoImageObject.style.height = `40px`;
+    logoImageObject.style.width = `40px`; logoImageObject.style.float = `right`;
+    logoImageObject.style.position = `relative`; logoImageObject.style.bottom = `60px`;
 
     ////////////////////////////////////
 
@@ -119,27 +126,30 @@ function createServerDiv(server, room) {
     modalBody.className = 'modal-body';
 
     const instanceName = document.createElement('p');
-    instanceName.textContent = 'Instance name: ';
+    instanceName.textContent = 'Updating...';
     instanceName.id = server + "_instanceName"
 
     const currentLoad = document.createElement('p');
-    currentLoad.textContent = 'Current load: ';
+    currentLoad.textContent = 'Updating...';
     currentLoad.id = server + "_load";
 
     const currentFreeMemory = document.createElement('p');
-    currentFreeMemory.textContent = 'Current free memory: ';
-    // currentFreeMemory.setAttribute("id", "currentFreeMemory");
+    currentFreeMemory.textContent = 'Updating...';
     currentFreeMemory.id = server + "_currentFreeMemory";
 
     const freeMemoryLast5Minutes = document.createElement('p');
-    freeMemoryLast5Minutes.textContent = 'Free memory last 5 minutes: ';
-    // freeMemoryLast5Minutes.setAttribute("id", "freeMemoryLast5minutes");
+    freeMemoryLast5Minutes.textContent = 'Updating..';
     freeMemoryLast5Minutes.id = server + "_freeMemoryLast5Minutes";
+
+    const temperature = document.createElement('p');
+    temperature.textContent = 'Temperature: ';
+    temperature.id = server + "_temperature";
 
     modalBody.appendChild(instanceName);
     modalBody.appendChild(currentLoad);
     modalBody.appendChild(currentFreeMemory);
     modalBody.appendChild(freeMemoryLast5Minutes);
+    modalBody.appendChild(temperature);
 
     // Create modal footer
     const modalFooter = document.createElement('div');
@@ -161,9 +171,7 @@ function createServerDiv(server, room) {
     modalDialog.appendChild(modalContent);
     modal.appendChild(modalDialog);
 
-
     ////////////////////////////////////
-
 
     // append all elements to the right parent elements
     newDivMain.appendChild(newDiv1);

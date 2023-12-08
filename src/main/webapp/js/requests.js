@@ -30,9 +30,28 @@ function updateContent(data) {
         if (key === "load") {
             // test this with console.log(data.key);
             document.getElementById(key).innerText = data.key;
-
+        } else if (key === "status") {
+            document.getElementById(key).innerText = data.key;
+        } else if (key === "memory") {
+            document.getElementById(key).innerText = data.key;
         }
     }
+
+    // Change the picture of the status!
+    let statusTextObject = document.getElementById(data.instance + "_status");
+    let newDiv1 = document.getElementById(data.instance + "_card");
+    let logoImageObject = document.getElementById(data.instance + "_img");
+
+    if (data.status === true) {
+        statusTextObject.style.color = `#3cb371`;
+        newDiv1.style.borderColor = `#3cb371`;
+        logoImageObject.setAttribute("src", "../../images/logo_ONLINE.png");
+    } else {
+        statusTextObject.style.color = `#ff0000`;
+        newDiv1.style.borderColor = `#ff0000`;
+        logoImageObject.setAttribute("src", "../../images/logo_OFFLINE.png");
+    }
+
 }
 
 setTimeout(function () {
