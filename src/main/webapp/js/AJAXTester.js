@@ -62,6 +62,11 @@ function createServerDiv(server, room) {
     PCTitle.style.color = `#f9f9f9`;
     PCTitle.style.width = '70%';
 
+    let currentLoadDirect = document.createElement('p');
+    currentLoadDirect.classList.add('card-text');
+    currentLoadDirect.textContent = 'Updating...';
+    currentLoadDirect.id = server + "_loadDirect";
+
     // Title for the status
     let StatusTitle = document.createElement('p');
     StatusTitle.classList.add('card-text');
@@ -188,7 +193,7 @@ function createServerDiv(server, room) {
     // button from modal
     newDiv2.appendChild(button);
     StatusTitle.appendChild(statusTextObject);
-
+    StatusTitle.appendChild(currentLoadDirect);
     //newDivMain.appendChild(button);
     newDiv1.appendChild(modal);
 
