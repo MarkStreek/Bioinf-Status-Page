@@ -9,7 +9,7 @@
     </context-param>
     <context-param>
         <param-name>temperature</param-name>
-        <param-value>http://monitor:9090/api/v1/query?query=smartmon_temperature_celsius_raw_value</param-value>
+        <param-value>http://monitor:9090/api/v1/query?query=node_hwmon_temp_celsius</param-value>
     </context-param>
     <context-param>
         <param-name>currentLoad</param-name>

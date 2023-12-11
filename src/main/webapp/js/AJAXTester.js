@@ -142,8 +142,8 @@ function createServerDiv(server, room) {
     freeMemoryLast5Minutes.id = server + "_freeMemoryLast5Minutes";
 
     const temperature = document.createElement('p');
-    temperature.textContent = 'Temperature: ';
-    temperature.id = server + "_temperature";
+    temperature.textContent = 'Updating...';
+    temperature.id = server + "hier";
 
     modalBody.appendChild(instanceName);
     modalBody.appendChild(currentLoad);

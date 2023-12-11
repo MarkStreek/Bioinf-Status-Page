@@ -16,7 +16,7 @@ public class XmlWebListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ServletContext ctx = servletContextEvent.getServletContext();
         queriesList.add(ctx.getInitParameter("up"));
-        //queriesList.add(ctx.getInitParameter("temperature"));
+        queriesList.add(ctx.getInitParameter("temperature"));
         // TODO: 11/12/2018 add temperature to the list
         queriesList.add(ctx.getInitParameter("currentLoad"));
         queriesList.add(ctx.getInitParameter("loadLast5Minutes"));
