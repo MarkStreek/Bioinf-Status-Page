@@ -66,6 +66,8 @@ function createServerDiv(server, room) {
     currentLoadDirect.classList.add('card-text');
     currentLoadDirect.textContent = 'Updating...';
     currentLoadDirect.id = server + "_loadDirect";
+    currentLoadDirect.style.position = `relative`;
+    currentLoadDirect.style.right = '16%';
 
     // Title for the status
     let StatusTitle = document.createElement('p');
@@ -100,6 +102,8 @@ function createServerDiv(server, room) {
     button.setAttribute('data-bs-toggle', 'modal');
     button.setAttribute('data-bs-target', '#reg-modal_' + server.split('.')[0]);
     button.textContent = 'Show Status';
+    button.style.position = `relative`;
+    button.style.right = '15%';
 
     // Create modal element
     const modal = document.createElement('div');
