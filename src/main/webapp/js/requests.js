@@ -42,16 +42,16 @@ function updateContent(data, allPcs) {
                         document.getElementById(data.instance + "_img").setAttribute("src", "../../images/logo_ONLINE.png");
                     }
                 } else if (key === "currentLoad") {
-                    document.getElementById(instance + "_load").innerText = "Current load: " + Math.round(data[key] * 100) + "%";
-                    document.getElementById(instance + "_loadDirect").innerText = "Current load: " + Math.round(data[key] * 100) + "%";
+                    document.getElementById(instance + "_load").innerText = "Current load: " + data[key];
+                    document.getElementById(instance + "_loadDirect").innerText = "Current load: " + data[key];
                 } else if (key === "currentFreeMemory") {
                     document.getElementById(instance + "_currentFreeMemory").innerText = "Current free memory: " + data[key];
                 } else if (key === "currentLoad5") {
-                    document.getElementById(instance + "_loadlast5").innerText = "Load of the last 5 minutes: " + Math.round(data[key] * 100) + "%";
+                    document.getElementById(instance + "_loadlast5").innerText = "Load of the last 5 minutes: " + data[key];
                 } else if (key === "currentAvailableMemory") {
                     document.getElementById(instance + "_availableMemory").innerText = "Current Available memory: " + data[key];
                 } else if (key === "temperature") {
-                    document.getElementById(instance + "_temperature").innerText = "Temperature: " + data[key] + "℃";
+                    document.getElementById(instance + "_temperature").innerText = "Temperature: " + data[key];
                 }
             }
         }

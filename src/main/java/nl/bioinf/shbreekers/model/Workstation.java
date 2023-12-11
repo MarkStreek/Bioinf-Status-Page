@@ -25,7 +25,11 @@ public class Workstation {
     }
 
     public void setCurrentLoad(String currentLoad) {
-        this.currentLoad = currentLoad;
+        if (currentLoad.equals("0") || currentLoad.equals("null")) {
+            this.currentLoad = currentLoad;
+        } else {
+            this.currentLoad = String.format("%.1f", (Double.parseDouble(currentLoad) * 100)) + "%";
+        }
     }
 
     public String getCurrentLoad5() {
@@ -33,7 +37,11 @@ public class Workstation {
     }
 
     public void setCurrentLoad5(String currentLoad5) {
-        this.currentLoad5 = currentLoad5;
+        if (currentLoad5.equals("0") || currentLoad5.equals("null")) {
+            this.currentLoad5 = currentLoad5;
+        } else {
+            this.currentLoad5 = String.format("%.1f", (Double.parseDouble(currentLoad5) * 100)) + "%";
+        }
     }
 
     public boolean isUP() {
@@ -49,7 +57,11 @@ public class Workstation {
     }
 
     public void setCurrentAvailableMemory(String currentAvailableMemory) {
-        this.currentAvailableMemory = currentAvailableMemory;
+        if (currentAvailableMemory.length() >= 9) {
+            this.currentAvailableMemory = String.format("%.1f", (Double.parseDouble(currentAvailableMemory) / 1000000000)) + "gb";
+        } else {
+            this.currentAvailableMemory = String.format("%.1f", (Double.parseDouble(currentAvailableMemory) / 1000000)) + "mb";
+        }
     }
 
     public String getCurrentFreeMemory() {
@@ -57,7 +69,11 @@ public class Workstation {
     }
 
     public void setCurrentFreeMemory(String currentFreeMemory) {
-        this.currentFreeMemory = currentFreeMemory;
+        if (currentFreeMemory.length() >= 9) {
+            this.currentFreeMemory = String.format("%.1f", (Double.parseDouble(currentFreeMemory)/ 1000000000)) + "gb";
+        } else {
+            this.currentFreeMemory = String.format("%.1f", (Double.parseDouble(currentFreeMemory) / 1000000)) + "mb";
+        }
     }
 
     public String getTemperature() {
@@ -65,7 +81,7 @@ public class Workstation {
     }
 
     public void setTemperature(String temperature) {
-        this.temperature = temperature;
+        this.temperature = temperature + "℃";
     }
 
     @Override

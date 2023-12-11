@@ -36,11 +36,11 @@ public class ParseJsonRequests {
             String job = metricObj.get("job").getAsString();
             List<String> value = gson.fromJson(resultObj.getAsJsonArray("value"), new TypeToken<List<String>>() {
             }.getType());
-
-            System.out.println("instance: " + instance);
-            System.out.println("name: " + name);
-            System.out.println("job: " + job);
-            System.out.println("value: " + value);
+//
+//            System.out.println("instance: " + instance);
+//            System.out.println("name: " + name);
+//            System.out.println("job: " + job);
+//            System.out.println("value: " + value);
 
             Workstation newStation = new Workstation(instance);
 
