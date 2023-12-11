@@ -58,9 +58,9 @@ public class Workstation {
 
     public void setCurrentAvailableMemory(String currentAvailableMemory) {
         if (currentAvailableMemory.length() >= 9) {
-            this.currentAvailableMemory = String.format("%.1f", (Double.parseDouble(currentAvailableMemory) / 1000000000)) + "gb";
+            this.currentAvailableMemory = String.format("%.1f", (Double.parseDouble(currentAvailableMemory) / 1000000000)) + "GB";
         } else {
-            this.currentAvailableMemory = String.format("%.1f", (Double.parseDouble(currentAvailableMemory) / 1000000)) + "mb";
+            this.currentAvailableMemory = String.format("%.1f", (Double.parseDouble(currentAvailableMemory) / 1000000)) + "MB";
         }
     }
 
@@ -70,9 +70,9 @@ public class Workstation {
 
     public void setCurrentFreeMemory(String currentFreeMemory) {
         if (currentFreeMemory.length() >= 9) {
-            this.currentFreeMemory = String.format("%.1f", (Double.parseDouble(currentFreeMemory)/ 1000000000)) + "gb";
+            this.currentFreeMemory = String.format("%.1f", (Double.parseDouble(currentFreeMemory)/ 1000000000)) + "GB";
         } else {
-            this.currentFreeMemory = String.format("%.1f", (Double.parseDouble(currentFreeMemory) / 1000000)) + "mb";
+            this.currentFreeMemory = String.format("%.1f", (Double.parseDouble(currentFreeMemory) / 1000000)) + "MB";
         }
     }
 
