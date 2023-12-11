@@ -5,14 +5,17 @@ setTimeout(function (){ // TODO: info disappears after selecting room
             document.getElementById(element.id).innerText = "DEZE TEKTS IS VERANDERD";
         }
         if (element.id.includes("_instanceName")) {
-            document.getElementById(element.id).innerText = element.id.split('_')[0]
+            document.getElementById(element.id).innerText = element.id.split('_')[0];
         }
         if (element.id.includes("_currentFreeMemory")) {
-            document.getElementById(element.id).innerText = element.id
+            document.getElementById(element.id).innerText = element.id;
         }
         if (element.id.includes("_freeMemoryLast5Minutes")) {
-            document.getElementById(element.id).innerText = element.id
+            document.getElementById(element.id).innerText = element.id;
+        }
+        if (element.id.includes("_temperature")) {
+            document.getElementById(element.id).innerText = element.id;
         }
     });
-    // console.log(allModalElementIds);
+    // console.log(elementsWithIds);
 }, 2000);

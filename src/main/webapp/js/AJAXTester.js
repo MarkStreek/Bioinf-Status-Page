@@ -143,7 +143,7 @@ function createServerDiv(server, room) {
 
     const temperature = document.createElement('p');
     temperature.textContent = 'Updating...';
-    temperature.id = server + "hier";
+    temperature.id = server + "_temperature";
 
     modalBody.appendChild(instanceName);
     modalBody.appendChild(currentLoad);
