@@ -137,9 +137,9 @@ function createServerDiv(server, room) {
     currentFreeMemory.textContent = 'Updating...';
     currentFreeMemory.id = server + "_currentFreeMemory";
 
-    const freeMemoryLast5Minutes = document.createElement('p');
-    freeMemoryLast5Minutes.textContent = 'Updating..';
-    freeMemoryLast5Minutes.id = server + "_freeMemoryLast5Minutes";
+    const HIER = document.createElement('p');
+    HIER.textContent = 'Updating..';
+    HIER.id = server + "_HIER";
 
     const temperature = document.createElement('p');
     temperature.textContent = 'Updating...';
@@ -148,7 +148,7 @@ function createServerDiv(server, room) {
     modalBody.appendChild(instanceName);
     modalBody.appendChild(currentLoad);
     modalBody.appendChild(currentFreeMemory);
-    modalBody.appendChild(freeMemoryLast5Minutes);
+    modalBody.appendChild(HIER);
     modalBody.appendChild(temperature);
 
     // Create modal footer

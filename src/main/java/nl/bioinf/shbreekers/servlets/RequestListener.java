@@ -29,7 +29,7 @@ public class RequestListener extends HttpServlet {
      * This method retrieves the request from the front-end.
      * This method then handles a request to the prometheus server.
      * <p>
-     * After the request the right data is returned to the front-end.
+     * After the request, the right data is returned to the front-end.
      *
      * @param request   an {@link HttpServletRequest} object that
      *                  contains the request the client has made
