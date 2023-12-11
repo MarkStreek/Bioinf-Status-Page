@@ -1,7 +1,7 @@
 {
   "data" : {
     "room" : {
-      "D108" : [
+      "D108": [
         "nuc001.bin.bioinf.nl",
         "nuc002.bin.bioinf.nl",
         "nuc003.bin.bioinf.nl",
@@ -28,7 +28,7 @@
         "nuc118.bin.bioinf.nl",
         "nuc119.bin.bioinf.nl"
       ],
-      "D107" : [
+      "D107": [
         "bin300.bin.bioinf.nl",
         "bin301.bin.bioinf.nl",
         "bin302.bin.bioinf.nl",
@@ -39,7 +39,7 @@
         "bin307.bin.bioinf.nl",
         "nuc30.bin.bioinf.nl"
       ],
-      "H186" : [
+      "H186": [
         "nuc404.bin.bioinf.nl",
         "nuc405.bin.bioinf.nl",
         "nuc406.bin.bioinf.nl",
@@ -74,7 +74,7 @@
         "nuc504.bin.bioinf.nl",
         "nuc505.bin.bioinf.nl"
       ],
-      "H188A" : [
+      "H188A": [
         "nuc206.bin.bioinf.nl",
         "nuc207.bin.bioinf.nl",
         "nuc208.bin.bioinf.nl",
@@ -93,7 +93,7 @@
         "nuc402.bin.bioinf.nl",
         "nuc403.bin.bioinf.nl"
       ],
-      "H1122" : [
+      "H1122": [
         "nuc120.bin.bioinf.nl",
         "nuc121.bin.bioinf.nl",
         "nuc122.bin.bioinf.nl",
@@ -104,12 +104,16 @@
         "nuc203.bin.bioinf.nl",
         "nuc204.bin.bioinf.nl",
         "nuc205.bin.bioinf.nl"
+      ],
+      "Server": [
+        "assemblix2012.bin.bioinf.nl",
+        "assemblix2019.bin.bioinf.nl",
+        "mordor-vm.bin.bioinf.nl",
+        "rohan2018.bin.bioinf.nl",
+        "salt",
+        "slurm",
+        "slurm:8080"
       ]
-    },
-    "Server" : [
-      "assemblix2012.bin.bioinf.nl",
-      "assemblix2019.bin.bioinf.nl",
-      "mordor-vm.bin.bioinf.nl"
-    ]
+    }
   }
 }
