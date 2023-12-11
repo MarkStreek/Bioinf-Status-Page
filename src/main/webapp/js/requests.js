@@ -36,22 +36,39 @@ function updateContent(data) {
             if (data.hasOwnProperty(key)) {
                 console.log(key + " -> " + data[key]);
                 if (key === "currentLoad") {
-                    document.getElementById(instance + "_load").innerText = data[key];
-                } else if (key === "isUP") {
-                    document.getElementById(instance + "_status").innerText = data[key];
+                    document.getElementById(instance + "_load").innerText = "Current load: " + data[key];
                 } else if (key === "currentFreeMemory") {
-                    document.getElementById(instance + "_currentFreeMemory").innerText = data[key];
+                    document.getElementById(instance + "_currentFreeMemory").innerText = "Current free memory: " + data[key];
                 } else if (key === "currentLoad5") {
-                    console.log("currentLoad5: " + data[key]);
-                    document.getElementById(instance + "_HIER").innerText = data[key];
+                    document.getElementById(instance + "_loadlast5").innerText = "Load of the last 5 minutes: " + data[key];
                 } else if (key === "currentAvailableMemory") {
-                    // needs to be added!
-                    console.log("currentAvailableMemory: " + data[key]);
-                    //document.getElementById(instance + "_currentFreeMemory").innerText = data[key];
+                    document.getElementById(instance + "_availableMemory").innerText = "Current Available memory" + data[key];
+                } else if (key === "temperature") {
+                    document.getElementById(instance + "_temperature").innerText = "Temperature: " + data[key];
+                } else if (key === "isUP") {
+                    console.log("KEY: " + key);
+                    console.log("DATA: " + data[key]);
+
+                    let statusTextObject = document.getElementById(data.instance + "_status");
+                    let newDiv1 = document.getElementById(data.instance + "_card");
+                    let logoImageObject = document.getElementById(data.instance + "_img");
+
+                    if (data[key] === true) {
+                        statusTextObject.style.color = `#3cb371`;
+                        newDiv1.style.borderColor = `#3cb371`;
+                        logoImageObject.setAttribute("src", "../../images/logo_ONLINE.png");
+                    } else {
+                        statusTextObject.style.color = `#ff0000`;
+                        newDiv1.style.borderColor = `#ff0000`;
+                        logoImageObject.setAttribute("src", "../../images/logo_OFFLINE.png");
+                    }
                 }
             }
         }
     }
+
+    // Change the picture of the status!
+
 
     // if (data === null) {
     //     throw new Error("Data is null");
@@ -66,23 +83,6 @@ function updateContent(data) {
     //     } else if (key === "memory") {
     //         document.getElementById(key);//.innerText = data.key;
     //     }
-
-
-    // Change the picture of the status!
-    // let statusTextObject = document.getElementById(data.instance + "_status");
-    // let newDiv1 = document.getElementById(data.instance + "_card");
-    // let logoImageObject = document.getElementById(data.instance + "_img");
-    //
-    // if (data.status === true) {
-    //     statusTextObject.style.color = `#3cb371`;
-    //     newDiv1.style.borderColor = `#3cb371`;
-    //     logoImageObject.setAttribute("src", "../../images/logo_ONLINE.png");
-    // } else {
-    //     statusTextObject.style.color = `#ff0000`;
-    //     newDiv1.style.borderColor = `#ff0000`;
-    //     logoImageObject.setAttribute("src", "../../images/logo_OFFLINE.png");
-    // }
-
 }
 
 void handling();

@@ -31,7 +31,7 @@ async function updateElement() {
 }
 
 function createServerDiv(server, room) {
-    let chooseRandomStatus = ['ONLINE', 'OFFLINE'][Math.floor(Math.random() * 2)];
+    let chooseRandomStatus = "NA";// ['ONLINE', 'OFFLINE'][Math.floor(Math.random() * 2)];
 
 
     // TODO: does the newDivMain needs an ID?
@@ -137,9 +137,13 @@ function createServerDiv(server, room) {
     currentFreeMemory.textContent = 'Updating...';
     currentFreeMemory.id = server + "_currentFreeMemory";
 
-    const HIER = document.createElement('p');
-    HIER.textContent = 'Updating..';
-    HIER.id = server + "_HIER";
+    const loadLast5 = document.createElement('p');
+    loadLast5.textContent = 'Updating..';
+    loadLast5.id = server + "_loadlast5";
+
+    const availableMemory = document.createElement('p');
+    availableMemory.textContent = 'Updating..';
+    availableMemory.id = server + "_availableMemory";
 
     const temperature = document.createElement('p');
     temperature.textContent = 'Updating...';
@@ -148,8 +152,9 @@ function createServerDiv(server, room) {
     modalBody.appendChild(instanceName);
     modalBody.appendChild(currentLoad);
     modalBody.appendChild(currentFreeMemory);
-    modalBody.appendChild(HIER);
+    modalBody.appendChild(loadLast5);
     modalBody.appendChild(temperature);
+    modalBody.appendChild(availableMemory);
 
     // Create modal footer
     const modalFooter = document.createElement('div');
@@ -187,15 +192,15 @@ function createServerDiv(server, room) {
     newDiv1.appendChild(modal);
 
     // Changing the color
-    if (chooseRandomStatus === "ONLINE") {
-        statusTextObject.style.color = `#3cb371`;
-        newDiv1.style.borderColor = `#3cb371`;
-        logoImageObject.setAttribute("src", "../../images/logo_ONLINE.png");
-    } else {
-        statusTextObject.style.color = `#ff0000`;
-        newDiv1.style.borderColor = `#ff0000`;
-        logoImageObject.setAttribute("src", "../../images/logo_OFFLINE.png");
-    }
+    // if (chooseRandomStatus === "ONLINE") {
+    //     statusTextObject.style.color = `#3cb371`;
+    //     newDiv1.style.borderColor = `#3cb371`;
+    //     logoImageObject.setAttribute("src", "../../images/logo_ONLINE.png");
+    // } else {
+    //     statusTextObject.style.color = `#ff0000`;
+    //     newDiv1.style.borderColor = `#ff0000`;
+    //     logoImageObject.setAttribute("src", "../../images/logo_OFFLINE.png");
+    // }
     return newDivMain;
 }
 
