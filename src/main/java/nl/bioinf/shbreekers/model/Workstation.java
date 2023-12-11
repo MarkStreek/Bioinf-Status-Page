@@ -1,6 +1,7 @@
 package nl.bioinf.shbreekers.model;
 
 import java.util.Objects;
+import java.util.Locale;
 
 public class Workstation {
 
@@ -28,7 +29,7 @@ public class Workstation {
         if (currentLoad.equals("0") || currentLoad.equals("null")) {
             this.currentLoad = currentLoad;
         } else {
-            this.currentLoad = String.format("%.1f", (Double.parseDouble(currentLoad) * 100)) + "%";
+            this.currentLoad = String.format(Locale.US, "%.1f", (Double.parseDouble(currentLoad) * 100)) + "%";
         }
     }
 
@@ -40,7 +41,7 @@ public class Workstation {
         if (currentLoad5.equals("0") || currentLoad5.equals("null")) {
             this.currentLoad5 = currentLoad5;
         } else {
-            this.currentLoad5 = String.format("%.1f", (Double.parseDouble(currentLoad5) * 100)) + "%";
+            this.currentLoad5 = String.format(Locale.US, "%.1f", (Double.parseDouble(currentLoad5) * 100)) + "%";
         }
     }
 
@@ -58,9 +59,9 @@ public class Workstation {
 
     public void setCurrentAvailableMemory(String currentAvailableMemory) {
         if (currentAvailableMemory.length() >= 9) {
-            this.currentAvailableMemory = String.format("%.1f", (Double.parseDouble(currentAvailableMemory) / 1000000000)) + "GB";
+            this.currentAvailableMemory = String.format(Locale.US, "%.1f", (Double.parseDouble(currentAvailableMemory) / 1000000000)) + "GB";
         } else {
-            this.currentAvailableMemory = String.format("%.1f", (Double.parseDouble(currentAvailableMemory) / 1000000)) + "MB";
+            this.currentAvailableMemory = String.format(Locale.US, "%.1f", (Double.parseDouble(currentAvailableMemory) / 1000000)) + "MB";
         }
     }
 
@@ -70,9 +71,9 @@ public class Workstation {
 
     public void setCurrentFreeMemory(String currentFreeMemory) {
         if (currentFreeMemory.length() >= 9) {
-            this.currentFreeMemory = String.format("%.1f", (Double.parseDouble(currentFreeMemory)/ 1000000000)) + "GB";
+            this.currentFreeMemory = String.format(Locale.US, "%.1f", (Double.parseDouble(currentFreeMemory)/ 1000000000)) + "GB";
         } else {
-            this.currentFreeMemory = String.format("%.1f", (Double.parseDouble(currentFreeMemory) / 1000000)) + "MB";
+            this.currentFreeMemory = String.format(Locale.US, "%.1f", (Double.parseDouble(currentFreeMemory) / 1000000)) + "MB";
         }
     }
 
