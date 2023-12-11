@@ -57,7 +57,7 @@ public class ParseJsonRequests {
                             case "up" -> station.setUP(value.get(1));
                             case "node_memory_MemAvailable_bytes" -> station.setCurrentAvailableMemory(value.get(1));
                             case "node_memory_MemFree_bytes" -> station.setCurrentFreeMemory(value.get(1));
-                            case "smartmon_temperature_celsius_raw_value" -> station.setTemperature(value.get(1));
+                            case "node_hwmon_temp_celsius" -> station.setTemperature(value.get(1));
                         }
                     }
                 }
