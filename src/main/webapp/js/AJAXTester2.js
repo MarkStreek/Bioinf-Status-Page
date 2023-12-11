@@ -35,7 +35,6 @@ async function updateElement() {
             }
         }
 
-        // Roep de handling functie aan na het bijwerken van de elementen
         await handling();
     } catch (error) {
         console.error('Fout bij het ophalen van de config data: ', error);
