@@ -13,34 +13,32 @@ ID's of the elements:
 
 
 
-async function handling() {
-    let responseRequest = await fetch("/requestListener");
-    let data = await responseRequest.json();
+async function updateElement() {
+    try {
+        let response = await fetch("data/config.json");
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        let data = await response.json();
 
-    let responseConfigData = await fetch("data/config.json");
-    let configData = await responseConfigData.json();
+        let selectedRooms = getSelectedRooms() || Object.keys(data.data.room);
+        let serversDiv = document.getElementById("innerDiv");
 
-    const rooms = Object.values(configData.data.room);
-    const allPcs = rooms.reduce((acc, pcs) => acc.concat(pcs), []);
-
-    for (let i = 0; i < data.length; i++) {
-        updateContent(data[i], allPcs);
-    }
-
-    let selectedRooms = getSelectedRooms() || Object.keys(configData.data.room);
-    let serversDiv = document.getElementById("innerDiv");
-
-    serversDiv.innerHTML = ''; // Leeg de div
-    for (let room of selectedRooms) {
-        console.log(room);
-        let servers = data.data.room[room];
-
-        if (servers) {
-            for (let pc of servers) {
-                let newDivMain = createServerDiv(pc, room);
-                serversDiv.appendChild(newDivMain);
+        serversDiv.innerHTML = ''; // Leeg de div
+        for (let room of selectedRooms) {
+            let servers = data.data.room[room];
+            if (servers) {
+                for (let pc of servers) {
+                    let newDivMain = createServerDiv(pc, room);
+                    serversDiv.appendChild(newDivMain);
+                }
             }
         }
+
+        // Roep de handling functie aan na het bijwerken van de elementen
+        await handling();
+    } catch (error) {
+        console.error('Fout bij het ophalen van de config data: ', error);
     }
 }
 
