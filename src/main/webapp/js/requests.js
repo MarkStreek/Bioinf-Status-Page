@@ -11,31 +11,37 @@
 // 5. Change the color of the status element
 
 async function handling() {
-    let response = await fetch("/requestListener");
+    let responseRequest = await fetch("/requestListener");
+    let data = await responseRequest.json();
 
-    let data = await response.json();
+    let responseConfigData = await fetch("data/config.json");
+    let configData = await responseConfigData.json();
+
+    const rooms = Object.values(configData.data.room);
+    const allPcs = rooms.reduce((acc, pcs) => acc.concat(pcs), []);
 
     for (let i = 0; i < data.length; i++) {
-        // parse data[i] to the function below
-        //console.log(data[i]);
-        updateContent(data[i]);
+        updateContent(data[i], allPcs);
     }
-
 }
 
 
-function updateContent(data) {
+function updateContent(data, allPcs) {
 
     // Defining the instance name
     let instance = data.instance;
 
-    console.log(data);
-
-    if (instance.includes("nuc")) {
-        for (let key in data) {
-            if (data.hasOwnProperty(key)) {
-                console.log(key + " -> " + data[key]);
-                if (key === "currentLoad") {
+    for (let key in data) {
+        if (data.hasOwnProperty(key)) {
+            if (allPcs.includes(instance)) {
+                if (key === "isUP") {
+                    if (data[key] === true) {
+                        document.getElementById(data.instance + "_status").style.color = `#3cb371`;
+                        document.getElementById(data.instance + "_status").innerText = "ONLINE";
+                        document.getElementById(data.instance + "_card").style.borderColor = `#3cb371`;
+                        document.getElementById(data.instance + "_img").setAttribute("src", "../../images/logo_ONLINE.png");
+                    }
+                } else if (key === "currentLoad") {
                     document.getElementById(instance + "_load").innerText = "Current load: " + data[key];
                 } else if (key === "currentFreeMemory") {
                     document.getElementById(instance + "_currentFreeMemory").innerText = "Current free memory: " + data[key];
@@ -45,44 +51,10 @@ function updateContent(data) {
                     document.getElementById(instance + "_availableMemory").innerText = "Current Available memory" + data[key];
                 } else if (key === "temperature") {
                     document.getElementById(instance + "_temperature").innerText = "Temperature: " + data[key];
-                } else if (key === "isUP") {
-                    console.log("KEY: " + key);
-                    console.log("DATA: " + data[key]);
-
-                    let statusTextObject = document.getElementById(data.instance + "_status");
-                    let newDiv1 = document.getElementById(data.instance + "_card");
-                    let logoImageObject = document.getElementById(data.instance + "_img");
-
-                    if (data[key] === true) {
-                        statusTextObject.style.color = `#3cb371`;
-                        newDiv1.style.borderColor = `#3cb371`;
-                        logoImageObject.setAttribute("src", "../../images/logo_ONLINE.png");
-                    } else {
-                        statusTextObject.style.color = `#ff0000`;
-                        newDiv1.style.borderColor = `#ff0000`;
-                        logoImageObject.setAttribute("src", "../../images/logo_OFFLINE.png");
-                    }
                 }
             }
         }
     }
-
-    // Change the picture of the status!
-
-
-    // if (data === null) {
-    //     throw new Error("Data is null");
-    // } else for (let key of data) {
-    //     if (key === "load") {
-    //         // test this with console.log(data.key);
-    //         console.log("LOAD: " + data.key);
-    //         console.log("DATA: " + data);
-    //         document.getElementById(key);//.innerText = data.key;
-    //     } else if (key === "status") {
-    //         document.getElementById(key);//.innerText = data.key;
-    //     } else if (key === "memory") {
-    //         document.getElementById(key);//.innerText = data.key;
-    //     }
 }
 
 void handling();

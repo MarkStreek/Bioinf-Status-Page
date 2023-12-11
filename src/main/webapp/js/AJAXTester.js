@@ -18,9 +18,11 @@ async function updateElement() {
 
     let selectedRooms = getSelectedRooms() || Object.keys(data.data.room);
     let serversDiv = document.getElementById("innerDiv");
+
     serversDiv.innerHTML = ''; // Leeg de div
     for (let room of selectedRooms) {
         let servers = data.data.room[room];
+
         if (servers) {
             for (let pc of servers) {
                 let newDivMain = createServerDiv(pc, room);
@@ -31,7 +33,7 @@ async function updateElement() {
 }
 
 function createServerDiv(server, room) {
-    let chooseRandomStatus = "NA";// ['ONLINE', 'OFFLINE'][Math.floor(Math.random() * 2)];
+    let chooseRandomStatus = "OFFLINE"; // ['ONLINE', 'OFFLINE'][Math.floor(Math.random() * 2)];
 
 
     // TODO: does the newDivMain needs an ID?
@@ -80,6 +82,10 @@ function createServerDiv(server, room) {
     logoImageObject.style.width = `40px`; logoImageObject.style.float = `right`;
     logoImageObject.style.position = `relative`; logoImageObject.style.bottom = `60px`;
 
+    statusTextObject.style.color = `#ff0000`;
+    newDiv1.style.borderColor = `#ff0000`;
+    logoImageObject.setAttribute("src", "../../images/logo_OFFLINE.png");
+
     ////////////////////////////////////
 
     // MODAL STUFF
@@ -125,10 +131,6 @@ function createServerDiv(server, room) {
     const modalBody = document.createElement('div');
     modalBody.className = 'modal-body';
 
-    const instanceName = document.createElement('p');
-    instanceName.textContent = 'Updating...';
-    instanceName.id = server + "_instanceName"
-
     const currentLoad = document.createElement('p');
     currentLoad.textContent = 'Updating...';
     currentLoad.id = server + "_load";
@@ -149,7 +151,6 @@ function createServerDiv(server, room) {
     temperature.textContent = 'Updating...';
     temperature.id = server + "_temperature";
 
-    modalBody.appendChild(instanceName);
     modalBody.appendChild(currentLoad);
     modalBody.appendChild(currentFreeMemory);
     modalBody.appendChild(loadLast5);
