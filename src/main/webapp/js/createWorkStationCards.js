@@ -5,7 +5,8 @@ function createWorkStationDiv(instance) {
     // New Main div
     let newDivMain = document.createElement('div');
     newDivMain.classList.add('col'); newDivMain.style.width = '25%';
-    newDivMain.id = instance.workstation;
+    newDivMain.id = instance.workstation; newDivMain.style.display = "block"; // style block for hiding by default!
+
     // New Card for the workstation
     let DivCard = document.createElement('div');
     DivCard.classList.add('card', 'border-1'); DivCard.style.backgroundColor = `#4a5766`;
@@ -16,27 +17,26 @@ function createWorkStationDiv(instance) {
     //Title for which workstation
     let PCTitle = document.createElement('h4');
     PCTitle.textContent = `Workstation: ${instance.workstation.split('.')[0]}`;
-    PCTitle.classList.add('card-title'); PCTitle.style.color = `#f9f9f9`; PCTitle.style.width = '70%';
+    PCTitle.classList.add('card-title'); PCTitle.style.color = `#f9f9f9`; //PCTitle.style.width = '70%';
     // Element for the current load on card (without opening the modal)
     let currentLoadDirect = document.createElement('p');
     currentLoadDirect.classList.add('card-text'); currentLoadDirect.textContent = 'Updating...';
-    currentLoadDirect.id = instance.workstation + "_loadDirect"; currentLoadDirect.style.position = `absolute`;
-    currentLoadDirect.style.left = '5%';currentLoadDirect.style.top = '58%';
+    currentLoadDirect.id = instance.workstation + "_loadDirect";
 
     // COLOR STUFF - DEFAULT: EVERYTHING IS OFFLINE / RED
     // Element for the status title
     let StatusTitle = document.createElement('p');
     StatusTitle.classList.add('card-text');StatusTitle.style.color = `#f9f9f9`;
-    StatusTitle.textContent = `Room ${instance.room}`; StatusTitle.style.width = '70%';
+    StatusTitle.textContent = "Room " +  instance.room;
     // status element offline/online -> red/green
     let statusTextObject = document.createElement('span');
-    statusTextObject.textContent = "OFFLINE"; statusTextObject.classList.add("status");
+    statusTextObject.textContent = " OFFLINE"; statusTextObject.classList.add("status");
     statusTextObject.id = instance.workstation + "_status"; statusTextObject.style.color = `#ff0000`;
     // Logo element for aesthetics
     let logoImageObject = document.createElement("img");
     logoImageObject.id = instance.workstation + "_img";
     logoImageObject.classList.add("logo"); logoImageObject.style.height = `40px`;
-    logoImageObject.style.width = `40px`; logoImageObject.style.float = `right`;
+    logoImageObject.style.width = `50px`; logoImageObject.style.float = `right`;
     logoImageObject.style.position = `relative`; logoImageObject.style.bottom = `60px`;
     logoImageObject.setAttribute("src", "../../images/logo_OFFLINE.png");
 
@@ -68,7 +68,8 @@ function createModal(workstation, room) {
     button.className = 'btn btn-primary';
     button.setAttribute('data-bs-toggle', 'modal');
     button.setAttribute('data-bs-target', '#reg-modal_' + workstation.split('.')[0]);
-    button.textContent = 'Show Status'; button.style.position = `absolute`; button.style.left = '5%'; button.style.bottom = '5%';
+    button.textContent = 'Show Status';
+
     // Main Model DIV
     let modal = document.createElement('div');
     modal.className = 'modal'; modal.id = 'reg-modal_' + workstation.split('.')[0];

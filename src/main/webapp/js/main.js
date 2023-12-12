@@ -1,3 +1,19 @@
+function updateCheckBox() {
+
+    ////////
+    /////// UPDATE THIS FUNCTION!
+    ////////
+
+    let checkboxes = document.getElementById('myCheck');
+    let card = document.getElementById('nuc102.bin.bioinf.nl');
+
+    if (checkboxes.checked === true){
+        card.style.display = "none";
+    } else {
+        card.style.display = "block";
+    }
+}
+
 async function retrieveData() {
     let response = await fetch("data/config.json");
     let data = await response.json();
@@ -16,4 +32,8 @@ function handling() {
     });
 }
 
+// Calling the handling function, that starts the whole process
 handling();
+
+// Add event listener for checkbox
+document.getElementById("myCheck").addEventListener("click", updateCheckBox);

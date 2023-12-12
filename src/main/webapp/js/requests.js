@@ -25,7 +25,6 @@ async function handling() {
     }
 }
 
-
 function updateContent(data, allPcs) {
 
     // Defining the instance name
@@ -58,8 +57,6 @@ function updateContent(data, allPcs) {
     }
 }
 
-void handling();
-
-setTimeout(function () {
-    document.getElementById("nuc001.bin.bioinf.nl_load").innerText = "test.js";
-}, 5000);
+setInterval(function () {
+    void handling();
+}, 3000);
