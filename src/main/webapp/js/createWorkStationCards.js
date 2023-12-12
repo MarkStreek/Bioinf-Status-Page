@@ -20,8 +20,8 @@ function createWorkStationDiv(instance) {
     // Element for the current load on card (without opening the modal)
     let currentLoadDirect = document.createElement('p');
     currentLoadDirect.classList.add('card-text'); currentLoadDirect.textContent = 'Updating...';
-    currentLoadDirect.id = instance.workstation + "_loadDirect"; currentLoadDirect.style.position = `relative`;
-    currentLoadDirect.style.right = '16%';
+    currentLoadDirect.id = instance.workstation + "_loadDirect"; currentLoadDirect.style.position = `absolute`;
+    currentLoadDirect.style.left = '5%';currentLoadDirect.style.top = '58%';
 
     // COLOR STUFF - DEFAULT: EVERYTHING IS OFFLINE / RED
     // Element for the status title
@@ -68,7 +68,7 @@ function createModal(workstation, room) {
     button.className = 'btn btn-primary';
     button.setAttribute('data-bs-toggle', 'modal');
     button.setAttribute('data-bs-target', '#reg-modal_' + workstation.split('.')[0]);
-    button.textContent = 'Show Status'; button.style.position = `relative`; button.style.right = '15%';
+    button.textContent = 'Show Status'; button.style.position = `absolute`; button.style.left = '5%'; button.style.bottom = '5%';
     // Main Model DIV
     let modal = document.createElement('div');
     modal.className = 'modal'; modal.id = 'reg-modal_' + workstation.split('.')[0];
