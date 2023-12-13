@@ -20,7 +20,10 @@ async function updateElement() {
         }
         let data = await response.json();
 
+
         let selectedRooms = getSelectedRooms() || Object.keys(data.data.room);
+        let searchRoom = data.data.room[selectedRooms];
+        console.log(searchRoom.classRoomMatrix);
         let serversDiv = document.getElementById("innerDiv");
 
         serversDiv.innerHTML = ''; // Clear the div
@@ -37,7 +40,7 @@ async function updateElement() {
             ['pc', 'pc', 'pc', 'pc', 'pc', 'pc']
         ];
 
-        for (let row of gridLayout) {
+        for (let row of searchRoom.classRoomMatrix) {
             for (let cell of row) {
                 let newDivMain = document.createElement('div');
                 newDivMain.classList.add('col');
@@ -94,13 +97,12 @@ let serverState = {
 function getNextServer(selectedRooms, data) {
     while (serverState.currentRoomIndex < selectedRooms.length) {
         let room = selectedRooms[serverState.currentRoomIndex];
-        let servers = data.data.room[room];
-
-        if (serverState.currentServerIndex < servers.length) {
-            let server = servers[serverState.currentServerIndex];
+        let servers = data.data.room[room]
+        if (serverState.currentServerIndex < servers.pc.length) {
+            let server = servers.pc[serverState.currentServerIndex];
             serverState.currentServerIndex++;
 
-            return { server, room };
+            return { server, room};
         } else {
             // Move to the next room and reset the server index
             serverState.currentRoomIndex++;
