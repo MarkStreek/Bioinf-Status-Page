@@ -35,6 +35,14 @@
           [null, null, null, "empty", "empty", null],
           [null, null, null, "empty", null, null],
           [null, null, null, null, null, null]]
+        "classRoomMatrix": [
+          ["null", "pc", "null", "null", "null", "null"],
+          ["pc", "pc", "null", "pc", "pc", "pc"],
+          ["pc", "null", "null", "null", "null", "pc"],
+          ["pc", "pc", "pc", "null", "null", "pc"],
+          ["pc", "pc", "pc", "null", "pc", "pc"],
+          ["pc", "pc", "pc", "pc", "pc", "pc"]
+        ]
       },
       "D107": { "pc" : [
         "bin300.bin.bioinf.nl",
@@ -50,6 +58,8 @@
         "classRoomMatrix":
         [["empty", null, "empty", null, null, "empty"],
           [null, null, "empty", null, null, null]]
+        [["null", "pc", "null", "pc", "pc", "null"],
+          ["pc", "pc", "null", "pc", "pc", "pc"]]
       },
       "H186": { "pc" : [
         "nuc404.bin.bioinf.nl",
@@ -93,6 +103,12 @@
           [null, null, null, "empty", "empty", null],
           [null, null, null, null, null, null],
           [null, null, null, null, null, null]]
+        [["pc", "pc", "pc", "pc", "pc", "pc"],
+          ["pc", "pc", "pc", "pc", "pc", "pc"],
+          ["pc", "pc", "pc", "null", "null", "pc"],
+          ["pc", "pc", "pc", "null", "null", "pc"],
+          ["pc", "pc", "pc", "pc", "pc", "pc"],
+          ["pc", "pc", "pc", "pc", "pc", "pc"]]
       },
       "H188A": { "pc" : [
         "nuc206.bin.bioinf.nl",
@@ -117,6 +133,9 @@
         [[null, null, null, null, null, null],
           [null, null, "empty", null, null, null],
           [null, null, null, null, "empty", null]]
+        [["pc", "pc", "pc", "pc", "pc", "pc"],
+          ["pc", "pc", "null", "pc", "pc", "pc"],
+          ["pc", "pc", "pc", "pc", "null", "pc"]]
       },
       "H1122": { "pc" : [
         "nuc120.bin.bioinf.nl",
@@ -133,6 +152,8 @@
         "classRoomMatrix":
         [[null, null, null, null, null],
           [null, null, "empty", null, null]]
+        [["pc", "pc", "pc", "pc", "pc"],
+          ["pc", "pc", "null", "pc", "pc"]]
       },
       "Server": { "pc" : [
         "assemblix2012.bin.bioinf.nl",
@@ -146,6 +167,8 @@
         "classRoomMatrix":
         [[null, null, null, null],
           [null, null, null, "empty"]]
+        [["pc", "pc", "pc", "pc"],
+          ["pc", "pc", "pc", "null"]]
       }
     }
   }
