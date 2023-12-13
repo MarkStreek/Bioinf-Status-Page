@@ -12,7 +12,6 @@ ID's of the elements:
  */
 
 
-
 async function updateElement() {
     try {
         let response = await fetch("data/config.json");
@@ -20,34 +19,99 @@ async function updateElement() {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         let data = await response.json();
-        console.log("hier")
-        let roomMatrix = data.data.room
+
+
         let selectedRooms = getSelectedRooms() || Object.keys(data.data.room);
+        let searchRoom = data.data.room[selectedRooms];
+        console.log(searchRoom.classRoomMatrix);
         let serversDiv = document.getElementById("innerDiv");
 
-        serversDiv.innerHTML = ''; // Leeg de div
-        for (let room of selectedRooms) {
-            let servers = data.data.room[room];
-            if (servers) {
-                for (let pc of servers[0]) {
-                    let newDivMain = createServerDiv(pc, room)
-                    for (let row of servers[1]) {
-                        for (let position of row) {
-                            if (position === null) {
-                                row[position] = newDivMain;
-                            }
-                        }
+        serversDiv.innerHTML = ''; // Clear the div
+        serversDiv.classList.add('grid-container');
+        serversDiv.style.width = '80%';
+        serversDiv.style.margin = 'auto';
+
+        const gridLayout = [
+            ['null', 'pc', 'null', 'null', 'null', 'null'],
+            ['pc', 'pc', 'null', 'pc', 'pc', 'pc'],
+            ['pc', 'null', 'null', 'null', 'null', 'pc'],
+            ['pc', 'pc', 'pc', 'null', 'null', 'pc'],
+            ['pc', 'pc', 'pc', 'null', 'pc', 'pc'],
+            ['pc', 'pc', 'pc', 'pc', 'pc', 'pc']
+        ];
+
+        for (let row of searchRoom.classRoomMatrix) {
+            for (let cell of row) {
+                let newDivMain = document.createElement('div');
+                newDivMain.classList.add('col');
+                newDivMain.style.width = '16%';
+
+                if (cell === 'pc') {
+                    let serverInfo = getNextServer(selectedRooms, data); // You need to implement this function
+                    if (serverInfo) {
+                        let serverDiv = smallDiv(serverInfo.server, serverInfo.room);
+                        newDivMain.appendChild(serverDiv);
                     }
-                    console.log(servers[1])
-                    serversDiv.appendChild(servers[1]);
                 }
+
+                serversDiv.appendChild(newDivMain);
             }
         }
 
         await handling();
     } catch (error) {
-        console.error('Fout bij het ophalen van de config data: ', error);
+        console.error('Error fetching config data: ', error);
     }
+}
+
+function smallDiv(server, room) {
+    let chooseRandomStatus = ['ONLINE', 'OFFLINE'][Math.floor(Math.random() * 2)];
+
+    let newDivMain = document.createElement('div');
+    newDivMain.classList.add('col');
+    newDivMain.setAttribute("id", server);
+    // newDivMain.style.width = '75%';
+
+    let newDiv1 = document.createElement('div');
+    newDiv1.classList.add('card', 'border-1');
+    if (chooseRandomStatus === "ONLINE") {
+        newDiv1.style.backgroundColor = `#3cb371`;
+    } else {
+        newDiv1.style.backgroundColor = `#ff0000`;
+    }
+
+    let pcTitle = document.createElement('h4');
+    pcTitle.textContent = `Server ${server.split('.')[0]}`;
+
+    newDiv1.appendChild(pcTitle);
+    newDivMain.appendChild(newDiv1);
+
+    return newDivMain;
+}
+
+let serverState = {
+    currentRoomIndex: 0,
+    currentServerIndex: 0
+};
+
+function getNextServer(selectedRooms, data) {
+    while (serverState.currentRoomIndex < selectedRooms.length) {
+        let room = selectedRooms[serverState.currentRoomIndex];
+        let servers = data.data.room[room]
+        if (serverState.currentServerIndex < servers.pc.length) {
+            let server = servers.pc[serverState.currentServerIndex];
+            serverState.currentServerIndex++;
+
+            return { server, room};
+        } else {
+            // Move to the next room and reset the server index
+            serverState.currentRoomIndex++;
+            serverState.currentServerIndex = 0;
+        }
+    }
+
+    // No more servers left
+    return null;
 }
 
 
@@ -60,7 +124,7 @@ function createServerDiv(server, room) {
     let newDivMain = document.createElement('div');
     newDivMain.classList.add('col');
     newDivMain.setAttribute("id", server);
-    newDivMain.style.width = '25%';
+    newDivMain.style.width = '16%';
 
 
     // new subdiv
