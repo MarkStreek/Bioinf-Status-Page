@@ -20,7 +20,8 @@ async function updateElement() {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         let data = await response.json();
-
+        console.log("hier")
+        let roomMatrix = data.data.room
         let selectedRooms = getSelectedRooms() || Object.keys(data.data.room);
         let serversDiv = document.getElementById("innerDiv");
 
@@ -28,9 +29,17 @@ async function updateElement() {
         for (let room of selectedRooms) {
             let servers = data.data.room[room];
             if (servers) {
-                for (let pc of servers) {
-                    let newDivMain = createServerDiv(pc, room);
-                    serversDiv.appendChild(newDivMain);
+                for (let pc of servers[0]) {
+                    let newDivMain = createServerDiv(pc, room)
+                    for (let row of servers[1]) {
+                        for (let position of row) {
+                            if (position === null) {
+                                row[position] = newDivMain;
+                            }
+                        }
+                    }
+                    console.log(servers[1])
+                    serversDiv.appendChild(servers[1]);
                 }
             }
         }
@@ -40,7 +49,6 @@ async function updateElement() {
         console.error('Fout bij het ophalen van de config data: ', error);
     }
 }
-
 
 
 function createServerDiv(server, room) {

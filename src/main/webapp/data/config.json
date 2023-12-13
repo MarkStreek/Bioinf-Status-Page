@@ -1,7 +1,7 @@
 {
   "data" : {
-    "room" : {
-      "D108": [
+    "room": {
+      "D108": { "pc" : [
         "nuc001.bin.bioinf.nl",
         "nuc002.bin.bioinf.nl",
         "nuc003.bin.bioinf.nl",
@@ -28,7 +28,15 @@
         "nuc118.bin.bioinf.nl",
         "nuc119.bin.bioinf.nl"
       ],
-      "D107": [
+        "classRoomMatrix":
+          [["empty", null, "empty", "empty", "empty", "empty"],
+          [null, null, "empty", null, null, null],
+          [null, "empty", null, null, "empty", null],
+          [null, null, null, "empty", "empty", null],
+          [null, null, null, "empty", null, null],
+          [null, null, null, null, null, null]]
+      },
+      "D107": { "pc" : [
         "bin300.bin.bioinf.nl",
         "bin301.bin.bioinf.nl",
         "bin302.bin.bioinf.nl",
@@ -39,7 +47,11 @@
         "bin307.bin.bioinf.nl",
         "nuc30.bin.bioinf.nl"
       ],
-      "H186": [
+        "classRoomMatrix":
+        [["empty", null, "empty", null, null, "empty"],
+          [null, null, "empty", null, null, null]]
+      },
+      "H186": { "pc" : [
         "nuc404.bin.bioinf.nl",
         "nuc405.bin.bioinf.nl",
         "nuc406.bin.bioinf.nl",
@@ -74,7 +86,15 @@
         "nuc504.bin.bioinf.nl",
         "nuc505.bin.bioinf.nl"
       ],
-      "H188A": [
+        "classRoomMatrix":
+        [[null, null, null, null, null, null],
+          [null, null, null, null, null, null],
+          [null, null, null, "empty", "empty", null],
+          [null, null, null, "empty", "empty", null],
+          [null, null, null, null, null, null],
+          [null, null, null, null, null, null]]
+      },
+      "H188A": { "pc" : [
         "nuc206.bin.bioinf.nl",
         "nuc207.bin.bioinf.nl",
         "nuc208.bin.bioinf.nl",
@@ -93,7 +113,12 @@
         "nuc402.bin.bioinf.nl",
         "nuc403.bin.bioinf.nl"
       ],
-      "H1122": [
+        "classRoomMatrix":
+        [[null, null, null, null, null, null],
+          [null, null, "empty", null, null, null],
+          [null, null, null, null, "empty", null]]
+      },
+      "H1122": { "pc" : [
         "nuc120.bin.bioinf.nl",
         "nuc121.bin.bioinf.nl",
         "nuc122.bin.bioinf.nl",
@@ -105,7 +130,11 @@
         "nuc204.bin.bioinf.nl",
         "nuc205.bin.bioinf.nl"
       ],
-      "Server": [
+        "classRoomMatrix":
+        [[null, null, null, null, null],
+          [null, null, "empty", null, null]]
+      },
+      "Server": { "pc" : [
         "assemblix2012.bin.bioinf.nl",
         "assemblix2019.bin.bioinf.nl",
         "mordor-vm.bin.bioinf.nl",
@@ -113,7 +142,11 @@
         "salt",
         "slurm",
         "slurm:8080"
-      ]
+      ],
+        "classRoomMatrix":
+        [[null, null, null, null],
+          [null, null, null, "empty"]]
+      }
     }
   }
 }
