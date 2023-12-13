@@ -3,7 +3,8 @@ async function retrieveData() {
     let data = await response.json();
 
     let rooms = Object.entries(data.data.room);
-    return rooms.reduce((acc, [room, pcs]) => {
+    return rooms.reduce((acc, [room, roomData]) => {
+        let pcs = roomData.pc;
         pcs.forEach(pc => acc.push({workstation: pc, room: room}));
         return acc;
     }, []);

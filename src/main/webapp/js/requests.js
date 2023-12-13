@@ -6,8 +6,7 @@ async function handlingUpdate() {
     let configData = await responseConfigData.json();
 
     const rooms = Object.values(configData.data.room);
-    const allPcs = rooms.reduce((acc, pcs) => acc.concat(pcs), []);
-
+    const allPcs = rooms.reduce((acc, roomData) => acc.concat(roomData.pc), []);
     for (let i = 0; i < data.length; i++) {
         updateContent(data[i], allPcs);
     }
