@@ -28,6 +28,13 @@
         "nuc118.bin.bioinf.nl",
         "nuc119.bin.bioinf.nl"
       ],
+        "classRoomMatrix":
+          [["empty", null, "empty", "empty", "empty", "empty"],
+          [null, null, "empty", null, null, null],
+          [null, "empty", null, null, "empty", null],
+          [null, null, null, "empty", "empty", null],
+          [null, null, null, "empty", null, null],
+          [null, null, null, null, null, null]]
         "classRoomMatrix": [
           ["null", "pc", "null", "null", "null", "null"],
           ["pc", "pc", "null", "pc", "pc", "pc"],
@@ -49,6 +56,8 @@
         "nuc30.bin.bioinf.nl"
       ],
         "classRoomMatrix":
+        [["empty", null, "empty", null, null, "empty"],
+          [null, null, "empty", null, null, null]]
         [["null", "pc", "null", "pc", "pc", "null"],
           ["pc", "pc", "null", "pc", "pc", "pc"]]
       },
@@ -88,6 +97,12 @@
         "nuc505.bin.bioinf.nl"
       ],
         "classRoomMatrix":
+        [[null, null, null, null, null, null],
+          [null, null, null, null, null, null],
+          [null, null, null, "empty", "empty", null],
+          [null, null, null, "empty", "empty", null],
+          [null, null, null, null, null, null],
+          [null, null, null, null, null, null]]
         [["pc", "pc", "pc", "pc", "pc", "pc"],
           ["pc", "pc", "pc", "pc", "pc", "pc"],
           ["pc", "pc", "pc", "null", "null", "pc"],
@@ -115,6 +130,9 @@
         "nuc403.bin.bioinf.nl"
       ],
         "classRoomMatrix":
+        [[null, null, null, null, null, null],
+          [null, null, "empty", null, null, null],
+          [null, null, null, null, "empty", null]]
         [["pc", "pc", "pc", "pc", "pc", "pc"],
           ["pc", "pc", "null", "pc", "pc", "pc"],
           ["pc", "pc", "pc", "pc", "null", "pc"]]
@@ -132,6 +150,8 @@
         "nuc205.bin.bioinf.nl"
       ],
         "classRoomMatrix":
+        [[null, null, null, null, null],
+          [null, null, "empty", null, null]]
         [["pc", "pc", "pc", "pc", "pc"],
           ["pc", "pc", "null", "pc", "pc"]]
       },
@@ -145,6 +165,8 @@
         "slurm:8080"
       ],
         "classRoomMatrix":
+        [[null, null, null, null],
+          [null, null, null, "empty"]]
         [["pc", "pc", "pc", "pc"],
           ["pc", "pc", "pc", "null"]]
       }
