@@ -1,16 +1,15 @@
-/*
-Function to create a new div for each workstation
- */
 function createWorkStationDiv(instance) {
     // New Main div
     let newDivMain = document.createElement('div');
-    newDivMain.classList.add('col'); newDivMain.style.width = '25%';
-    newDivMain.id = instance.workstation; newDivMain.style.display = "block"; // style block for hiding by default!
+    newDivMain.classList.add('col', 'Room_' + instance.room); newDivMain.style.width = '25%';
+    newDivMain.id = instance.workstation;
+    newDivMain.style.display = 'block'; // style block for hiding by default!
 
     // New Card for the workstation
     let DivCard = document.createElement('div');
-    DivCard.classList.add('card', 'border-1'); DivCard.style.backgroundColor = `#4a5766`;
+    DivCard.classList.add('card'); DivCard.style.backgroundColor = `#4a5766`;
     DivCard.id = instance.workstation + "_card"; DivCard.style.borderColor = `#ff0000`;
+
     // New div for the card body
     let CardBody = document.createElement('div');
     CardBody.classList.add('card-body'); CardBody.style.color = `#4a5766`;

@@ -1,16 +1,4 @@
-// Steps:
-// 1. Get the results with fetch
-// 2. Loop though the results and pass every instance to a new function
-// 3. In the new function search for all the elements, i.e.g,
-//     let load = document.getElementById('instance'_load");
-//     let status = document.getElementById('instance'_status");
-//     let memory = document.getElementById('instance'_memory");
-//     let cpu = document.getElementById('instance'_cpu");
-//     etc.
-// 4. Change the values of the elements with the given values from results
-// 5. Change the color of the status element
-
-async function handling() {
+async function handlingUpdate() {
     let responseRequest = await fetch("/requestListener");
     let data = await responseRequest.json();
 
@@ -56,7 +44,3 @@ function updateContent(data, allPcs) {
         }
     }
 }
-
-setInterval(function () {
-    void handling();
-}, 3000);
