@@ -1,4 +1,10 @@
 function createWorkStationDiv(instance) {
+
+    //
+    // For bootstrap grid system with breakpoints:
+    // 'col-xxl-2', 'col-xl-2', 'col-lg-2', 'col-md-3', 'col-sm-4', 'col-6', 'g-2'
+    // Add the above line to the classList below
+    //
     // New Main div
     let newDivMain = document.createElement('div');
     newDivMain.classList.add('col', 'Room_' + instance.room); newDivMain.style.width = '25%';
