@@ -32,11 +32,13 @@ checkboxes.forEach(function(checkbox) {
         checkboxes.forEach(function(checkbox) {
             let cardID = 'Room_' + checkbox.id;
             let divs = document.getElementsByClassName("col " + cardID);
-            mapID = document.getElementById("Map");
+            let mapID = document.getElementById("Map");
+            let serversDiv = document.getElementById("innerdiv");
+            if (mapID.checked === true && checkbox.checked === true) {
+                updateElement(checkbox.id);
+                divs.style.display = 'none';
+            }
             for (let div of divs) {
-                if (mapID.checked === true && checkbox.checked === true) {
-                    updateElement(checkbox.id);
-                }
                 if (checkbox.checked === true) {
                     div.style.display = 'block';
                 } else {
