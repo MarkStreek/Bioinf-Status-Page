@@ -43,13 +43,13 @@ checkboxes.forEach(function(checkbox) {
             // let mapDivs = document.getElementsByClassName("col " + 'map');
             let mapID = document.getElementById("Map");
             let innerdiv = document.getElementById("innerdiv");
+            let mapdiv = document.getElementById("mapdiv");
 
             if (mapID.checked === true && checkbox.checked === true) {
                 for (let div of divs) {
                     div.style.display = 'none';
                 }
                 // empty mapdiv if exists
-                let mapdiv = document.getElementById("mapdiv");
                 if (mapdiv) {mapdiv.innerHTML = '';}
                 // create mapDiv object
                 mapDiv();
@@ -58,6 +58,7 @@ checkboxes.forEach(function(checkbox) {
             }
 
             if (mapID.checked === false) {
+                if (mapdiv) {mapdiv.innerHTML = '';}
                 console.log("HIER");
                 for (let div of divs) {
                     if (checkbox.checked === true) {
