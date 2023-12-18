@@ -106,15 +106,17 @@ function smallDiv(server, room) {
     // newDivMain.style.width = '75%';
 
     let newDiv1 = document.createElement('div');
-    newDiv1.classList.add('card', 'border-1');
+    newDiv1.classList.add('card', 'border-2');
+    newDiv1.style.backgroundColor = `#4a5766`;
     if (chooseRandomStatus === "ONLINE") {
-        newDiv1.style.backgroundColor = `#3cb371`;
+        newDiv1.style.borderColor = `#3cb371`;
     } else {
-        newDiv1.style.backgroundColor = `#ff0000`;
+        newDiv1.style.borderColor = `#ff0000`;
     }
 
     let pcTitle = document.createElement('h4');
-    pcTitle.textContent = `Server ${server.split('.')[0]}`;
+    pcTitle.textContent = `${server.split('.')[0]}`;
+    pcTitle.style.color = `#ffffff`;
 
     newDiv1.appendChild(pcTitle);
     newDivMain.appendChild(newDiv1);
