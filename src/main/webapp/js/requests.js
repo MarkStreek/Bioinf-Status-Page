@@ -61,6 +61,48 @@ function updateContent(data, allPcs) {
     }
 }
 
+async function updateElement(selectedRoom) {
+    try {
+        let response = await fetch("data/config.json");
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        let data = await response.json();
+
+
+        // let selectedRooms = getSelectedRooms() || Object.keys(data.data.room);
+        let searchRoom = data.data.room[selectedRoom];
+        let serversDiv = document.getElementById("innerdiv");
+
+        serversDiv.innerHTML = ''; // Clear the div
+        serversDiv.classList.add('grid-container');
+        serversDiv.style.width = '80%';
+        serversDiv.style.margin = 'auto';
+
+        for (let row of searchRoom.classRoomMatrix) {
+            for (let cell of row) {
+                let newDivMain = document.createElement('div');
+                newDivMain.classList.add('col');
+                newDivMain.style.width = '16%';
+
+                if (cell === 'pc') {
+                    let serverInfo = getAllPCs(selectedRoom, data); // You need to implement this function
+                    if (serverInfo) {
+                        let serverDiv = smallDiv(serverInfo, selectedRoom);
+                        newDivMain.appendChild(serverDiv);
+                    }
+                }
+
+                serversDiv.appendChild(newDivMain);
+            }
+        }
+
+        await handling();
+    } catch (error) {
+        console.error('Error fetching config data: ', error);
+    }
+}
+
 async function createSuggestions(instances) {
 
     let hashmap = await configFileToHashMap();

@@ -1,3 +1,4 @@
+
 async function retrieveData() {
     let response = await fetch("data/config.json");
     let data = await response.json();
@@ -39,7 +40,6 @@ checkboxes.forEach(function(checkbox) {
         checkboxes.forEach(function(checkbox) {
             let cardID = 'Room_' + checkbox.id;
             let divs = document.getElementsByClassName("col " + cardID);
-          
             let mapID = document.getElementById("Map");
             let serversDiv = document.getElementById("innerdiv");
             if (mapID.checked === true && checkbox.checked === true) {
@@ -53,6 +53,7 @@ checkboxes.forEach(function(checkbox) {
                     div.style.display = 'none';
                 }
             }
+
         });
         let status = [];
         checkboxes.forEach(function(checkbox) {
@@ -64,96 +65,6 @@ checkboxes.forEach(function(checkbox) {
     });
 });
 
-async function updateElement(selectedRoom) {
-    try {
-        let response = await fetch("data/config.json");
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        let data = await response.json();
-
-
-        // let selectedRooms = getSelectedRooms() || Object.keys(data.data.room);
-        let searchRoom = data.data.room[selectedRoom];
-        let serversDiv = document.getElementById("innerdiv");
-
-        serversDiv.innerHTML = ''; // Clear the div
-        serversDiv.classList.add('grid-container');
-        serversDiv.style.width = '80%';
-        serversDiv.style.margin = 'auto';
-
-        for (let row of searchRoom.classRoomMatrix) {
-            for (let cell of row) {
-                let newDivMain = document.createElement('div');
-                newDivMain.classList.add('col');
-                newDivMain.style.width = '16%';
-
-                if (cell === 'pc') {
-                    let serverInfo = getAllPCs(selectedRoom, data); // You need to implement this function
-                    if (serverInfo) {
-                        let serverDiv = smallDiv(serverInfo, selectedRoom);
-                        newDivMain.appendChild(serverDiv);
-                    }
-                }
-
-                serversDiv.appendChild(newDivMain);
-            }
-        }
-
-        await handling();
-    } catch (error) {
-        console.error('Error fetching config data: ', error);
-    }
-}
-
-function smallDiv(server, room) {
-    let chooseRandomStatus = ['ONLINE', 'OFFLINE'][Math.floor(Math.random() * 2)];
-
-    let newDivMain = document.createElement('div');
-    newDivMain.classList.add('col');
-    newDivMain.setAttribute("id", server);
-    // newDivMain.style.width = '75%';
-
-    let newDiv1 = document.createElement('div');
-    newDiv1.classList.add('card', 'border-2');
-    newDiv1.style.backgroundColor = `#4a5766`;
-    if (chooseRandomStatus === "ONLINE") {
-        newDiv1.style.borderColor = `#3cb371`;
-    } else {
-        newDiv1.style.borderColor = `#ff0000`;
-    }
-
-    let pcTitle = document.createElement('h4');
-    pcTitle.textContent = `${server.split('.')[0]}`;
-    pcTitle.style.color = `#ffffff`;
-
-    newDiv1.appendChild(pcTitle);
-    newDivMain.appendChild(newDiv1);
-
-    return newDivMain;
-}
-
-let serverState = {
-    currentServerIndex: 0
-};
-
-
-function getAllPCs(selectedRoom, data) {
-    let servers = data.data.room[selectedRoom]
-    if (serverState.currentServerIndex < servers.pc.length) {
-        let server = servers.pc[serverState.currentServerIndex];
-        serverState.currentServerIndex++;
-
-        return server;
-    } else {
-        // Move to the next room and reset the server index
-        serverState.currentServerIndex = 0;
-    }
-
-    // No more servers left
-    return null;
-
-}
 
 setInterval(function () {
     void handlingUpdate();
@@ -161,4 +72,3 @@ setInterval(function () {
 
 // Calling the handling function, that starts the whole process
 handling();
-

@@ -169,3 +169,53 @@ function createModalFooter() {
 
     return modalFooter;
 }
+
+// for map checkbox display
+function smallDiv(server, room) {
+    let chooseRandomStatus = ['ONLINE', 'OFFLINE'][Math.floor(Math.random() * 2)];
+
+    let newDivMain = document.createElement('div');
+    newDivMain.classList.add('col');
+    newDivMain.setAttribute("id", server);
+    // newDivMain.style.width = '75%';
+
+    let newDiv1 = document.createElement('div');
+    newDiv1.classList.add('card', 'border-2');
+    newDiv1.style.backgroundColor = `#4a5766`;
+    if (chooseRandomStatus === "ONLINE") {
+        newDiv1.style.borderColor = `#3cb371`;
+    } else {
+        newDiv1.style.borderColor = `#ff0000`;
+    }
+
+    let pcTitle = document.createElement('h4');
+    pcTitle.textContent = `${server.split('.')[0]}`;
+    pcTitle.style.color = `#ffffff`;
+
+    newDiv1.appendChild(pcTitle);
+    newDivMain.appendChild(newDiv1);
+
+    return newDivMain;
+}
+
+let serverState = {
+    currentServerIndex: 0
+};
+
+
+function getAllPCs(selectedRoom, data) {
+    let servers = data.data.room[selectedRoom]
+    if (serverState.currentServerIndex < servers.pc.length) {
+        let server = servers.pc[serverState.currentServerIndex];
+        serverState.currentServerIndex++;
+
+        return server;
+    } else {
+        // Move to the next room and reset the server index
+        serverState.currentServerIndex = 0;
+    }
+
+    // No more servers left
+    return null;
+
+}
