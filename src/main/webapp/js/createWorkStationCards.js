@@ -1,4 +1,4 @@
-function createWorkStationDiv(instance) {
+function createWorkStationDiv(workstation, room) {
 
     //
     // For bootstrap grid system with breakpoints:
@@ -7,46 +7,46 @@ function createWorkStationDiv(instance) {
     //
     // New Main div
     let newDivMain = document.createElement('div');
-    newDivMain.classList.add('col', 'Room_' + instance.room); newDivMain.style.width = '25%';
-    newDivMain.id = instance.workstation;
+    newDivMain.classList.add('col', 'Room_' + room); newDivMain.style.width = '25%';
+    newDivMain.id = workstation;
     newDivMain.style.display = 'block'; // style block for hiding by default!
 
     // New Card for the workstation
     let DivCard = document.createElement('div');
     DivCard.classList.add('card'); DivCard.style.backgroundColor = `#4a5766`;
-    DivCard.id = instance.workstation + "_card"; DivCard.style.borderColor = `#ff0000`;
+    DivCard.id = workstation + "_card"; DivCard.style.borderColor = `#ff0000`;
 
     // New div for the card body
     let CardBody = document.createElement('div');
     CardBody.classList.add('card-body'); CardBody.style.color = `#4a5766`;
     //Title for which workstation
     let PCTitle = document.createElement('h4');
-    PCTitle.textContent = `Workstation: ${instance.workstation.split('.')[0]}`;
+    PCTitle.textContent = `Workstation: ${workstation.split('.')[0]}`;
     PCTitle.classList.add('card-title'); PCTitle.style.color = `#f9f9f9`; //PCTitle.style.width = '70%';
     // Element for the current load on card (without opening the modal)
     let currentLoadDirect = document.createElement('p');
     currentLoadDirect.classList.add('card-text'); currentLoadDirect.textContent = 'Updating...';
-    currentLoadDirect.id = instance.workstation + "_loadDirect";
+    currentLoadDirect.id = workstation + "_loadDirect";
 
     // COLOR STUFF - DEFAULT: EVERYTHING IS OFFLINE / RED
     // Element for the status title
     let StatusTitle = document.createElement('p');
     StatusTitle.classList.add('card-text');StatusTitle.style.color = `#f9f9f9`;
-    StatusTitle.textContent = "Room " +  instance.room;
+    StatusTitle.textContent = "Room " +  room;
     // status element offline/online -> red/green
     let statusTextObject = document.createElement('span');
     statusTextObject.textContent = " OFFLINE"; statusTextObject.classList.add("status");
-    statusTextObject.id = instance.workstation + "_status"; statusTextObject.style.color = `#ff0000`;
+    statusTextObject.id = workstation + "_status"; statusTextObject.style.color = `#ff0000`;
     // Logo element for aesthetics
     let logoImageObject = document.createElement("img");
-    logoImageObject.id = instance.workstation + "_img";
+    logoImageObject.id = workstation + "_img";
     logoImageObject.classList.add("logo"); logoImageObject.style.height = `40px`;
     logoImageObject.style.width = `50px`; logoImageObject.style.float = `right`;
     logoImageObject.style.position = `relative`; logoImageObject.style.bottom = `60px`;
     logoImageObject.setAttribute("src", "../../images/logo_OFFLINE.png");
 
     // Create the modal for the workstation
-    let values = createModal(instance.workstation, instance.room);
+    let values = createModal(workstation, room);
     let button = values[0];
     let modal = values[1];
 
@@ -63,8 +63,9 @@ function createWorkStationDiv(instance) {
     //newDivMain.appendChild(button);
     DivCard.appendChild(modal);
 
-    let serversDiv = document.getElementById("innerdiv");
-    serversDiv.appendChild(newDivMain);
+    return newDivMain;
+    // let serversDiv = document.getElementById("innerdiv");
+    // serversDiv.appendChild(newDivMain);
 }
 
 function createModal(workstation, room) {

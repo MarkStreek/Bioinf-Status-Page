@@ -1,4 +1,3 @@
-
 async function retrieveData() {
     let response = await fetch("data/config.json");
     let data = await response.json();
@@ -13,7 +12,15 @@ async function retrieveData() {
 
 function handling() {
     retrieveData().then(AllPCS => {
-        AllPCS.forEach(createWorkStationDiv)
+        let innerdiv = document.getElementById("innerdiv");
+
+        for (let i = 0; i < AllPCS.length; i++) {
+            let workstation = AllPCS[i].workstation;
+            let room = AllPCS[i].room;
+
+            let newDivMain = createWorkStationDiv(workstation, room);
+            innerdiv.appendChild(newDivMain);
+        }
     });
 }
 
@@ -32,6 +39,7 @@ checkboxes.forEach(function(checkbox) {
         checkboxes.forEach(function(checkbox) {
             let cardID = 'Room_' + checkbox.id;
             let divs = document.getElementsByClassName("col " + cardID);
+          
             let mapID = document.getElementById("Map");
             let serversDiv = document.getElementById("innerdiv");
             if (mapID.checked === true && checkbox.checked === true) {
@@ -45,7 +53,6 @@ checkboxes.forEach(function(checkbox) {
                     div.style.display = 'none';
                 }
             }
-
         });
         let status = [];
         checkboxes.forEach(function(checkbox) {
@@ -150,7 +157,7 @@ function getAllPCs(selectedRoom, data) {
 
 setInterval(function () {
     void handlingUpdate();
-}, 5000);
+}, 2500);
 
 // Calling the handling function, that starts the whole process
 handling();
