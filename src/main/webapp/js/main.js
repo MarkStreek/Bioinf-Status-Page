@@ -18,7 +18,7 @@ function handling() {
         for (let i = 0; i < AllPCS.length; i++) {
             let workstation = AllPCS[i].workstation;
             let room = AllPCS[i].room;
-
+            console.log(workstation);
             let newDivMain = createWorkStationDiv(workstation, room);
             innerdiv.appendChild(newDivMain);
         }
@@ -41,26 +41,33 @@ checkboxes.forEach(function(checkbox) {
             let cardID = 'Room_' + checkbox.id;
             let divs = document.getElementsByClassName("col " + cardID);
 
-            // create mapDiv object
-            mapDiv();
-
             // let mapDivs = document.getElementsByClassName("col " + 'map');
             let mapID = document.getElementById("Map");
-            let innerDiv = document.getElementById("innerdiv");
-            // let cardDivsInInnerDiv = innerDiv.getElementsByClassName("col" + cardID);
+            let innerdiv = document.getElementById("innerdiv");
 
             if (mapID.checked === true && checkbox.checked === true) {
+                innerdiv.style.display = 'none';
+                // create mapDiv object
+                mapDiv();
+                // create map child divs
                 updateElement(checkbox.id);
-                innerDiv.style.display = 'none';
             }
-            for (let div of divs) {
-                if (checkbox.checked === true && mapID.checked === false) {
-                    div.style.display = 'block';
-                } else {
-                    div.style.display = 'none';
+            if (mapID.checked === false && checkbox.checked === false ) {
+                let mapdiv = document.getElementById("mapdiv");
+                if (mapdiv) {
+                    mapdiv.style.display = 'none';
                 }
             }
 
+            if (mapID.checked === false) {
+                for (let div of divs) {
+                    if (checkbox.checked === true) {
+                        div.style.display = 'block';
+                    } else {
+                        div.style.display = 'none';
+                    }
+                }
+            }
         });
         let status = [];
         checkboxes.forEach(function(checkbox) {

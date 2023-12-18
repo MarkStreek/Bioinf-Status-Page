@@ -188,7 +188,7 @@ function mapDiv() {
 }
 
 // for map checkbox display
-function smallDiv(server, room) {
+function smallDiv(server) {
     let chooseRandomStatus = ['ONLINE', 'OFFLINE'][Math.floor(Math.random() * 2)];
 
     let newDivMain = document.createElement('div');
@@ -235,3 +235,4 @@ function getAllPCs(selectedRoom, data) {
     return null;
 
 }
+

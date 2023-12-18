@@ -93,10 +93,8 @@ async function updateElement(selectedRoom) {
                 }
             }
         }
-        console.log(mapDiv);
+        // console.log(mapDiv);
         // serversDiv.appendChild(newDivMainHolder);
-
-        await handling();
     } catch (error) {
         console.error('Error fetching config data: ', error);
     }
