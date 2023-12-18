@@ -31,14 +31,25 @@ checkboxes.forEach(function(checkbox) {
         checkboxes.forEach(function(checkbox) {
             let cardID = 'Room_' + checkbox.id;
             let divs = document.getElementsByClassName("col " + cardID);
-
+            mapID = document.getElementById("Map");
             for (let div of divs) {
+                if (mapID.checked === true && checkbox.checked === true) {
+                    updateElement(mapID, checkbox.id);
+                }
                 if (checkbox.checked === true) {
                     div.style.display = 'block';
                 } else {
                     div.style.display = 'none';
                 }
             }
+            for (let div of divs) {
+                if (checkbox.checked === true) {
+                    div.style.display = 'block';
+                } else {
+                    div.style.display = 'none';
+                    }
+                }
+
         });
         let status = [];
         checkboxes.forEach(function(checkbox) {

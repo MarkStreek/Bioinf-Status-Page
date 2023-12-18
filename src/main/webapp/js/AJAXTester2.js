@@ -12,7 +12,7 @@ ID's of the elements:
  */
 
 
-async function updateElement() {
+async function updateElement(selectedRoom) {
     try {
         let response = await fetch("data/config.json");
         if (!response.ok) {
@@ -21,24 +21,14 @@ async function updateElement() {
         let data = await response.json();
 
 
-        let selectedRooms = getSelectedRooms() || Object.keys(data.data.room);
-        let searchRoom = data.data.room[selectedRooms];
-        console.log(searchRoom.classRoomMatrix);
+        // let selectedRooms = getSelectedRooms() || Object.keys(data.data.room);
+        let searchRoom = data.data.room[selectedRoom];
         let serversDiv = document.getElementById("innerDiv");
 
         serversDiv.innerHTML = ''; // Clear the div
         serversDiv.classList.add('grid-container');
         serversDiv.style.width = '80%';
         serversDiv.style.margin = 'auto';
-
-        const gridLayout = [
-            ['null', 'pc', 'null', 'null', 'null', 'null'],
-            ['pc', 'pc', 'null', 'pc', 'pc', 'pc'],
-            ['pc', 'null', 'null', 'null', 'null', 'pc'],
-            ['pc', 'pc', 'pc', 'null', 'null', 'pc'],
-            ['pc', 'pc', 'pc', 'null', 'pc', 'pc'],
-            ['pc', 'pc', 'pc', 'pc', 'pc', 'pc']
-        ];
 
         for (let row of searchRoom.classRoomMatrix) {
             for (let cell of row) {
@@ -47,9 +37,9 @@ async function updateElement() {
                 newDivMain.style.width = '16%';
 
                 if (cell === 'pc') {
-                    let serverInfo = getNextServer(selectedRooms, data); // You need to implement this function
+                    let serverInfo = getAllPCs(selectedRoom, data); // You need to implement this function
                     if (serverInfo) {
-                        let serverDiv = smallDiv(serverInfo.server, serverInfo.room);
+                        let serverDiv = smallDiv(serverInfo, selectedRoom);
                         newDivMain.appendChild(serverDiv);
                     }
                 }
@@ -97,6 +87,7 @@ let serverState = {
 function getNextServer(selectedRooms, data) {
     while (serverState.currentRoomIndex < selectedRooms.length) {
         let room = selectedRooms[serverState.currentRoomIndex];
+        console.log(room);
         let servers = data.data.room[room]
         if (serverState.currentServerIndex < servers.pc.length) {
             let server = servers.pc[serverState.currentServerIndex];
@@ -114,178 +105,22 @@ function getNextServer(selectedRooms, data) {
     return null;
 }
 
+function getAllPCs(selectedRoom, data) {
+    let servers = data.data.room[selectedRoom]
+    if (serverState.currentServerIndex < servers.pc.length) {
+        let server = servers.pc[serverState.currentServerIndex];
+        serverState.currentServerIndex++;
 
-function createServerDiv(server, room) {
-    let chooseRandomStatus = "OFFLINE"; // ['ONLINE', 'OFFLINE'][Math.floor(Math.random() * 2)];
+        return server;
+    } else {
+        // Move to the next room and reset the server index
+        serverState.currentRoomIndex++;
+        serverState.currentServerIndex = 0;
+    }
 
+    // No more servers left
+    return null;
 
-    // TODO: does the newDivMain needs an ID?
-    // new main div
-    let newDivMain = document.createElement('div');
-    newDivMain.classList.add('col');
-    newDivMain.setAttribute("id", server);
-    newDivMain.style.width = '16%';
-
-
-    // new subdiv
-    let newDiv1 = document.createElement('div');
-    newDiv1.classList.add('card', 'border-1');
-    newDiv1.style.backgroundColor = `#4a5766`;
-    newDiv1.id = server + "_card";
-
-    // new subdiv - card body
-    let newDiv2 = document.createElement('div');
-    newDiv2.classList.add('card-body');
-    newDiv2.style.color = `#4a5766`;
-
-    //Title for which pc
-    let PCTitle = document.createElement('h4');
-    PCTitle.textContent = `Server ${server.split('.')[0]}`;
-    PCTitle.classList.add('card-title');
-    PCTitle.style.color = `#f9f9f9`;
-    PCTitle.style.width = '70%';
-
-    // Title for the status
-    let StatusTitle = document.createElement('p');
-    StatusTitle.classList.add('card-text');
-    StatusTitle.style.color = `#f9f9f9`;
-    StatusTitle.textContent = `Room ${room}`;
-    StatusTitle.style.width = '70%';
-
-    // status element red/green
-    let statusTextObject = document.createElement('span');
-    statusTextObject.textContent = `${chooseRandomStatus}`;
-    statusTextObject.classList.add("status");
-    statusTextObject.id = server + "_status";
-
-    // Logo element for aesthetics
-    let logoImageObject = document.createElement("img");
-    logoImageObject.id = server + "_img";
-    logoImageObject.classList.add("logo") ;logoImageObject.style.height = `40px`;
-    logoImageObject.style.width = `40px`; logoImageObject.style.float = `right`;
-    logoImageObject.style.position = `relative`; logoImageObject.style.bottom = `60px`;
-
-    statusTextObject.style.color = `#ff0000`;
-    newDiv1.style.borderColor = `#ff0000`;
-    logoImageObject.setAttribute("src", "../../images/logo_OFFLINE.png");
-
-    ////////////////////////////////////
-
-    // MODAL STUFF
-
-    const button = document.createElement('button');
-    button.className = 'btn btn-primary';
-    button.setAttribute('data-bs-toggle', 'modal');
-    button.setAttribute('data-bs-target', '#reg-modal_' + server.split('.')[0]);
-    button.textContent = 'Show Status';
-
-    // Create modal element
-    const modal = document.createElement('div');
-    // it is possible to add a fade in here
-    modal.className = 'modal';
-    modal.id = 'reg-modal_' + server.split('.')[0];
-    modal.tabIndex = '-1';
-
-    // Create modal dialog
-    const modalDialog = document.createElement('div');
-    modalDialog.className = 'modal-dialog';
-
-    // Create modal content
-    const modalContent = document.createElement('div');
-    modalContent.className = 'modal-content';
-
-    // Create modal header
-    const modalHeader = document.createElement('div');
-    modalHeader.className = 'modal-header';
-
-    const title = document.createElement('h1');
-    title.className = 'modal-title';
-    title.textContent = 'Status of ' + server.split('.')[0];
-
-    const closeButton = document.createElement('button');
-    closeButton.className = 'btn-close';
-    closeButton.type = 'button';
-    closeButton.setAttribute('data-bs-dismiss', 'modal');
-
-    modalHeader.appendChild(title);
-    modalHeader.appendChild(closeButton);
-
-    // Create modal body
-    const modalBody = document.createElement('div');
-    modalBody.className = 'modal-body';
-
-    const currentLoad = document.createElement('p');
-    currentLoad.textContent = 'Updating...';
-    currentLoad.id = server + "_load";
-
-    const currentFreeMemory = document.createElement('p');
-    currentFreeMemory.textContent = 'Updating...';
-    currentFreeMemory.id = server + "_currentFreeMemory";
-
-    const loadLast5 = document.createElement('p');
-    loadLast5.textContent = 'Updating..';
-    loadLast5.id = server + "_loadlast5";
-
-    const availableMemory = document.createElement('p');
-    availableMemory.textContent = 'Updating..';
-    availableMemory.id = server + "_availableMemory";
-
-    const temperature = document.createElement('p');
-    temperature.textContent = 'Updating...';
-    temperature.id = server + "_temperature";
-
-    modalBody.appendChild(currentLoad);
-    modalBody.appendChild(currentFreeMemory);
-    modalBody.appendChild(loadLast5);
-    modalBody.appendChild(temperature);
-    modalBody.appendChild(availableMemory);
-
-    // Create modal footer
-    const modalFooter = document.createElement('div');
-    modalFooter.className = 'modal-footer';
-
-    const closeButtonModal = document.createElement('button');
-    closeButtonModal.className = 'btn btn-primary';
-    closeButtonModal.type = 'button';
-    closeButtonModal.setAttribute('data-bs-dismiss', 'modal');
-    closeButtonModal.textContent = 'Close';
-
-    modalFooter.appendChild(closeButtonModal);
-
-    // Assemble modal components
-    modalContent.appendChild(modalHeader);
-    modalContent.appendChild(modalBody);
-    modalContent.appendChild(modalFooter);
-
-    modalDialog.appendChild(modalContent);
-    modal.appendChild(modalDialog);
-
-    ////////////////////////////////////
-
-    // append all elements to the right parent elements
-    newDivMain.appendChild(newDiv1);
-    newDiv1.appendChild(newDiv2);
-    newDiv2.appendChild(PCTitle);
-    newDiv2.appendChild(StatusTitle);
-    newDiv2.appendChild(logoImageObject);
-    // button from modal
-    newDiv2.appendChild(button);
-    StatusTitle.appendChild(statusTextObject);
-
-    //newDivMain.appendChild(button);
-    newDiv1.appendChild(modal);
-
-    // Changing the color
-    // if (chooseRandomStatus === "ONLINE") {
-    //     statusTextObject.style.color = `#3cb371`;
-    //     newDiv1.style.borderColor = `#3cb371`;
-    //     logoImageObject.setAttribute("src", "../../images/logo_ONLINE.png");
-    // } else {
-    //     statusTextObject.style.color = `#ff0000`;
-    //     newDiv1.style.borderColor = `#ff0000`;
-    //     logoImageObject.setAttribute("src", "../../images/logo_OFFLINE.png");
-    // }
-    return newDivMain;
 }
 
 function getSelectedRooms() {
@@ -295,10 +130,10 @@ function getSelectedRooms() {
 }
 
 // Event listeners
-document.addEventListener('DOMContentLoaded', updateElement);
-document.querySelectorAll('input[name="room"]').forEach(cb => {
-    cb.addEventListener('change', updateElement);
-});
+// document.addEventListener('DOMContentLoaded', updateElement);
+// document.querySelectorAll('input[name="room"]').forEach(cb => {
+//     cb.addEventListener('change', updateElement);
+// });
 
 
 // setTimeout(function (){
