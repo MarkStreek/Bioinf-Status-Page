@@ -18,7 +18,6 @@ function handling() {
         for (let i = 0; i < AllPCS.length; i++) {
             let workstation = AllPCS[i].workstation;
             let room = AllPCS[i].room;
-            console.log(workstation);
             let newDivMain = createWorkStationDiv(workstation, room);
             innerdiv.appendChild(newDivMain);
         }
@@ -46,20 +45,20 @@ checkboxes.forEach(function(checkbox) {
             let innerdiv = document.getElementById("innerdiv");
 
             if (mapID.checked === true && checkbox.checked === true) {
-                innerdiv.style.display = 'none';
+                for (let div of divs) {
+                    div.style.display = 'none';
+                }
+                // empty mapdiv if exists
+                let mapdiv = document.getElementById("mapdiv");
+                if (mapdiv) {mapdiv.innerHTML = '';}
                 // create mapDiv object
                 mapDiv();
                 // create map child divs
                 updateElement(checkbox.id);
             }
-            if (mapID.checked === false && checkbox.checked === false ) {
-                let mapdiv = document.getElementById("mapdiv");
-                if (mapdiv) {
-                    mapdiv.style.display = 'none';
-                }
-            }
 
             if (mapID.checked === false) {
+                console.log("HIER");
                 for (let div of divs) {
                     if (checkbox.checked === true) {
                         div.style.display = 'block';
@@ -68,6 +67,7 @@ checkboxes.forEach(function(checkbox) {
                     }
                 }
             }
+
         });
         let status = [];
         checkboxes.forEach(function(checkbox) {
