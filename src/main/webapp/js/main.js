@@ -37,38 +37,8 @@ let checkboxes = document.querySelectorAll("input[type='checkbox']");
 checkboxes.forEach(function(checkbox) {
     checkbox.addEventListener('change', function() {
         checkboxes.forEach(function(checkbox) {
-            let cardID = 'Room_' + checkbox.id;
-            let divs = document.getElementsByClassName("col " + cardID);
-
-            // let mapDivs = document.getElementsByClassName("col " + 'map');
-            let mapID = document.getElementById("Map");
-            let innerdiv = document.getElementById("innerdiv");
-            let mapdiv = document.getElementById("mapdiv");
-
-            if (mapID.checked === true && checkbox.checked === true) {
-                for (let div of divs) {
-                    div.style.display = 'none';
-                }
-                // empty mapdiv if exists
-                if (mapdiv) {mapdiv.innerHTML = '';}
-                // create mapDiv object
-                mapDiv();
-                // create map child divs
-                updateElement(checkbox.id);
-            }
-
-            if (mapID.checked === false) {
-                if (mapdiv) {mapdiv.innerHTML = '';}
-                console.log("HIER");
-                for (let div of divs) {
-                    if (checkbox.checked === true) {
-                        div.style.display = 'block';
-                    } else {
-                        div.style.display = 'none';
-                    }
-                }
-            }
-
+            // function that handles visibility of cards or map div objects
+            handleCheckboxInteraction(checkbox);
         });
         let status = [];
         checkboxes.forEach(function(checkbox) {
