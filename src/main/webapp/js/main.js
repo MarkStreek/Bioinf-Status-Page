@@ -40,14 +40,21 @@ checkboxes.forEach(function(checkbox) {
         checkboxes.forEach(function(checkbox) {
             let cardID = 'Room_' + checkbox.id;
             let divs = document.getElementsByClassName("col " + cardID);
+
+            // create mapDiv object
+            mapDiv();
+
+            // let mapDivs = document.getElementsByClassName("col " + 'map');
             let mapID = document.getElementById("Map");
-            let serversDiv = document.getElementById("innerdiv");
+            let innerDiv = document.getElementById("innerdiv");
+            // let cardDivsInInnerDiv = innerDiv.getElementsByClassName("col" + cardID);
+
             if (mapID.checked === true && checkbox.checked === true) {
                 updateElement(checkbox.id);
-                divs.style.display = 'none';
+                innerDiv.style.display = 'none';
             }
             for (let div of divs) {
-                if (checkbox.checked === true) {
+                if (checkbox.checked === true && mapID.checked === false) {
                     div.style.display = 'block';
                 } else {
                     div.style.display = 'none';

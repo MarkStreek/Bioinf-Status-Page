@@ -68,34 +68,33 @@ async function updateElement(selectedRoom) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         let data = await response.json();
-
-
-        // let selectedRooms = getSelectedRooms() || Object.keys(data.data.room);
         let searchRoom = data.data.room[selectedRoom];
-        let serversDiv = document.getElementById("innerdiv");
+        let mapDiv = document.getElementById("mapdiv");
 
-        serversDiv.innerHTML = ''; // Clear the div
-        serversDiv.classList.add('grid-container');
-        serversDiv.style.width = '80%';
-        serversDiv.style.margin = 'auto';
+        // serversDiv.innerHTML = ''; // Clear the div
+        mapDiv.classList.add('grid-container');
+        mapDiv.style.width = '80%';
+        mapDiv.style.margin = 'auto';
+
+        // let newDivMainHolder;
 
         for (let row of searchRoom.classRoomMatrix) {
             for (let cell of row) {
                 let newDivMain = document.createElement('div');
                 newDivMain.classList.add('col');
                 newDivMain.style.width = '16%';
-
                 if (cell === 'pc') {
-                    let serverInfo = getAllPCs(selectedRoom, data); // You need to implement this function
+                    let serverInfo = getAllPCs(selectedRoom, data);
                     if (serverInfo) {
                         let serverDiv = smallDiv(serverInfo, selectedRoom);
-                        newDivMain.appendChild(serverDiv);
+                        let newDivMainHolder = newDivMain.appendChild(serverDiv);
+                        mapDiv.appendChild(newDivMainHolder);
                     }
                 }
-
-                serversDiv.appendChild(newDivMain);
             }
         }
+        console.log(mapDiv);
+        // serversDiv.appendChild(newDivMainHolder);
 
         await handling();
     } catch (error) {
