@@ -1,3 +1,39 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const mapCheckbox = document.getElementById("Map");
+    const roomCheckboxes = document.querySelectorAll("input[type='checkbox'][name='room']");
+    const mapDiv = document.getElementById("mapdiv");
+
+    function updateCheckboxStates() {
+        const checkedRoomCount = Array.from(roomCheckboxes).filter(cb => cb.checked).length;
+        const isMapChecked = mapCheckbox.checked;
+
+        // Disable map checkbox if two or more rooms are selected
+        mapCheckbox.disabled = checkedRoomCount >= 2;
+
+        // Enable or disable room checkboxes based on the map checkbox and the number of checked rooms
+        roomCheckboxes.forEach(cb => {
+            if (isMapChecked && checkedRoomCount === 1) {
+                cb.disabled = !cb.checked;
+            } else {
+                cb.disabled = false;
+            }
+        });
+
+        // Show or hide map based on the map checkbox and the number of checked rooms
+        mapDiv.style.display = (isMapChecked && checkedRoomCount === 1) ? 'block' : 'none';
+    }
+
+    // Add event listeners to checkboxes
+    mapCheckbox.addEventListener('change', updateCheckboxStates);
+    roomCheckboxes.forEach(cb => {
+        cb.addEventListener('change', updateCheckboxStates);
+    });
+
+    // Initial state update
+    updateCheckboxStates();
+});
+
+
 
 async function retrieveData() {
     let response = await fetch("data/config.json");
