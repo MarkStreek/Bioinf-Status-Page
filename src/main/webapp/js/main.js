@@ -18,7 +18,6 @@ function handling() {
         for (let i = 0; i < AllPCS.length; i++) {
             let workstation = AllPCS[i].workstation;
             let room = AllPCS[i].room;
-
             let newDivMain = createWorkStationDiv(workstation, room);
             innerdiv.appendChild(newDivMain);
         }
@@ -38,22 +37,8 @@ let checkboxes = document.querySelectorAll("input[type='checkbox']");
 checkboxes.forEach(function(checkbox) {
     checkbox.addEventListener('change', function() {
         checkboxes.forEach(function(checkbox) {
-            let cardID = 'Room_' + checkbox.id;
-            let divs = document.getElementsByClassName("col " + cardID);
-            let mapID = document.getElementById("Map");
-            let serversDiv = document.getElementById("innerdiv");
-            if (mapID.checked === true && checkbox.checked === true) {
-                updateElement(checkbox.id);
-                divs.style.display = 'none';
-            }
-            for (let div of divs) {
-                if (checkbox.checked === true) {
-                    div.style.display = 'block';
-                } else {
-                    div.style.display = 'none';
-                }
-            }
-
+            // function that handles visibility of cards or map div objects
+            handleCheckboxInteraction(checkbox);
         });
         let status = [];
         checkboxes.forEach(function(checkbox) {

@@ -68,36 +68,33 @@ async function updateElement(selectedRoom) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         let data = await response.json();
-
-
-        // let selectedRooms = getSelectedRooms() || Object.keys(data.data.room);
         let searchRoom = data.data.room[selectedRoom];
-        let serversDiv = document.getElementById("innerdiv");
+        let mapDiv = document.getElementById("mapdiv");
 
-        serversDiv.innerHTML = ''; // Clear the div
-        serversDiv.classList.add('grid-container');
-        serversDiv.style.width = '80%';
-        serversDiv.style.margin = 'auto';
+        // serversDiv.innerHTML = ''; // Clear the div
+        mapDiv.classList.add('grid-container');
+        mapDiv.style.width = '80%';
+        mapDiv.style.margin = 'auto';
+
+        // let newDivMainHolder;
 
         for (let row of searchRoom.classRoomMatrix) {
             for (let cell of row) {
                 let newDivMain = document.createElement('div');
                 newDivMain.classList.add('col');
                 newDivMain.style.width = '16%';
-
                 if (cell === 'pc') {
-                    let serverInfo = getAllPCs(selectedRoom, data); // You need to implement this function
+                    let serverInfo = getAllPCs(selectedRoom, data);
                     if (serverInfo) {
                         let serverDiv = smallDiv(serverInfo, selectedRoom);
-                        newDivMain.appendChild(serverDiv);
+                        let newDivMainHolder = newDivMain.appendChild(serverDiv);
+                        mapDiv.appendChild(newDivMainHolder);
                     }
                 }
-
-                serversDiv.appendChild(newDivMain);
             }
         }
-
-        await handling();
+        // console.log(mapDiv);
+        // serversDiv.appendChild(newDivMainHolder);
     } catch (error) {
         console.error('Error fetching config data: ', error);
     }
@@ -159,4 +156,35 @@ function sortObjects(objects) {
             return 0; // Both objects have isUP as false or undefined, keep their order unchanged
         }
     });
+}
+
+function handleCheckboxInteraction(checkbox) {
+    let cardID = 'Room_' + checkbox.id;
+    let divs = document.getElementsByClassName("col " + cardID);
+
+    let mapID = document.getElementById("Map");
+    let mapdiv = document.getElementById("mapdiv");
+
+    if (mapID.checked === true && checkbox.checked === true) {
+        for (let div of divs) {
+            div.style.display = 'none';
+        }
+        // empty mapdiv if exists
+        if (mapdiv) {mapdiv.innerHTML = '';}
+        // create mapDiv object
+        mapDiv();
+        // create map child divs
+        updateElement(checkbox.id);
+    }
+
+    if (mapID.checked === false || checkbox.checked === false) {
+        if (mapdiv) {mapdiv.innerHTML = '';}
+        for (let div of divs) {
+            if (checkbox.checked === true) {
+                div.style.display = 'block';
+            } else {
+                div.style.display = 'none';
+            }
+        }
+    }
 }

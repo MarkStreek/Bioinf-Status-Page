@@ -170,14 +170,30 @@ function createModalFooter() {
     return modalFooter;
 }
 
+function mapDiv() {
+    // Create the necessary elements
+    let containerDiv = document.createElement('div');
+    containerDiv.classList.add('container', 'text-centre');
+
+    let rowDiv = document.createElement('div');
+    rowDiv.classList.add('row', 'row-cols-2', 'row-cols-md-5', 'row-cols-lg-10', 'g-1');
+    rowDiv.id = 'mapdiv'; // Set the ID
+
+// Append the rowDiv to the containerDiv
+    containerDiv.appendChild(rowDiv);
+
+// Append the containerDiv to the body or any other existing element
+    document.body.appendChild(containerDiv); // Example: Append to the body
+
+}
+
 // for map checkbox display
-function smallDiv(server, room) {
+function smallDiv(server) {
     let chooseRandomStatus = ['ONLINE', 'OFFLINE'][Math.floor(Math.random() * 2)];
 
     let newDivMain = document.createElement('div');
-    newDivMain.classList.add('col');
+    newDivMain.classList.add('col', '_map');
     newDivMain.setAttribute("id", server);
-    // newDivMain.style.width = '75%';
 
     let newDiv1 = document.createElement('div');
     newDiv1.classList.add('card', 'border-2');
@@ -219,3 +235,4 @@ function getAllPCs(selectedRoom, data) {
     return null;
 
 }
+
