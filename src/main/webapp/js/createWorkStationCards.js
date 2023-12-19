@@ -197,12 +197,13 @@ function smallDiv(server) {
 
     let newDiv1 = document.createElement('div');
     newDiv1.classList.add('card', 'border-2');
+    newDiv1.id = server + '_map';
     newDiv1.style.backgroundColor = `#4a5766`;
-    if (chooseRandomStatus === "ONLINE") {
-        newDiv1.style.borderColor = `#3cb371`;
-    } else {
-        newDiv1.style.borderColor = `#ff0000`;
-    }
+    // if (chooseRandomStatus === "ONLINE") {
+    //     newDiv1.style.borderColor = `#3cb371`;
+    // } else {
+    newDiv1.style.borderColor = `#ff0000`;
+    // }
 
     let pcTitle = document.createElement('h4');
     pcTitle.textContent = `${server.split('.')[0]}`;
