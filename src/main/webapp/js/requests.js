@@ -157,3 +157,34 @@ function sortObjects(objects) {
         }
     });
 }
+
+function handleCheckboxInteraction(checkbox) {
+    let cardID = 'Room_' + checkbox.id;
+    let divs = document.getElementsByClassName("col " + cardID);
+
+    let mapID = document.getElementById("Map");
+    let mapdiv = document.getElementById("mapdiv");
+
+    if (mapID.checked === true && checkbox.checked === true) {
+        for (let div of divs) {
+            div.style.display = 'none';
+        }
+        // empty mapdiv if exists
+        if (mapdiv) {mapdiv.innerHTML = '';}
+        // create mapDiv object
+        mapDiv();
+        // create map child divs
+        updateElement(checkbox.id);
+    }
+
+    if (mapID.checked === false || checkbox.checked === false) {
+        if (mapdiv) {mapdiv.innerHTML = '';}
+        for (let div of divs) {
+            if (checkbox.checked === true) {
+                div.style.display = 'block';
+            } else {
+                div.style.display = 'none';
+            }
+        }
+    }
+}
