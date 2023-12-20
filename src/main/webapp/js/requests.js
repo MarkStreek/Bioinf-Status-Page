@@ -5,7 +5,8 @@ async function handlingUpdate() {
     let responseConfigData = await fetch("data/config.json");
     let configData = await responseConfigData.json();
 
-    let slicedArray = data.slice(0, 4);
+    let sortedData = sortObjects(data);
+    let slicedArray = sortedData.slice(0, 4);
 
     console.log("Updating the data...")
 
@@ -80,25 +81,20 @@ async function updateElement(selectedRoom) {
 
 
         let serverInfo = getAllPCs(selectedRoom, data);
-        console.log("List of pcs" + serverInfo)
 
-        // let newDivMainHolder;
-        // console.log(searchRoom.classRoomMatrix);
         for (let row of searchRoom.classRoomMatrix) {
             // console.log(row);
             for (let cell of row) {
                 let newDivMain = document.createElement('div');
                 newDivMain.classList.add('col');
                 newDivMain.style.width = '16%';
-                // console.log("label = " + labelOfPc);
-                // console.log("cell = " + cell);
-                if (cell === 'null') {
-                    if (serverInfo) {
-                        let serverDiv = smallDiv(serverInfo);
+                for (let pcLabel of serverInfo) {
+                    if (cell === pcLabel.split('.')[0]) {
+                        let serverDiv = smallDiv(pcLabel);
                         newDivMain.appendChild(serverDiv);
                     }
+                    mapDiv.appendChild(newDivMain);
                 }
-                mapDiv.appendChild(newDivMain);
             }
         }
     } catch (error) {
@@ -124,6 +120,44 @@ async function createSuggestions(instances) {
     }
 
 
+}
+
+function sortObjects(objects) {
+    return objects.sort((a, b) => {
+        const loadA = a.currentLoad ? parseFloat(a.currentLoad) : Number.MAX_VALUE;
+        const loadB = b.currentLoad ? parseFloat(b.currentLoad) : Number.MAX_VALUE;
+        const memA = a.currentAvailableMemory ? parseFloat(a.currentAvailableMemory) : Number.MAX_VALUE;
+        const memB = b.currentAvailableMemory ? parseFloat(b.currentAvailableMemory) : Number.MAX_VALUE;
+        const tempA = a.temperature ? a.temperature.slice(0, -1) : null;
+        const tempB = b.temperature ? b.temperature.slice(0, -1) : null;
+
+        const isUP_A = a.isUP || false;
+        const isUP_B = b.isUP || false;
+
+        if (isUP_A && isUP_B) {
+            if (loadA !== loadB) {
+                return loadA - loadB;
+            } else if (memA !== memB) {
+                return memA - memB;
+            } else {
+                if (tempA && tempB) {
+                    return tempA.localeCompare(tempB);
+                } else if (tempA && !tempB) {
+                    return -1;
+                } else if (!tempA && tempB) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        } else if (isUP_A) {
+            return -1; // Move object with isUP true towards the beginning
+        } else if (isUP_B) {
+            return 1; // Move object with isUP true towards the end
+        } else {
+            return 0; // Both objects have isUP as false or undefined, keep their order unchanged
+        }
+    });
 }
 
 function handleCheckboxInteraction(checkbox) {

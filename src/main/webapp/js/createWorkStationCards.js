@@ -219,9 +219,9 @@ function getAllPCs(selectedRoom, data) {
     let pcLabels = [];
     for (let i = 0; i < servers.pc.length; i++) {
         let server = servers.pc[i];
-        let labelOfPc = server.split('.')[0];
-        pcLabels.push(labelOfPc);
+        pcLabels.push(server);
     }
+    return pcLabels;
 
 }
 
