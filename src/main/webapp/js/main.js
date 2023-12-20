@@ -3,7 +3,6 @@ let buttons = document.querySelectorAll("button[type=button]");
 buttons.forEach(function (button) {
     button.addEventListener("click", function () {
         let buttonID = button.id;
-        console.log("BUTTON CLICKED: " + buttonID);
         void handleMap(buttonID);
     });
 });
@@ -14,17 +13,18 @@ async function handleMap(room) {
 
     let workstations = getAllWorkstations(configData, room);
 
+    let mapDiv = document.getElementById("mapdiv");
     let maxLength = (configData.data.room[room].classRoomMatrix[0].length) * 120;
-    document.getElementById("mapdiv").style.width = `${maxLength}px`;
+    mapDiv.style.width = `${maxLength}px`;
+    mapDiv.innerHTML = "";
 
-    console.log(JSON.stringify(configData.data.room[room].classRoomMatrix, null, 2));
 
     configData.data.room[room].classRoomMatrix.forEach(function (row) {
        row.forEach(function (cell) {
            workstations.forEach(function (workstation) {
                //console.log(cell + " " + workstation.split(".")[0]);
                if (cell === workstation.split(".")[0]) {
-                   let elem = createMapElement(workstation.split(".")[0]);
+                   let elem = createMapElement(workstation);
                    document.getElementById("mapdiv").appendChild(elem);
                }
            });
@@ -34,6 +34,7 @@ async function handleMap(room) {
            }
        });
     });
+    void updateMapElements(workstations);
 }
 
 function getAllWorkstations(configData, room) {
@@ -46,21 +47,51 @@ function getAllWorkstations(configData, room) {
     return workstations;
 }
 
-function createMapElement(title) {
+function createMapElement(workstation) {
     let div = document.createElement("div");
-    div.textContent = title;
+    div.textContent = workstation.split(".")[0];
     div.style.width = "120px";
     div.style.height = "120px";
     div.style.textAlign = "center";
 
-    if (title !== "") {
-
-        div.style.border = "1px solid black";
-
+    if (workstation !== "") {
+        div.style.border = "1px solid red";
+        div.id = workstation + "_map";
     }
     div.style.verticalAlign = "middle";
     div.style.lineHeight = "120px";
 
-
     return div;
+}
+
+async function updateMapElements(workstations) {
+    let request = await fetch("/requestListener");
+    let data = await request.json();
+
+    let responseConfigData = await fetch("data/config.json");
+    let configData = await responseConfigData.json();
+
+
+    const rooms = Object.values(configData.data.room);
+    const allPcs = rooms.reduce((acc, roomData) => acc.concat(roomData.pc), []);
+
+    for (let i = 0; i < data.length; i++) {
+
+        let instance = data[i].instance;
+
+        for (let key in data[i]) {
+                if (allPcs.includes(instance)) {
+                    if (workstations.includes(instance)) {
+
+                        if (key === "isUP") {
+                            if (data[i][key] === true) {
+                                console.log(instance + "_map");
+                                console.log(document.getElementById(instance + "_map"));
+                                document.getElementById(instance + "_map").style.backgroundColor = "green";
+                            }
+                        }
+                    }
+                }
+        }
+    }
 }
