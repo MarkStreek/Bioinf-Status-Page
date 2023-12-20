@@ -80,7 +80,7 @@ async function updateElement(selectedRoom) {
         mapDiv.style.margin = 'auto';
 
         // let newDivMainHolder;
-
+        console.log(searchRoom.classRoomMatrix);
         for (let row of searchRoom.classRoomMatrix) {
             for (let cell of row) {
                 let newDivMain = document.createElement('div');
@@ -166,6 +166,8 @@ function handleCheckboxInteraction(checkbox) {
     let mapID = document.getElementById("Map");
     let mapdiv = document.getElementById("mapdiv");
 
+    document.querySelector('footer').classList.add("position-static");
+
     if (mapID.checked === true && checkbox.checked === true) {
         for (let div of divs) {
             div.style.display = 'none';
@@ -176,6 +178,8 @@ function handleCheckboxInteraction(checkbox) {
         mapDiv();
         // create map child divs
         updateElement(checkbox.id);
+        document.querySelector('footer').classList.remove("position-static");
+        document.querySelector('footer').classList.add("fixed-bottom");
     }
 
     if (mapID.checked === false || checkbox.checked === false) {
