@@ -43,6 +43,9 @@ function updateContent(data, allPcs) {
                         document.getElementById(data.instance + "_status").innerText = "ONLINE";
                         document.getElementById(data.instance + "_card").style.borderColor = `#3cb371`;
                         document.getElementById(data.instance + "_img").setAttribute("src", "../../images/logo_ONLINE.png");
+                        if (document.getElementById(data.instance + "_map")) {
+                            document.getElementById(data.instance + '_map').style.borderColor = `#3cb371`;
+                        }
                     }
                 } else if (key === "currentLoad") {
                     document.getElementById(instance + "_load").innerText = "Current load: " + data[key];
