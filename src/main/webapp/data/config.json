@@ -29,12 +29,12 @@
         "nuc119.bin.bioinf.nl"
       ],
         "classRoomMatrix": [
-          ["null", "pc", "null", "null", "null", "null"],
-          ["pc", "pc", "null", "pc", "pc", "pc"],
-          ["pc", "null", "null", "null", "null", "pc"],
-          ["pc", "pc", "pc", "null", "null", "pc"],
-          ["pc", "pc", "pc", "null", "pc", "pc"],
-          ["pc", "pc", "pc", "pc", "pc", "pc"]
+          ["null", "nuc130", "null", "null", "null", "null"],
+          ["nuc109", "nuc119", "null", "nuc120", "nuc121", "nuc111"],
+          ["nuc108", "null", "null", "null", "null", "nuc112"],
+          ["nuc107", "nuc118", "nuc122", "null", "null", "nuc113"],
+          ["nuc106", "nuc115", "nuc116", "null", "nuc117", "nuc114"],
+          ["nuc105", "nuc104", "nuc103", "nuc102", "nuc101", "nuc100"]
         ]
       },
       "D107": { "pc" : [

@@ -80,14 +80,18 @@ async function updateElement(selectedRoom) {
         mapDiv.style.margin = 'auto';
 
         // let newDivMainHolder;
-        console.log(searchRoom.classRoomMatrix);
+        // console.log(searchRoom.classRoomMatrix);
         for (let row of searchRoom.classRoomMatrix) {
+            console.log(row);
             for (let cell of row) {
                 let newDivMain = document.createElement('div');
                 newDivMain.classList.add('col');
                 newDivMain.style.width = '16%';
-                if (cell === 'pc') {
-                    let serverInfo = getAllPCs(selectedRoom, data);
+                let serverInfo = getAllPCs(selectedRoom, data);
+                let labelOfPc = serverInfo.split('.')[0];
+                // console.log(labelOfPc);
+                console.log("cell =" + cell);
+                if (cell === labelOfPc) {
                     if (serverInfo) {
                         let serverDiv = smallDiv(serverInfo);
                         newDivMain.appendChild(serverDiv);
