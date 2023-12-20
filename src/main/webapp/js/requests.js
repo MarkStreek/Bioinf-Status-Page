@@ -85,7 +85,6 @@ async function updateElement(selectedRoom) {
             for (let cell of row) {
                 let newDivMain = document.createElement('div');
                 newDivMain.classList.add('col');
-                newDivMain.style.width = '16%';
                 if (cell === 'pc') {
                     let serverInfo = getAllPCs(selectedRoom, data);
                     if (serverInfo) {
