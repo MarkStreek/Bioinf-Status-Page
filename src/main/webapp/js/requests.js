@@ -85,19 +85,15 @@ async function updateElement(selectedRoom) {
             for (let cell of row) {
                 let newDivMain = document.createElement('div');
                 newDivMain.classList.add('col');
+                newDivMain.style.width = '16%';
                 if (cell === 'pc') {
                     let serverInfo = getAllPCs(selectedRoom, data);
                     if (serverInfo) {
                         let serverDiv = smallDiv(serverInfo);
-                        let newDivMainHolder = newDivMain.appendChild(serverDiv);
-                        mapDiv.appendChild(newDivMainHolder);
+                        newDivMain.appendChild(serverDiv);
                     }
                 }
-                if (cell === 'null') {
-                    let newDivMain = document.createElement('div');
-                    newDivMain.classList.add('col', '_map');
-                    mapDiv.appendChild(newDivMain);
-                }
+                mapDiv.appendChild(newDivMain);
             }
         }
     } catch (error) {
