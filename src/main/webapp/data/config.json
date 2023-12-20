@@ -30,7 +30,7 @@
           ["null", "nuc130", "null", "null", "null", "null"],
           ["nuc109", "nuc119", "null", "nuc120", "nuc121", "nuc111"],
           ["nuc108", "null", "null", "null", "null", "nuc112"],
-          ["nuc107", "nuc118", "nuc122", "null", "null", "nuc113"],
+            ["nuc107", "nuc118", "nuc122", "null", "null", "nuc113"],
           ["nuc106", "nuc115", "nuc116", "null", "nuc117", "nuc114"],
           ["nuc105", "nuc104", "nuc103", "nuc102", "nuc101", "nuc100"]
         ]
@@ -130,8 +130,8 @@
         "nuc205.bin.bioinf.nl"
       ],
         "classRoomMatrix":
-        [["pc", "pc", "pc", "pc", "pc"],
-          ["pc", "pc", "null", "pc", "pc"]]
+        [["nuc120", "nuc121", "nuc122", "nuc130", "nuc200"],
+          ["nuc201", "nuc202", "nuc205", "nuc203", "nuc204"]]
       },
       "Server": { "pc" : [
         "assemblix2012.bin.bioinf.nl",
@@ -143,8 +143,8 @@
         "slurm:8080"
       ],
         "classRoomMatrix":
-        [["pc", "pc", "pc", "pc"],
-          ["pc", "pc", "pc", "null"]]
+        [["assemblix2012", "assemblix2019", "mordor-vm", "rohan2018"],
+          ["salt", "slurm", "slurm:8080", "null"]]
       }
     }
   }

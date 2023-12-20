@@ -13,33 +13,27 @@ async function handleMap(room) {
     let configData = await configFile.json();
 
     let workstations = getAllWorkstations(configData, room);
+
+    let maxLength = (configData.data.room[room].classRoomMatrix[0].length) * 120;
+    document.getElementById("mapdiv").style.width = `${maxLength}px`;
+
+    console.log(JSON.stringify(configData.data.room[room].classRoomMatrix, null, 2));
+
     configData.data.room[room].classRoomMatrix.forEach(function (row) {
        row.forEach(function (cell) {
            workstations.forEach(function (workstation) {
-              console.log(cell + " " + workstation);
+               //console.log(cell + " " + workstation.split(".")[0]);
+               if (cell === workstation.split(".")[0]) {
+                   let elem = createMapElement(workstation.split(".")[0]);
+                   document.getElementById("mapdiv").appendChild(elem);
+               }
            });
-
+           if (cell === "null") {
+               let elem = createMapElement("");
+               document.getElementById("mapdiv").appendChild(elem);
+           }
        });
     });
-
-    /////////////////////////////////////////////
-    /////////////////////////////////////////////
-
-    // for (let row of configData.data.room[room].classRoomMatrix) {
-    //     // console.log(row);
-    //     for (let cell of row) {
-    //         for (let pcLabel of workstations) {
-    //             console.log(cell + " " + pcLabel.split('.')[0]);
-    //             if (cell === pcLabel.split('.')[0]) {
-    //                 console.log("FOUND: " + pcLabel.split('.')[0]);
-    //             }
-    //         }
-    //     }
-    // }
-
-    /////////////////////////////////////////////
-    /////////////////////////////////////////////
-
 }
 
 function getAllWorkstations(configData, room) {
@@ -50,4 +44,23 @@ function getAllWorkstations(configData, room) {
     })
 
     return workstations;
+}
+
+function createMapElement(title) {
+    let div = document.createElement("div");
+    div.textContent = title;
+    div.style.width = "120px";
+    div.style.height = "120px";
+    div.style.textAlign = "center";
+
+    if (title !== "") {
+
+        div.style.border = "1px solid black";
+
+    }
+    div.style.verticalAlign = "middle";
+    div.style.lineHeight = "120px";
+
+
+    return div;
 }
