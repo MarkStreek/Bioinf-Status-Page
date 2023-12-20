@@ -2,12 +2,6 @@
   "data" : {
     "room": {
       "D108": { "pc" : [
-        "nuc001.bin.bioinf.nl",
-        "nuc002.bin.bioinf.nl",
-        "nuc003.bin.bioinf.nl",
-        "nuc005.bin.bioinf.nl",
-        "nuc007.bin.bioinf.nl",
-        "nuc020.bin.bioinf.nl",
         "nuc100.bin.bioinf.nl",
         "nuc101.bin.bioinf.nl",
         "nuc102.bin.bioinf.nl",
@@ -26,7 +20,11 @@
         "nuc116.bin.bioinf.nl",
         "nuc117.bin.bioinf.nl",
         "nuc118.bin.bioinf.nl",
-        "nuc119.bin.bioinf.nl"
+        "nuc119.bin.bioinf.nl",
+        "nuc120.bin.bioinf.nl",
+        "nuc121.bin.bioinf.nl",
+        "nuc122.bin.bioinf.nl",
+        "nuc130.bin.bioinf.nl"
       ],
         "classRoomMatrix": [
           ["null", "nuc130", "null", "null", "null", "null"],

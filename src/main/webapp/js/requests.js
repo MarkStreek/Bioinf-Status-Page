@@ -79,19 +79,21 @@ async function updateElement(selectedRoom) {
         mapDiv.style.width = '80%';
         mapDiv.style.margin = 'auto';
 
+
+        let serverInfo = getAllPCs(selectedRoom, data);
+        console.log("List of pcs" + serverInfo)
+
         // let newDivMainHolder;
         // console.log(searchRoom.classRoomMatrix);
         for (let row of searchRoom.classRoomMatrix) {
-            console.log(row);
+            // console.log(row);
             for (let cell of row) {
                 let newDivMain = document.createElement('div');
                 newDivMain.classList.add('col');
                 newDivMain.style.width = '16%';
-                let serverInfo = getAllPCs(selectedRoom, data);
-                let labelOfPc = serverInfo.split('.')[0];
-                // console.log(labelOfPc);
-                console.log("cell =" + cell);
-                if (cell === labelOfPc) {
+                // console.log("label = " + labelOfPc);
+                // console.log("cell = " + cell);
+                if (cell === 'null') {
                     if (serverInfo) {
                         let serverDiv = smallDiv(serverInfo);
                         newDivMain.appendChild(serverDiv);

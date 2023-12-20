@@ -184,7 +184,6 @@ function mapDiv() {
 
 // Append the containerDiv to the body or any other existing element
     document.body.appendChild(containerDiv); // Example: Append to the body
-
 }
 
 // for map checkbox display
@@ -216,18 +215,30 @@ let serverState = {
 
 function getAllPCs(selectedRoom, data) {
     let servers = data.data.room[selectedRoom]
-    if (serverState.currentServerIndex < servers.pc.length) {
-        let server = servers.pc[serverState.currentServerIndex];
-        serverState.currentServerIndex++;
-
-        return server;
-    } else {
-        // Move to the next room and reset the server index
-        serverState.currentServerIndex = 0;
+    // create a function that loops over all pcs for given room, then splits them into a label and adds the label to a list. functon returns all labels of a room
+    let pcLabels = [];
+    for (let i = 0; i < servers.pc.length; i++) {
+        let server = servers.pc[i];
+        let labelOfPc = server.split('.')[0];
+        pcLabels.push(labelOfPc);
     }
 
-    // No more servers left
-    return null;
-
 }
+
+
+// function getAllPCs(selectedRoom, data) {
+//     let servers = data.data.room[selectedRoom]
+//     if (serverState.currentServerIndex < servers.pc.length) {
+//         let server = servers.pc[serverState.currentServerIndex];
+//         serverState.currentServerIndex++;
+//
+//         return server;
+//     } else {
+//         // Move to the next room and reset the server index
+//         serverState.currentServerIndex = 0;
+//     }
+//
+//     // No more servers left
+//     return null;
+// }
 
