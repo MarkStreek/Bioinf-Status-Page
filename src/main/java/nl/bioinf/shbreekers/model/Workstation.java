@@ -1,9 +1,10 @@
 package nl.bioinf.shbreekers.model;
 
-import java.util.Objects;
-import java.util.Locale;
+import nl.bioinf.shbreekers.config.XmlWebListener;
 
-public class Workstation {
+import java.util.*;
+
+public class Workstation implements Comparable<Workstation> {
 
     private String instance;
     private String currentLoad;
@@ -96,5 +97,29 @@ public class Workstation {
     @Override
     public int hashCode() {
         return Objects.hash(instance);
+    }
+
+    @Override
+    public int compareTo(Workstation o) {
+        return this.instance.compareTo(o.instance);
+    }
+
+    public static void main(String[] args) {
+
+        MakeRequests makeRequests = new MakeRequests();
+        List<String> links = List.of("http://localhost:9090/api/v1/query?query=up",
+        "http://localhost:9090/api/v1/query?query=node_hwmon_temp_celsius",
+        "http://localhost:9090/api/v1/query?query=node_load1",
+        "http://localhost:9090/api/v1/query?query=node_load5",
+        "http://localhost:9090/api/v1/query?query=node_memory_MemFree_bytes",
+        "http://localhost:9090/api/v1/query?query=node_memory_MemAvailable_bytes");
+        List<Workstation> workstations = makeRequests.startRequests(links);
+
+        // sort the workstation list using the compareTo method that has been implemented
+        Collections.sort(workstations);
+
+        for (Workstation station : workstations) {
+            System.out.println(station.getInstance());
+        }
     }
 }
