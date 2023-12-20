@@ -66,7 +66,7 @@ public class ParseJsonRequests {
     }
 
     public List<Workstation> getWorkstations() {
-        return Collections.unmodifiableList(workstations);
+        return workstations;
     }
 
     public static void main(String[] args) {

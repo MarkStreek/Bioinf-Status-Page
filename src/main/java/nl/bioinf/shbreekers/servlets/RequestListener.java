@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -52,6 +53,8 @@ public class RequestListener extends HttpServlet {
         MakeRequests makeRequests = new MakeRequests();
         List<String> links = XmlWebListener.getQueriesList();
         List<Workstation> workstations = makeRequests.startRequests(links);
+
+        Collections.sort(workstations, new Workstation("instance"));
 
         // Make the call to the request function with the right query link
         String json = new Gson().toJson(workstations);
