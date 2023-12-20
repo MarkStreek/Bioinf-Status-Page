@@ -189,8 +189,6 @@ function mapDiv() {
 
 // for map checkbox display
 function smallDiv(server) {
-    let chooseRandomStatus = ['ONLINE', 'OFFLINE'][Math.floor(Math.random() * 2)];
-
     let newDivMain = document.createElement('div');
     newDivMain.classList.add('col', '_map');
     newDivMain.setAttribute("id", server);
@@ -199,11 +197,7 @@ function smallDiv(server) {
     newDiv1.classList.add('card', 'border-2');
     newDiv1.id = server + '_map';
     newDiv1.style.backgroundColor = `#4a5766`;
-    // if (chooseRandomStatus === "ONLINE") {
-    //     newDiv1.style.borderColor = `#3cb371`;
-    // } else {
     newDiv1.style.borderColor = `#ff0000`;
-    // }
 
     let pcTitle = document.createElement('h4');
     pcTitle.textContent = `${server.split('.')[0]}`;

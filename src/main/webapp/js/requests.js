@@ -89,15 +89,18 @@ async function updateElement(selectedRoom) {
                 if (cell === 'pc') {
                     let serverInfo = getAllPCs(selectedRoom, data);
                     if (serverInfo) {
-                        let serverDiv = smallDiv(serverInfo, selectedRoom);
+                        let serverDiv = smallDiv(serverInfo);
                         let newDivMainHolder = newDivMain.appendChild(serverDiv);
                         mapDiv.appendChild(newDivMainHolder);
                     }
                 }
+                if (cell === 'null') {
+                    let newDivMain = document.createElement('div');
+                    newDivMain.classList.add('col', '_map');
+                    mapDiv.appendChild(newDivMain);
+                }
             }
         }
-        // console.log(mapDiv);
-        // serversDiv.appendChild(newDivMainHolder);
     } catch (error) {
         console.error('Error fetching config data: ', error);
     }
