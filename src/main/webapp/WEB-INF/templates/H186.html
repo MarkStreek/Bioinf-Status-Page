@@ -1,64 +1,31 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>H186</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-<h1>
-&nbsp; Suggestions for SSH
-</h1>
-<div class="container">
-    <div class="row" id="suggestions">
-    </div>
-</div>
-<h1>
-    &nbsp; Computers
-</h1>
 <div class="container my-3">
     <div class="row">
         <div class="col">
-            <input class="form-check-input form-check-input-lg" type="checkbox" autocomplete="off" id="D108" name="room" value="D108">
-            <label class="form-check-label" for="D108">D108</label>
-
-            <input class="form-check-input form-check-input-lg" type="checkbox" autocomplete="off" id="D107" name="room" value="D107">
-            <label class="form-check-label" for="D108">D107</label>
-
-            <input class="form-check-input form-check-input-lg" type="checkbox" autocomplete="off" id="H186" name="room" value="H186">
-            <label class="form-check-label" for="H186">H186</label>
-
-            <input class="form-check-input form-check-input-lg" type="checkbox" autocomplete="off" id="H188A" name="room" value="H188A">
-            <label class="form-check-label" for="H188A">H188A</label>
-
-            <input class="form-check-input form-check-input-lg" type="checkbox" autocomplete="off" id="H1122" name="room" value="H1122">
-            <label class="form-check-label" for="H1122">H1122</label>
-
-            <input class="form-check-input form-check-input-lg" type="checkbox" autocomplete="off" id="Server" name="room" value="Server">
-            <label class="form-check-label" for="Server">Server</label>
-
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" autocomplete="off" id="Map">
-                <label class="form-check-label" for="Map">Toggle Map Display</label>
-            </div>
+            <button type="button" class="btn btn-outline-warning" id="D107">Show Map D1.07</button>
+            <button type="button" class="btn btn-outline-warning" id="D108">Show Map D1.08</button>
+            <button type="button" class="btn btn-outline-warning" id="H1122">Show Map H1.122</button>
+            <button type="button" class="btn btn-outline-warning" id="H186">Show Map H1.86</button>
+            <button type="button" class="btn btn-outline-warning" id="H188A">Show Map H1.88A</button>
+            <button type="button" class="btn btn-outline-warning" id="Server">Show Map Servers</button>
         </div>
     </div>
 </div>
 
-<div class="container text-centre">
-    <div class="row row-cols-2 row-cols-md-5 row-cols-lg-10 g-1" id="innerdiv">
+<div class="container">
+    <div class="row g-1" id="mapdiv">
+        <!-- Insert the map fragments here-->
     </div>
 </div>
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<script type="application/javascript" src="js/createWorkStationCards.js"></script>
 <script type="application/javascript" src="js/main.js"></script>
-<script type="application/javascript" src="js/requests.js"></script>
-<footer>
-    <div th:insert="~{index:: footerFragment}"></div>
-</footer>
 </body>
 </html>
