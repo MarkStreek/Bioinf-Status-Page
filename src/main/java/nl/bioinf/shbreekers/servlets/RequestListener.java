@@ -42,14 +42,6 @@ public class RequestListener extends HttpServlet {
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        // Or should we make a different servlet for each request?
-        // i.e., servlet that listens to requests for room D1.08,
-        // and a servlet that listens to requests for room D1.07 etc...
-
-        // If we make a different servlet for each request, we can add some logical if/else,
-        // inside the javascript front-end and then the specific function for that request is called.
-        // Otherwise, we have to do a back-end check which data is necessary
-
         MakeRequests makeRequests = new MakeRequests();
         List<String> links = XmlWebListener.getQueriesList();
         List<Workstation> workstations = makeRequests.startRequests(links);
@@ -63,5 +55,10 @@ public class RequestListener extends HttpServlet {
         response.setContentType("text/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
+
+        /*
+        Request for load of the last 5 minutes
+        curl -G 'http://monitor:9090/api/v1/query_range' --data-urlencode 'query=node_load1' --data-urlencode "start=$(date -d '-5 minutes' +%s)" --data-urlencode "end=$(date +%s)" --data-urlencode 'step=30s' | jq
+         */
     }
 }
