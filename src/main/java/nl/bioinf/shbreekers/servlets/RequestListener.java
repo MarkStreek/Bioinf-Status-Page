@@ -59,6 +59,8 @@ public class RequestListener extends HttpServlet {
         /*
         Request for load of the last 5 minutes
         curl -G 'http://monitor:9090/api/v1/query_range' --data-urlencode 'query=node_load1' --data-urlencode "start=$(date -d '-5 minutes' +%s)" --data-urlencode "end=$(date +%s)" --data-urlencode 'step=30s' | jq
+
+        http://localhost:9090/api/v1/query_range?query=node_load1&start=1703674365&end=1703674429&step=30s
          */
     }
 }
