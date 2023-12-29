@@ -2,6 +2,7 @@ package nl.bioinf.shbreekers.model;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonToken;
 
 import java.util.*;
 
@@ -23,7 +24,7 @@ public class ParseJsonRequests {
         // Retrieve the data from the request
         JsonArray results = jsonObject.getAsJsonObject("data").getAsJsonArray("result");
 
-        // Looping through the results array
+        // Looping through the result array
         for (JsonElement result : results) {
 
             JsonObject resultObj = result.getAsJsonObject();
@@ -34,13 +35,11 @@ public class ParseJsonRequests {
             String name = metricObj.get("__name__").getAsString();
             String instance = metricObj.get("instance").getAsString();
             String job = metricObj.get("job").getAsString();
-            List<String> value = gson.fromJson(resultObj.getAsJsonArray("value"), new TypeToken<List<String>>() {
+
+            JsonArray values = resultObj.getAsJsonArray("values");
+
+            List<JsonElement> value = gson.fromJson(resultObj.getAsJsonArray("value"), new TypeToken<List<JsonElement>>() {
             }.getType());
-//
-//            System.out.println("instance: " + instance);
-//            System.out.println("name: " + name);
-//            System.out.println("job: " + job);
-//            System.out.println("value: " + value);
 
             Workstation newStation = new Workstation(instance);
 
@@ -48,16 +47,24 @@ public class ParseJsonRequests {
                 workstations.add(newStation);
             }
 
+            List<JsonElement> currentLoad;
+
+            if (values != null) {
+                currentLoad = values.asList();
+            } else {
+                currentLoad = value;
+            }
+
             for (Workstation station : workstations) {
                 if (station.getInstance().equals(instance)) {
                     if (job.equals("node_exporter")) {
                         switch (name) {
-                            case "node_load1" -> station.setCurrentLoad(value.get(1));
-                            case "node_load5" -> station.setCurrentLoad5(value.get(1));
-                            case "up" -> station.setUP(value.get(1));
-                            case "node_memory_MemAvailable_bytes" -> station.setCurrentAvailableMemory(value.get(1));
-                            case "node_memory_MemFree_bytes" -> station.setCurrentFreeMemory(value.get(1));
-                            case "node_hwmon_temp_celsius" -> station.setTemperature(value.get(1));
+                            case "node_load1": station.setCurrentLoad(currentLoad); break;
+                            case "node_load5" : station.setCurrentLoad5(value.get(1).getAsString()); break;
+                            case "up" : station.setUP(value.get(1).getAsString()); break;
+                            case "node_memory_MemAvailable_bytes" : station.setCurrentAvailableMemory(value.get(1).getAsString()); break;
+                            case "node_memory_MemFree_bytes" : station.setCurrentFreeMemory(value.get(1).getAsString()); break;
+                            case "node_hwmon_temp_celsius" : station.setTemperature(value.get(1).getAsString()); break;
                         }
                     }
                 }

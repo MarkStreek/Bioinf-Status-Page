@@ -63,8 +63,16 @@ public class MakeRequests {
     }
 
     public static void main(String[] args) {
-//        System.out.println("HERE");
-//        MakeRequests makeRequests = new MakeRequests("http://monitor:9090/api/v1/query?query=node_dmi_info");
-//        System.out.println(makeRequests.getData().getClass());
+        MakeRequests makeRequests = new MakeRequests();
+
+        List<String> links = List.of("http://localhost:9090/api/v1/query_range?query=node_load1&start=1703674265&end=1703674465&step=30s",
+                "http://localhost:9090/api/v1/query?query=node_load1", "http://localhost:9090/api/v1/query?query=up");
+
+        List<Workstation> workstations = makeRequests.startRequests(links);
+        System.out.println(workstations.size());
+        for (int i = 0; i < workstations.size(); i++) {
+            System.out.println(i + " " + workstations.get(i).getInstance());
+            System.out.println(i + " " + workstations.get(i).getCurrentLoadHistory());
+        }
     }
 }

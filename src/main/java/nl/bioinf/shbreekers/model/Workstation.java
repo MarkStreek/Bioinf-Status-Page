@@ -1,5 +1,6 @@
 package nl.bioinf.shbreekers.model;
 
+import com.google.gson.JsonElement;
 import nl.bioinf.shbreekers.config.XmlWebListener;
 
 import java.util.*;
@@ -13,6 +14,7 @@ public class Workstation implements Comparator<Workstation> {
     private String currentAvailableMemory;
     private String currentFreeMemory;
     private String temperature;
+    private List<String> currentLoadHistory = new ArrayList<>();
 
     public Workstation(String instance) {
         this.instance = instance;
@@ -26,11 +28,23 @@ public class Workstation implements Comparator<Workstation> {
         return currentLoad;
     }
 
-    public void setCurrentLoad(String currentLoad) {
-        if (currentLoad.equals("0") || currentLoad.equals("null")) {
-            this.currentLoad = currentLoad;
+    public List<String> getCurrentLoadHistory() {
+        return currentLoadHistory;
+    }
+
+    public void setCurrentLoad(List<JsonElement> currentLoad) {
+
+        // TODO: make an option to store more currentLoads
+        if (currentLoad.size() <= 2) {
+            if (currentLoad.get(1).toString().equals("0") || currentLoad.get(1).toString().equals("null")) {
+                this.currentLoad = currentLoad.get(1).toString();
+            } else {
+                this.currentLoad = String.format(Locale.US, "%.1f", (currentLoad.get(1).getAsDouble()) * 100);
+            }
         } else {
-            this.currentLoad = String.format(Locale.US, "%.1f", (Double.parseDouble(currentLoad) * 100));
+            for (int i = 0; i < currentLoad.size(); i++) {
+                this.currentLoadHistory.add(String.format(Locale.US, "%.1f", (currentLoad.get(i).getAsJsonArray().get(1).getAsDouble()) * 100));
+            }
         }
     }
 
@@ -144,22 +158,4 @@ public class Workstation implements Comparator<Workstation> {
         return Objects.hash(instance);
     }
 
-    public static void main(String[] args) {
-
-        MakeRequests makeRequests = new MakeRequests();
-        List<String> links = List.of("http://localhost:9090/api/v1/query?query=up",
-        "http://localhost:9090/api/v1/query?query=node_hwmon_temp_celsius",
-        "http://localhost:9090/api/v1/query?query=node_load1",
-        "http://localhost:9090/api/v1/query?query=node_load5",
-        "http://localhost:9090/api/v1/query?query=node_memory_MemFree_bytes",
-        "http://localhost:9090/api/v1/query?query=node_memory_MemAvailable_bytes");
-        List<Workstation> workstations = makeRequests.startRequests(links);
-
-        // sort the workstation list using the compareTo method that has been implemented
-        Collections.sort(workstations, new Workstation("instance"));
-
-        for (Workstation station : workstations) {
-            System.out.println(station.getInstance().replaceAll(".bin.bioinf.nl", "") + " " + station.getCurrentLoad() + " " + station.getCurrentAvailableMemory() + " " + station.getTemperature() + " " + station.getCurrentLoad5());
-        }
-    }
 }

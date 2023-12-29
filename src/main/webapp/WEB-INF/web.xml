@@ -27,6 +27,11 @@
         <param-name>availableMemory</param-name>
         <param-value>http://localhost:9090/api/v1/query?query=node_memory_MemAvailable_bytes</param-value>
     </context-param>
+    <context-param>
+        <!--  The query for a range of loads. The start and end must be changed      -->
+        <param-name>currentLoadHistory</param-name>
+        <param-value>http://localhost:9090/api/v1/query_range?query=node_load1&amp;start=1703674265&amp;end=1703674465&amp;step=30s</param-value>
+    </context-param>
 </web-app>
 
 
