@@ -57,6 +57,72 @@ function updateContent(data, allPcs) {
                     document.getElementById(instance + "_availableMemory").innerText = "Current Available memory: " + data[key];
                 } else if (key === "temperature") {
                     document.getElementById(instance + "_temperature").innerText = "Temperature: " + data[key];
+                } else if (key === "currentLoadHistory") {
+
+                    if (data[key].length >= 1) {
+                        console.log(instance + " " + data[key]);
+                        // let dataArr = data[key];
+                        // let dataArrFloat = dataArr.map(parseFloat);
+                        //
+                        // let ctx = document.getElementById(instance + '_myChart').getContext('2d');
+                        //     let myChart = new Chart(ctx, {
+                        //         type: 'line',
+                        //         data: {
+                        //             labels: Array.from(Array(dataArrFloat.length).keys()), // Labels van 0 tot n-1
+                        //             datasets: [{
+                        //                 label: 'Load van de laatste 10 minuten',
+                        //                 data: dataArrFloat,
+                        //                 backgroundColor: 'rgba(54, 162, 235, 0.2)', // Achtergrondkleur
+                        //                 borderColor: 'rgba(54, 162, 235, 1)', // Lijnkleur
+                        //                 borderWidth: 1
+                        //             }]
+                        //         },
+                        //         options: {
+                        //             scales: {
+                        //                 y: {
+                        //                     beginAtZero: true, // Start de y-as niet op 0
+                        //                     suggestedMax: 300, // Stel de maximale waarde van de y-as in op 300
+                        //                     // Als je specifieke stappen wilt instellen voor de y-as, kun je dit doen met de volgende code
+                        //                     // Hieronder is een voorbeeld waarbij stappen van 50 worden ingesteld
+                        //                     stepSize: 50
+                        //                 }
+                        //             }
+                        //         }
+                        //     });
+                    }
+
+
+                    // if (data[i]['instance'] === "nuc115.bin.bioinf.nl") {
+                    //     let dataArr = data[i][key];
+                    //     let dataArrFloat = dataArr.map(parseFloat);
+                    //     console.log(dataArrFloat);
+                    //
+                    //     const ctx = document.getElementById('myChart').getContext('2d');
+                    //     const myChart = new Chart(ctx, {
+                    //         type: 'line',
+                    //         data: {
+                    //             labels: Array.from(Array(dataArrFloat.length).keys()), // Labels van 0 tot n-1
+                    //             datasets: [{
+                    //                 label: 'Load van de laatste 10 minuten',
+                    //                 data: dataArrFloat,
+                    //                 backgroundColor: 'rgba(54, 162, 235, 0.2)', // Achtergrondkleur
+                    //                 borderColor: 'rgba(54, 162, 235, 1)', // Lijnkleur
+                    //                 borderWidth: 1
+                    //             }]
+                    //         },
+                    //         options: {
+                    //             scales: {
+                    //                 y: {
+                    //                     beginAtZero: true, // Start de y-as niet op 0
+                    //                     suggestedMax: 300, // Stel de maximale waarde van de y-as in op 300
+                    //                     // Als je specifieke stappen wilt instellen voor de y-as, kun je dit doen met de volgende code
+                    //                     // Hieronder is een voorbeeld waarbij stappen van 50 worden ingesteld
+                    //                     stepSize: 50
+                    //                 }
+                    //             }
+                    //         }
+                    //     });
+                    // }
                 }
             }
         }

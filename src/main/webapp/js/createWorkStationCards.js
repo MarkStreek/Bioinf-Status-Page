@@ -144,12 +144,21 @@ function createModalBody(workstation) {
     let temperature = document.createElement('p');
     temperature.textContent = 'Updating...'; temperature.id = workstation + "_temperature";
 
+
+    // Element for the chart
+    // let canvasChart = document.createElement('p');
+    // canvas.id = workstation + '_myChart'; canvasChart.textContent = 'JOEJOE';
+    // //<canvas id="myChart"></canvas>
+
     // Append all elements to modal body
     modalBody.appendChild(currentLoad);
     modalBody.appendChild(currentFreeMemory);
     modalBody.appendChild(loadLast5);
     modalBody.appendChild(temperature);
     modalBody.appendChild(availableMemory);
+
+    // Chart element
+    // modalBody.appendChild(canvasChart)
 
     return modalBody;
 }
@@ -179,10 +188,10 @@ function mapDiv() {
     rowDiv.classList.add('row', 'row-cols-2', 'row-cols-md-5', 'row-cols-lg-10', 'g-1');
     rowDiv.id = 'mapdiv'; // Set the ID
 
-// Append the rowDiv to the containerDiv
+    // Append the rowDiv to the containerDiv
     containerDiv.appendChild(rowDiv);
 
-// Append the containerDiv to the body or any other existing element
+    // Append the containerDiv to the body or any other existing element
     document.body.appendChild(containerDiv); // Example: Append to the body
 }
 
