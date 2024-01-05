@@ -52,13 +52,15 @@ function getAllWorkstations(configData, room) {
     if the workstation is not empty, it adds a border, and id to the div element.
     @param workstation: the workstation name
  */
-function createMapDiv(workstation) {
+function createMapDiv(workstation, isOnline) {
     let div = document.createElement("div");
-    div.textContent = workstation.split(".")[0];
+    div.style.display = "flex";
+    div.style.flexDirection = "column";
+    div.style.justifyContent = "center";
+    div.style.alignItems = "center";
     div.style.fontWeight = "600";
     div.style.width = "150px";
     div.style.height = "150px";
-    div.style.textAlign = "center";
     div.style.borderRadius = "5px";
     div.style.margin = "5px";
 
@@ -66,9 +68,23 @@ function createMapDiv(workstation) {
         div.style.border = "3px solid grey";
         div.style.backgroundColor = "#CC6482";
         div.id = workstation + "_map";
+
+        // Create title
+        let title = document.createElement("div");
+        title.textContent = workstation.split(".")[0];
+        title.style.textAlign = "center";
+        div.appendChild(title);
+
+        // Create subtitle div
+        let subtitle = document.createElement("div");
+        subtitle.textContent = isOnline ? "Online" : "Offline";
+        subtitle.style.fontWeight = "400";
+        subtitle.style.fontSize = "0.8em";
+        subtitle.style.textAlign = "center";
+
+        // Append subtitle to main div
+        div.appendChild(subtitle);
     }
-    div.style.verticalAlign = "middle";
-    div.style.lineHeight = "150px";
 
     return div;
 }
