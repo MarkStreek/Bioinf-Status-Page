@@ -146,9 +146,9 @@ function createModalBody(workstation) {
 
 
     // Element for the chart
-    // let canvasChart = document.createElement('p');
-    // canvas.id = workstation + '_myChart'; canvasChart.textContent = 'JOEJOE';
-    // //<canvas id="myChart"></canvas>
+    let canvasChart = document.createElement('canvas');
+    canvasChart.id = workstation + '_myChart';
+    //<canvas id="myChart"></canvas>
 
     // Append all elements to modal body
     modalBody.appendChild(currentLoad);
@@ -156,9 +156,8 @@ function createModalBody(workstation) {
     modalBody.appendChild(loadLast5);
     modalBody.appendChild(temperature);
     modalBody.appendChild(availableMemory);
-
+    modalBody.appendChild(canvasChart)
     // Chart element
-    // modalBody.appendChild(canvasChart)
 
     return modalBody;
 }

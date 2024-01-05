@@ -24,7 +24,7 @@ public class XmlWebListener implements ServletContextListener {
         queriesList.add(ctx.getInitParameter("availableMemory"));
 
         // Query for a load range
-        //queriesList.add(ctx.getInitParameter("currentLoadHistory"));
+        queriesList.add(ctx.getInitParameter("currentLoadHistory"));
 
         System.out.println("DatabaseWebListener.contextIntitialized");
     }
