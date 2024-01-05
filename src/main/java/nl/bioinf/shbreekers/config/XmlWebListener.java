@@ -30,7 +30,7 @@ public class XmlWebListener implements ServletContextListener {
     }
 
     public static List<String> getQueriesList() {
-        return Collections.unmodifiableList(queriesList);
+        return queriesList;
     }
 
     @Override

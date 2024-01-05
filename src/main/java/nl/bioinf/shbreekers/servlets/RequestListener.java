@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Collections;
 import java.util.List;
 
@@ -44,6 +46,28 @@ public class RequestListener extends HttpServlet {
 
         MakeRequests makeRequests = new MakeRequests();
         List<String> links = XmlWebListener.getQueriesList();
+
+        // not properly working
+        // TODO: Fix the link: 10 minutes in steps of 60 or 30 seconds.
+        // 1 minuut geleden
+        LocalDateTime now = LocalDateTime.now().minusMinutes(1);
+
+        // 60 minuten geleden
+        LocalDateTime tenMinutesAgo = LocalDateTime.now().minusMinutes(60);
+
+        // Convert these times to Unix timestamps
+        long nowTimestamp = now.toEpochSecond(ZoneOffset.UTC);
+        long tenMinutesAgoTimestamp = tenMinutesAgo.toEpochSecond(ZoneOffset.UTC);
+
+        for (int i = 0; i < links.size(); i++) {
+            if (links.get(i).contains("query_range?")) {
+                links.remove(i);
+                String url = String.format("http://localhost:9090/api/v1/query_range?query=node_load1&start=%d&end=%d&step=30s",
+                        tenMinutesAgoTimestamp, nowTimestamp);
+                links.add(url);
+            }
+        }
+
         List<Workstation> workstations = makeRequests.startRequests(links);
 
         Collections.sort(workstations, new Workstation("instance"));

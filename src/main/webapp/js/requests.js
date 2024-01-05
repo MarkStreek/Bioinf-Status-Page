@@ -15,7 +15,7 @@ async function handlingUpdate() {
         updateContent(data[i], allPcs);
     }
 
-    void createSuggestions(slicedArray);
+    // void createSuggestions(slicedArray);
 }
 
 async function configFileToHashMap() {
@@ -58,68 +58,43 @@ function updateContent(data, allPcs) {
                 } else if (key === "temperature") {
                     document.getElementById(instance + "_temperature").innerText = "Temperature: " + data[key];
                 } else if (key === "currentLoadHistory") {
-                    //
-                    //     if (data[key].length >= 1) {
-                    //         let dataArr = data[key];
-                    //         let dataArrFloat = dataArr.map(parseFloat);
-                    //         let ctx = document.getElementById(instance + '_myChart').getContext('2d');
-                    //             let myChart = new Chart(ctx, {
-                    //                 type: 'line',
-                    //                 data: {
-                    //                     labels: Array.from(Array(dataArrFloat.length).keys()), // Labels van 0 tot n-1
-                    //                     datasets: [{
-                    //                         label: 'Load van de laatste 10 minuten',
-                    //                         data: dataArrFloat,
-                    //                         backgroundColor: 'rgba(54, 162, 235, 0.2)', // Achtergrondkleur
-                    //                         borderColor: 'rgba(54, 162, 235, 1)', // Lijnkleur
-                    //                         borderWidth: 1
-                    //                     }]
-                    //                 },
-                    //                 options: {
-                    //                     scales: {
-                    //                         y: {
-                    //                             beginAtZero: true, // Start de y-as niet op 0
-                    //                             suggestedMax: 300, // Stel de maximale waarde van de y-as in op 300
-                    //                             // Als je specifieke stappen wilt instellen voor de y-as, kun je dit doen met de volgende code
-                    //                             // Hieronder is een voorbeeld waarbij stappen van 50 worden ingesteld
-                    //                             stepSize: 50
-                    //                         }
-                    //                     }
-                    //                 }
-                    //             });
 
+                    if (data[key].length >= 1) {
+                        let dataArr = data[key];
 
-                    // if (data[i]['instance'] === "nuc115.bin.bioinf.nl") {
-                    //     let dataArr = data[i][key];
-                    //     let dataArrFloat = dataArr.map(parseFloat);
-                    //     console.log(dataArrFloat);
-                    //
-                    //     const ctx = document.getElementById('myChart').getContext('2d');
-                    //     const myChart = new Chart(ctx, {
-                    //         type: 'line',
-                    //         data: {
-                    //             labels: Array.from(Array(dataArrFloat.length).keys()), // Labels van 0 tot n-1
-                    //             datasets: [{
-                    //                 label: 'Load van de laatste 10 minuten',
-                    //                 data: dataArrFloat,
-                    //                 backgroundColor: 'rgba(54, 162, 235, 0.2)', // Achtergrondkleur
-                    //                 borderColor: 'rgba(54, 162, 235, 1)', // Lijnkleur
-                    //                 borderWidth: 1
-                    //             }]
-                    //         },
-                    //         options: {
-                    //             scales: {
-                    //                 y: {
-                    //                     beginAtZero: true, // Start de y-as niet op 0
-                    //                     suggestedMax: 300, // Stel de maximale waarde van de y-as in op 300
-                    //                     // Als je specifieke stappen wilt instellen voor de y-as, kun je dit doen met de volgende code
-                    //                     // Hieronder is een voorbeeld waarbij stappen van 50 worden ingesteld
-                    //                     stepSize: 50
-                    //                 }
-                    //             }
-                    //         }
-                    //     });
-                    // }
+                        console.log(dataArr);
+
+                        let dataArrFloat = dataArr.map(parseFloat);
+                        let id = instance + '_myChart';
+                        let ctx = document.getElementById(id).getContext('2d');
+
+                        if (window[id] instanceof Chart) {
+                            window[id].destroy();
+                        }
+
+                        window[id] = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: Array.from(Array(dataArrFloat.length).keys()),
+                                datasets: [{
+                                    label: 'Load last 10 minutes',
+                                    data: dataArrFloat,
+                                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                    borderColor: 'rgba(54, 162, 235, 1)',
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        suggestedMax: 300,
+                                        stepSize: 50
+                                    }
+                                }
+                            }
+                        });
+                    }
                 }
             }
         }
@@ -163,25 +138,25 @@ async function updateElement(selectedRoom) {
     }
 }
 
-async function createSuggestions(instances) {
-
-    let hashmap = await configFileToHashMap();
-
-    while (document.getElementById("suggestions").children.length !== 0) {
-        for (let node of document.getElementById("suggestions").children) {
-            node.className = "col Room_" + hashmap[node.id]
-            document.getElementById("innerdiv").appendChild(node);
-        }
-    }
-
-    for (let suggestion of instances) {
-        let add = document.getElementById(suggestion.instance);
-        add.className = "col";
-        document.getElementById("suggestions").appendChild(document.getElementById(suggestion.instance));
-    }
-
-
-}
+// async function createSuggestions(instances) {
+//
+//     let hashmap = await configFileToHashMap();
+//
+//     while (document.getElementById("suggestions").children.length !== 0) {
+//         for (let node of document.getElementById("suggestions").children) {
+//             node.className = "col Room_" + hashmap[node.id]
+//             document.getElementById("innerdiv").appendChild(node);
+//         }
+//     }
+//
+//     for (let suggestion of instances) {
+//         let add = document.getElementById(suggestion.instance);
+//         add.className = "col";
+//         document.getElementById("suggestions").appendChild(document.getElementById(suggestion.instance));
+//     }
+//
+//
+// }
 
 function handleCheckboxInteraction(checkbox) {
     let cardID = 'Room_' + checkbox.id;
