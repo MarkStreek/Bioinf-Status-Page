@@ -52,7 +52,7 @@ function getAllWorkstations(configData, room) {
     if the workstation is not empty, it adds a border, and id to the div element.
     @param workstation: the workstation name
  */
-function createMapDiv(workstation, isOnline) {
+function createMapDiv(workstation) {
     let div = document.createElement("div");
     div.style.display = "flex";
     div.style.flexDirection = "column";
@@ -65,9 +65,11 @@ function createMapDiv(workstation, isOnline) {
     div.style.margin = "5px";
 
     if (workstation !== "") {
-        div.style.border = "3px solid grey";
+        div.style.border = "2px solid grey";
         div.style.backgroundColor = "#CC6482";
         div.id = workstation + "_map";
+        // Add a soft shadow to the div.
+        div.style.boxShadow = "4px 4px 15px grey";
 
         // Create title
         let title = document.createElement("div");
@@ -77,7 +79,7 @@ function createMapDiv(workstation, isOnline) {
 
         // Create subtitle div
         let subtitle = document.createElement("div");
-        subtitle.textContent = isOnline ? "Online" : "Offline";
+        subtitle.textContent = "Offline";
         subtitle.style.fontWeight = "400";
         subtitle.style.fontSize = "0.8em";
         subtitle.style.textAlign = "center";
@@ -108,7 +110,10 @@ async function updateMapElements(workstations) {
                 if (workstations.includes(instance)) {
                     if (key === "isUP") {
                         if (data[i][key] === true) {
-                            document.getElementById(instance + "_map").style.backgroundColor = "#50C878";
+                            let divElm = document.getElementById(instance + "_map");
+                            divElm.style.backgroundColor = "#50C878";
+                            //console.log(divElm.children[1]);
+                            divElm.children[1].textContent = "Online";
                         }
                     }
                 }

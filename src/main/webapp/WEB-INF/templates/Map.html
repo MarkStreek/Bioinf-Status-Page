@@ -5,32 +5,28 @@
     <title>H186</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-<!--    <style>-->
-<!--        #myChart {-->
-<!--            max-width: 60%; /* Stel de maximale breedte in voor de grafiek */-->
-<!--        }-->
-<!--    </style>-->
 </head>
 <body>
-<div class="container my-3">
+<div class="container my-3 d-flex justify-content-center">
     <div class="row">
         <div class="col">
-            <button type="button" class="btn btn-outline-warning" id="D107">Show Map D1.07</button>
-            <button type="button" class="btn btn-outline-warning" id="D108">Show Map D1.08</button>
-            <button type="button" class="btn btn-outline-warning" id="H1122">Show Map H1.122</button>
-            <button type="button" class="btn btn-outline-warning" id="H186">Show Map H1.86</button>
-            <button type="button" class="btn btn-outline-warning" id="H188A">Show Map H1.88A</button>
-            <button type="button" class="btn btn-outline-warning" id="Server">Show Map Servers</button>
+            <button type="button" class="btn btn-secondary" id="D107">Map D1.07</button>
+            <button type="button" class="btn btn-secondary" id="D108">Map D1.08</button>
+            <button type="button" class="btn btn-secondary" id="H1122">Map H1.122</button>
+            <button type="button" class="btn btn-secondary" id="H186">Map H1.86</button>
+            <button type="button" class="btn btn-secondary" id="H188A">Map H1.88A</button>
+            <button type="button" class="btn btn-secondary" id="Server">Map Servers</button>
         </div>
     </div>
 </div>
+
+<h5 class="text-danger text-center">!Please pay attention to this function only works on a fullscreen page! </h5>
 
 <div class="container d-flex justify-content-center">
     <div class="row" id="mapdiv">
         <!-- Insert the map fragments here-->
     </div>
 </div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
