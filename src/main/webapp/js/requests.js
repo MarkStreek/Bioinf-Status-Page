@@ -87,9 +87,8 @@ function updateContent(data, allPcs) {
                             options: {
                                 scales: {
                                     y: {
-                                        beginAtZero: true,
-                                        suggestedMax: 300,
-                                        stepSize: 50
+                                        max: Math.max(dataArrFloat) - 5,
+                                        min: Math.min(dataArrFloat) + 5
                                     }
                                 }
                             }
