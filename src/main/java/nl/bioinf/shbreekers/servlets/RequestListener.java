@@ -62,7 +62,7 @@ public class RequestListener extends HttpServlet {
         for (int i = 0; i < links.size(); i++) {
             if (links.get(i).contains("query_range?")) {
                 links.remove(i);
-                String url = String.format("http://monitor:9090/api/v1/query_range?query=node_load1&start=%d&end=%d&step=30s",
+                String url = String.format("http://localhost:9090/api/v1/query_range?query=node_load1&start=%d&end=%d&step=30s",
                         tenMinutesAgoTimestamp, nowTimestamp);
                 links.add(url);
             }

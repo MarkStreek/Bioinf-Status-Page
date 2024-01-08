@@ -18,12 +18,13 @@ function createWorkStationDiv(workstation, room) {
     // }
     // New Card for the workstation
     let DivCard = document.createElement('div');
-    DivCard.classList.add('card'); DivCard.style.backgroundColor = `#4a5766`;
-    DivCard.id = workstation + "_card"; DivCard.style.borderColor = `#ff0000`;
+    DivCard.classList.add('card'); DivCard.style.backgroundColor = `#CC6482`
+    DivCard.style.boxShadow = "4px 4px 15px grey";
+    DivCard.id = workstation + "_card";
 
     // New div for the card body
     let CardBody = document.createElement('div');
-    CardBody.classList.add('card-body'); CardBody.style.color = `#4a5766`;
+    CardBody.classList.add('card-body');
     // CardBody.style.maxWidth = 'fit-content';
     //Title for which workstation
     let PCTitle = document.createElement('h4');
@@ -60,12 +61,12 @@ function createWorkStationDiv(workstation, room) {
     newDivMain.appendChild(DivCard);
     DivCard.appendChild(CardBody);
     CardBody.appendChild(PCTitle);
-    // CardBody.appendChild(StatusTitle);
+    CardBody.appendChild(StatusTitle);
     // CardBody.appendChild(logoImageObject);
     // // button from modal
-    // CardBody.appendChild(button);
+    CardBody.appendChild(button);
     // StatusTitle.appendChild(statusTextObject);
-    // StatusTitle.appendChild(currentLoadDirect);
+    StatusTitle.appendChild(currentLoadDirect);
     DivCard.appendChild(modal);
 
     return newDivMain;

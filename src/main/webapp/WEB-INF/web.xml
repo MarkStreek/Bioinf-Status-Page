@@ -5,32 +5,32 @@
          version="4.0">
     <context-param>
         <param-name>up</param-name>
-        <param-value>http://monitor:9090/api/v1/query?query=up</param-value>
+        <param-value>http://localhost:9090/api/v1/query?query=up</param-value>
     </context-param>
     <context-param>
         <param-name>temperature</param-name>
-        <param-value>http://monitor:9090/api/v1/query?query=node_hwmon_temp_celsius</param-value>
+        <param-value>http://localhost:9090/api/v1/query?query=node_hwmon_temp_celsius</param-value>
     </context-param>
     <context-param>
         <param-name>currentLoad</param-name>
-        <param-value>http://monitor:9090/api/v1/query?query=node_load1</param-value>
+        <param-value>http://localhost:9090/api/v1/query?query=node_load1</param-value>
     </context-param>
     <context-param>
         <param-name>loadLast5Minutes</param-name>
-        <param-value>http://monitor:9090/api/v1/query?query=node_load5</param-value>
+        <param-value>http://localhost:9090/api/v1/query?query=node_load5</param-value>
     </context-param>
     <context-param>
         <param-name>currentFreeMemory</param-name>
-        <param-value>http://monitor:9090/api/v1/query?query=node_memory_MemFree_bytes</param-value>
+        <param-value>http://localhost:9090/api/v1/query?query=node_memory_MemFree_bytes</param-value>
     </context-param>
     <context-param>
         <param-name>availableMemory</param-name>
-        <param-value>http://monitor:9090/api/v1/query?query=node_memory_MemAvailable_bytes</param-value>
+        <param-value>http://localhost:9090/api/v1/query?query=node_memory_MemAvailable_bytes</param-value>
     </context-param>
     <context-param>
         <!--  The query for a range of loads. The start and end must be changed      -->
         <param-name>currentLoadHistory</param-name>
-        <param-value>http://monitor:9090/api/v1/query_range?query=node_load1&amp;start=1703674265&amp;end=1703674465&amp;step=30s</param-value>
+        <param-value>http://localhost:9090/api/v1/query_range?query=node_load1&amp;start=1703674265&amp;end=1703674465&amp;step=30s</param-value>
     </context-param>
 </web-app>
 
