@@ -7,15 +7,11 @@ function createWorkStationDiv(workstation, room) {
     //
     // New Main div
     let newDivMain = document.createElement('div');
-    newDivMain.classList.add('col', 'Room_' + room, 'example'); newDivMain.style.width = '300px';
+    newDivMain.classList.add('col', 'Room_' + room);
+    newDivMain.style.width = '16%';
     newDivMain.id = workstation;
     newDivMain.style.display = 'block'; // style block for hiding by default!
 
-    // if (window.matchMedia("(min-width: 20%)").matches) {
-    //     /* the viewport is at least 300 pixels wide */
-    //     let newDivMain = document.createElement('div');
-    //     newDivMain.style.width = '50%';
-    // }
     // New Card for the workstation
     let DivCard = document.createElement('div');
     DivCard.classList.add('card'); DivCard.style.backgroundColor = `#CC6482`
@@ -41,16 +37,6 @@ function createWorkStationDiv(workstation, room) {
     StatusTitle.classList.add('card-text');StatusTitle.style.color = `#f9f9f9`;
     StatusTitle.textContent = "Room " +  room;
     // status element offline/online -> red/green
-    let statusTextObject = document.createElement('span');
-    statusTextObject.textContent = " OFFLINE"; statusTextObject.classList.add("status");
-    statusTextObject.id = workstation + "_status"; statusTextObject.style.color = `#ff0000`;
-    // Logo element for aesthetics
-    let logoImageObject = document.createElement("img");
-    logoImageObject.id = workstation + "_img";
-    logoImageObject.classList.add("logo"); logoImageObject.style.height = `40px`;
-    logoImageObject.style.width = `50px`; logoImageObject.style.float = `right`;
-    logoImageObject.style.position = `relative`; logoImageObject.style.bottom = `60px`;
-    logoImageObject.setAttribute("src", "../../images/logo_OFFLINE.png");
 
     // Create the modal for the workstation
     let values = createModal(workstation, room);
@@ -62,11 +48,11 @@ function createWorkStationDiv(workstation, room) {
     DivCard.appendChild(CardBody);
     CardBody.appendChild(PCTitle);
     CardBody.appendChild(StatusTitle);
-    // CardBody.appendChild(logoImageObject);
+    StatusTitle.appendChild(currentLoadDirect);
+
     // // button from modal
     CardBody.appendChild(button);
-    // StatusTitle.appendChild(statusTextObject);
-    StatusTitle.appendChild(currentLoadDirect);
+
     DivCard.appendChild(modal);
 
     return newDivMain;
@@ -79,7 +65,7 @@ function createModal(workstation, room) {
     button.className = 'btn btn-primary';
     button.setAttribute('data-bs-toggle', 'modal');
     button.setAttribute('data-bs-target', '#reg-modal_' + workstation.split('.')[0]);
-    button.textContent = 'Show Status';
+    button.textContent = 'Show status';
 
     // Main Model DIV
     let modal = document.createElement('div');

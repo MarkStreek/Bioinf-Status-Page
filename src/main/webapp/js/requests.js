@@ -38,10 +38,10 @@ function updateContent(data, allPcs) {
             if (allPcs.includes(instance)) {
                 if (key === "isUP") {
                     if (data[key] === true) {
-                        document.getElementById(data.instance + "_status").style.color = `#3cb371`;
-                        document.getElementById(data.instance + "_status").innerText = "ONLINE";
-                        document.getElementById(data.instance + "_card").style.borderColor = `#3cb371`;
-                        document.getElementById(data.instance + "_img").setAttribute("src", "../../images/logo_ONLINE.png");
+                        // document.getElementById(data.instance + "_status").style.color = `#3cb371`;
+                        // document.getElementById(data.instance + "_status").innerText = "ONLINE";
+                        document.getElementById(data.instance + "_card").style.backgroundColor = `#3cb371`;
+                        // document.getElementById(data.instance + "_img").setAttribute("src", "../../images/logo_ONLINE.png");
                         if (document.getElementById(data.instance + "_map")) {
                             document.getElementById(data.instance + '_map').style.borderColor = `#3cb371`;
                         }
