@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 
@@ -49,22 +50,24 @@ public class RequestListener extends HttpServlet {
 
         // not properly working
         // TODO: Fix the link: 10 minutes in steps of 60 or 30 seconds.
-        // 1 minuut geleden
-        LocalDateTime now = LocalDateTime.now().minusMinutes(1);
 
-        // 60 minuten geleden
-        LocalDateTime tenMinutesAgo = LocalDateTime.now().minusMinutes(60);
+        // 1 minute ago
+        LocalDateTime now = LocalDateTime.now().minusMinutes(5);
+        // 60 minutes ago
+        LocalDateTime tenMinutesAgo = now.minusMinutes(10);
 
-        // Convert these times to Unix timestamps
-        long nowTimestamp = now.toEpochSecond(ZoneOffset.UTC);
-        long tenMinutesAgoTimestamp = tenMinutesAgo.toEpochSecond(ZoneOffset.UTC);
+        long nowTimestamp = new Date().getTime() / 1000;
+        long tenMinutesAgoTimestamp = nowTimestamp - 600;
+
+        System.out.println(nowTimestamp);
 
         for (int i = 0; i < links.size(); i++) {
             if (links.get(i).contains("query_range?")) {
                 links.remove(i);
-                String url = String.format("http://monitor:9090/api/v1/query_range?query=node_load1&start=%d&end=%d&step=30s",
+                String url = String.format("http://localhost:9090/api/v1/query_range?query=node_load1&start=%d&end=%d&step=60",
                         tenMinutesAgoTimestamp, nowTimestamp);
                 links.add(url);
+                System.out.println(links.get(i));
             }
         }
 

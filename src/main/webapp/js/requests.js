@@ -85,10 +85,17 @@ function updateContent(data, allPcs) {
                                 }]
                             },
                             options: {
+                                animation: {
+                                    duration: 0, // general animation time
+                                },
+                                hover: {
+                                    animationDuration: 0, // duration of animations when hovering an item
+                                },
+                                responsiveAnimationDuration: 0, // animation duration after a resize
                                 scales: {
                                     y: {
-                                        max: Math.max(dataArrFloat) - 5,
-                                        min: Math.min(dataArrFloat) + 5
+                                        max: Math.max(dataArrFloat) + 5,
+                                        min: Math.min(dataArrFloat) - 5
                                     }
                                 }
                             }
@@ -137,6 +144,7 @@ async function updateElement(selectedRoom) {
     }
 }
 
+//// Fix this function
 // async function createSuggestions(instances) {
 //
 //     let hashmap = await configFileToHashMap();
