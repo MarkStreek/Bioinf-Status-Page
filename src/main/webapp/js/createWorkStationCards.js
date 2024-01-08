@@ -7,10 +7,15 @@ function createWorkStationDiv(workstation, room) {
     //
     // New Main div
     let newDivMain = document.createElement('div');
-    newDivMain.classList.add('col', 'Room_' + room); newDivMain.style.width = '25%';
+    newDivMain.classList.add('col', 'Room_' + room, 'example'); newDivMain.style.width = '300px';
     newDivMain.id = workstation;
     newDivMain.style.display = 'block'; // style block for hiding by default!
 
+    // if (window.matchMedia("(min-width: 20%)").matches) {
+    //     /* the viewport is at least 300 pixels wide */
+    //     let newDivMain = document.createElement('div');
+    //     newDivMain.style.width = '50%';
+    // }
     // New Card for the workstation
     let DivCard = document.createElement('div');
     DivCard.classList.add('card'); DivCard.style.backgroundColor = `#4a5766`;
@@ -19,6 +24,7 @@ function createWorkStationDiv(workstation, room) {
     // New div for the card body
     let CardBody = document.createElement('div');
     CardBody.classList.add('card-body'); CardBody.style.color = `#4a5766`;
+    // CardBody.style.maxWidth = 'fit-content';
     //Title for which workstation
     let PCTitle = document.createElement('h4');
     PCTitle.textContent = `Workstation: ${workstation.split('.')[0]}`;
@@ -54,19 +60,17 @@ function createWorkStationDiv(workstation, room) {
     newDivMain.appendChild(DivCard);
     DivCard.appendChild(CardBody);
     CardBody.appendChild(PCTitle);
-    CardBody.appendChild(StatusTitle);
-    CardBody.appendChild(logoImageObject);
-    // button from modal
-    CardBody.appendChild(button);
-    StatusTitle.appendChild(statusTextObject);
-    StatusTitle.appendChild(currentLoadDirect);
-    //newDivMain.appendChild(button);
+    // CardBody.appendChild(StatusTitle);
+    // CardBody.appendChild(logoImageObject);
+    // // button from modal
+    // CardBody.appendChild(button);
+    // StatusTitle.appendChild(statusTextObject);
+    // StatusTitle.appendChild(currentLoadDirect);
     DivCard.appendChild(modal);
 
     return newDivMain;
-    // let serversDiv = document.getElementById("innerdiv");
-    // serversDiv.appendChild(newDivMain);
 }
+
 
 function createModal(workstation, room) {
     // Show Status Button for the card
