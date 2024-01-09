@@ -1,4 +1,4 @@
-function createWorkStationDiv(workstation, room, innerdiv) {
+function createWorkStationDiv(workstation, room) {
 
     //
     // For bootstrap grid system with breakpoints:
@@ -23,25 +23,21 @@ function createWorkStationDiv(workstation, room, innerdiv) {
     card.style.display = 'block';
     card.id = workstation + "_card";
 
-
     let title = document.createElement("h5");
     console.log(workstation);
     if (workstation.length > 20) {
         title.innerText = workstation.split('.')[0];
     } else title.innerText = workstation;
-    title.id = "nuc104.bin.bioinf.nl";
     title.style.fontFamily = "Lucida Sans, sans-serif";
     title.style.textAlign = "center";
     title.style.marginTop = "30px";
     card.appendChild(title);
-
 
     let load = document.createElement("p");
     load.innerText = "Updating...";
     load.id = workstation + "_loadDirect";
     load.style.marginBottom = "0";
     card.appendChild(load);
-
 
     let status = document.createElement("p");
     status.innerText = "Status: ";
@@ -63,8 +59,6 @@ function createWorkStationDiv(workstation, room, innerdiv) {
 
     // Append everything together
     card.appendChild(modal);
-
-    innerdiv.appendChild(card);
 
     return card;
 }
@@ -167,7 +161,7 @@ function createModalBody(workstation) {
 function createModalFooter() {
     // Create a close button for the footer
     let closeButtonModal = document.createElement('button');
-    closeButtonModal.className = 'btn btn-primary'; closeButtonModal.type = 'button';
+    closeButtonModal.className = 'btn btn-secondary'; closeButtonModal.type = 'button';
     closeButtonModal.setAttribute('data-bs-dismiss', 'modal');
     closeButtonModal.textContent = 'Close';
     // Main div for the footer

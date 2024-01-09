@@ -48,18 +48,8 @@ public class RequestListener extends HttpServlet {
         MakeRequests makeRequests = new MakeRequests();
         List<String> links = XmlWebListener.getQueriesList();
 
-        // not properly working
-        // TODO: Fix the link: 10 minutes in steps of 60 or 30 seconds.
-
-        // 1 minute ago
-        LocalDateTime now = LocalDateTime.now().minusMinutes(5);
-        // 60 minutes ago
-        LocalDateTime tenMinutesAgo = now.minusMinutes(10);
-
         long nowTimestamp = new Date().getTime() / 1000;
         long tenMinutesAgoTimestamp = nowTimestamp - 600;
-
-        System.out.println(nowTimestamp);
 
         for (int i = 0; i < links.size(); i++) {
             if (links.get(i).contains("query_range?")) {
@@ -67,7 +57,6 @@ public class RequestListener extends HttpServlet {
                 String url = String.format("http://localhost:9090/api/v1/query_range?query=node_load1&start=%d&end=%d&step=60",
                         tenMinutesAgoTimestamp, nowTimestamp);
                 links.add(url);
-                System.out.println(links.get(i));
             }
         }
 
@@ -82,12 +71,5 @@ public class RequestListener extends HttpServlet {
         response.setContentType("text/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
-
-        /*
-        Request for load of the last 5 minutes
-        curl -G 'http://monitor:9090/api/v1/query_range' --data-urlencode 'query=node_load1' --data-urlencode "start=$(date -d '-5 minutes' +%s)" --data-urlencode "end=$(date +%s)" --data-urlencode 'step=30s' | jq
-
-        http://localhost:9090/api/v1/query_range?query=node_load1&start=1703674365&end=1703674429&step=30s
-         */
     }
 }

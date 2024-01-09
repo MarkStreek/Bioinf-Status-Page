@@ -56,8 +56,8 @@ function handling() {
         for (let i = 0; i < AllPCS.length; i++) {
             let workstation = AllPCS[i].workstation;
             let room = AllPCS[i].room;
-            let newDivMain = createWorkStationDiv(workstation, room, innerdiv);
-            //innerdiv.appendChild(newDivMain);
+            let newDivMain = createWorkStationDiv(workstation, room);
+            innerdiv.appendChild(newDivMain);
         }
     });
 }
