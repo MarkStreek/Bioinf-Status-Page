@@ -226,4 +226,3 @@ function getAllPCs(selectedRoom, data) {
     }
     return pcLabels;
 }
-
