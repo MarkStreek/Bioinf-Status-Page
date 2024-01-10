@@ -10,11 +10,12 @@ function createWorkStationDiv(workstation, room) {
     let card = document.createElement('div');
     card.style.flexDirection = "column";
     card.style.justifyContent = "center";
+    card.style.position = "relative";
     card.style.fontWeight = "600";
-    card.style.width = "200px";
-    card.style.height = "200px";
+    card.style.width = "250px"; // Verhoogd naar 250px
+    card.style.height = "225px"; // Verhoogd naar 250px
     card.style.borderRadius = "5px";
-    card.style.margin = "10px";
+    card.style.margin = "12px"; // Verhoogd naar 12px
     card.style.border = "2px solid grey";
     card.style.backgroundColor = "#CC6482";
     card.style.boxShadow = "4px 4px 15px grey";
@@ -23,29 +24,29 @@ function createWorkStationDiv(workstation, room) {
     card.id = workstation + "_card";
 
     let title = document.createElement("h5");
-    if (workstation.length > 20) {
-        title.innerText = workstation.split('.')[0];
-    } else title.innerText = workstation;
-    title.style.fontFamily = "Lucida Sans, sans-serif";
-    title.style.textAlign = "center";
-    title.style.marginTop = "30px";
+    title.innerText = workstation.split('.')[0].toUpperCase();
+    title.style.fontFamily = "Cambria, sans-serif";
+    title.style.marginTop = "35px"; // Verhoogd naar 35px
+    title.style.fontSize = "25px"; // Verhoogd naar 20px
     card.appendChild(title);
 
     let load = document.createElement("p");
     load.innerText = "Updating...";
     load.id = workstation + "_loadDirect";
     load.style.marginBottom = "0";
+    load.style.fontSize = "20px"; // Verhoogd naar 16px
     card.appendChild(load);
 
     let status = document.createElement("p");
     status.innerText = "Status: ";
     let statusText = document.createElement("span");
     statusText.innerText = "OFFLINE";
-    statusText.style.color = "rgb(110, 117, 124)"; // Change the color to red using RGB values
+    statusText.style.color = "rgb(110, 117, 124)";
     statusText.id = workstation + "_status";
     statusText.classList.add("status");
     status.appendChild(statusText);
     status.id = "status";
+    status.style.fontSize = "20px"; // Verhoogd naar 16px
     card.appendChild(status);
 
     // Create the modal for the workstation
@@ -68,12 +69,20 @@ function createModal(workstation, room) {
     button.setAttribute('data-bs-toggle', 'modal');
     button.setAttribute('data-bs-target', '#reg-modal_' + workstation.split('.')[0]);
     button.textContent = 'Show Status';
-    button.style.width = "95%";
+    button.style.width = "90%";
+    button.style.position = "absolute"; // Zet de positie van de knop op absoluut
+    button.style.bottom = "30px";
 
     // Main Model DIV
     let modal = document.createElement('div');
     modal.className = 'modal'; modal.id = 'reg-modal_' + workstation.split('.')[0];
     modal.tabIndex = '-1';
+
+    modal.style.position = "fixed";
+    modal.style.top = "50%";
+    modal.style.left = "50%";
+    modal.style.transform = "translate(-50%, -50%)";
+
     // Create modal dialog
     let modalDialog = document.createElement('div');
     modalDialog.className = 'modal-dialog';

@@ -16,7 +16,7 @@ async function handlingUpdate() {
 
     ///////////////////////////////////////
     // TODO: Create Suggestions function
-    let slicedArray = data.slice(0, 5);
+    let slicedArray = data.slice(0, 4);
     void createSuggestions(slicedArray);
     ///////////////////////////////////////
 }
@@ -167,20 +167,19 @@ function handleCheckboxInteraction(checkbox) {
     let mapID = document.getElementById("Map");
     let mapdiv = document.getElementById("mapdiv");
 
-    document.querySelector('footer').classList.add("position-static");
-
     if (mapID.checked === true && checkbox.checked === true) {
         for (let div of divs) {
             div.style.display = 'none';
         }
         // empty mapdiv if exists
-        if (mapdiv) {mapdiv.innerHTML = '';}
+        if (mapdiv) {
+            mapdiv.innerHTML = '';
+        }
         // create mapDiv object
         mapDiv();
         // create map child divs
         updateElement(checkbox.id);
-        document.querySelector('footer').classList.remove("position-static");
-        document.querySelector('footer').classList.add("fixed-bottom");
+
     }
 
     if (mapID.checked === false || checkbox.checked === false) {

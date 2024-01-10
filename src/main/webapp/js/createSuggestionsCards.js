@@ -1,22 +1,21 @@
 function createCard(item) {
     let suggestionCard = document.createElement("div");
 
-    console.log(JSON.stringify(item, null, 4));
-
     suggestionCard.style.display = "flex";
     suggestionCard.style.flexDirection = "column";
     suggestionCard.style.justifyContent = "center";
     suggestionCard.style.fontWeight = "600";
-    suggestionCard.style.width = "200px";
-    suggestionCard.style.height = "100px";
+    suggestionCard.style.width = "250px";
+    suggestionCard.style.height = "125px";
     suggestionCard.style.borderRadius = "5px";
-    suggestionCard.style.margin = "10px";
+    suggestionCard.style.margin = "12px";
     suggestionCard.style.border = "2px solid grey";
     suggestionCard.style.backgroundColor = "#50C878";
     suggestionCard.style.boxShadow = "4px 4px 15px grey";
 
     let title = document.createElement("h3");
-    title.innerText = item.instance.split('.')[0];
+    title.innerText = item.instance.split('.')[0].toUpperCase();
+    title.style.fontSize = "25px"; // Verhoogd naar 20px
     title.style.textAlign = "center";
     suggestionCard.appendChild(title);
 
