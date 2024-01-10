@@ -1,0 +1,39 @@
+/*(Extra) small window (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    #mapdiv.row {
+        transform: scale(0.36, 0.36); /* Initial scale factor */
+        transform-origin: top left; /* Set the transform origin */
+        margin: auto;
+        zoom: 100%;
+        font-size: 1.30em;    /* 1em is equal to the font own size, so 1.30em is 1.3 times its own size */
+
+    }
+    #innerdiv.row {
+        transform: scale(0.9, 0.9);
+        transform-origin: top left;
+        margin: auto;
+    }
+    #buttonbar.container {
+        transform: scale(0.9, 0.9); /* Initial scale factor */
+        transform-origin: top left; /* Set the transform origin */
+    }
+}
+
+
+/* Average size window (600px to 992px) */
+@media only screen and (min-width: 600px) and (max-width: 992px) {
+    #mapdiv.row {
+        transform: scale(0.5); /* Initial scale factor */
+        transform-origin: top left; /* Set the transform origin */
+        margin: auto;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    #mapdiv.row {
+        transform: scale(0.8); /* Initial scale factor */
+        transform-origin: top left; /* Set the transform origin */
+        margin: auto;
+    }
+}
