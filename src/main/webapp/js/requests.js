@@ -1,11 +1,16 @@
 async function handlingUpdate() {
+
     let responseRequest = await fetch("/requestListener");
     let data = await responseRequest.json();
 
     let responseConfigData = await fetch("data/config.json");
     let configData = await responseConfigData.json();
 
-    let slicedArray = data.slice(0, 4);
+    ///////////////////////////////////////
+    // TODO: Create Suggestions function
+    // let slicedArray = data.slice(0, 4);
+    // void createSuggestions(slicedArray);
+    ///////////////////////////////////////
 
     console.log("Updating the data...")
 
@@ -14,41 +19,29 @@ async function handlingUpdate() {
     for (let i = 0; i < data.length; i++) {
         updateContent(data[i], allPcs);
     }
-
-    // void createSuggestions(slicedArray);
 }
 
 async function configFileToHashMap() {
-
     let allPcs = await retrieveData();
     return allPcs.reduce((acc, item) => {
         acc[item.workstation] = item.room;
         return acc;
     }, {});
-
 }
 
 function updateContent(data, allPcs) {
-
-    // Defining the instance name
     let instance = data.instance;
-
     for (let key in data) {
         if (data.hasOwnProperty(key)) {
             if (allPcs.includes(instance)) {
                 if (key === "isUP") {
                     if (data[key] === true) {
-                        // document.getElementById(data.instance + "_status").style.color = `#3cb371`;
-                        // document.getElementById(data.instance + "_status").innerText = "ONLINE";
-                        document.getElementById(data.instance + "_card").style.backgroundColor = `#3cb371`;
-                        // document.getElementById(data.instance + "_img").setAttribute("src", "../../images/logo_ONLINE.png");
-                        if (document.getElementById(data.instance + "_map")) {
-                            document.getElementById(data.instance + '_map').style.borderColor = `#3cb371`;
-                        }
+                        document.getElementById(data.instance + "_status").innerText = "ONLINE";
+                        document.getElementById(data.instance + "_card").style.backgroundColor = "#50C878";
                     }
                 } else if (key === "currentLoad") {
                     document.getElementById(instance + "_load").innerText = "Current load: " + data[key];
-                    document.getElementById(instance + "_loadDirect").innerText = "Current load: " + data[key];
+                    document.getElementById(instance + "_loadDirect").innerText = "Load: " + data[key];
                 } else if (key === "currentFreeMemory") {
                     document.getElementById(instance + "_currentFreeMemory").innerText = "Current free memory: " + data[key];
                 } else if (key === "currentLoad5") {
@@ -85,10 +78,25 @@ function updateContent(data, allPcs) {
                                 }]
                             },
                             options: {
+                                animation: {
+                                    duration: 0,
+                                },
+                                hover: {
+                                    animationDuration: 0,
+                                },
+                                responsiveAnimationDuration: 0,
                                 scales: {
                                     y: {
-                                        max: Math.max(dataArrFloat) - 5,
-                                        min: Math.min(dataArrFloat) + 5
+                                        title: {
+                                            display: true,
+                                            text: 'Load (%)'
+                                        }
+                                    },
+                                    x: {
+                                        title: {
+                                            display: true,
+                                            text: 'Time (minutes)'
+                                        }
                                     }
                                 }
                             }
@@ -99,6 +107,10 @@ function updateContent(data, allPcs) {
         }
     }
 }
+
+//
+// these functions below can be deleted if we use the createMapOfRooms.js file
+//
 
 async function updateElement(selectedRoom) {
     try {
@@ -136,26 +148,6 @@ async function updateElement(selectedRoom) {
         console.error('Error fetching config data: ', error);
     }
 }
-
-// async function createSuggestions(instances) {
-//
-//     let hashmap = await configFileToHashMap();
-//
-//     while (document.getElementById("suggestions").children.length !== 0) {
-//         for (let node of document.getElementById("suggestions").children) {
-//             node.className = "col Room_" + hashmap[node.id]
-//             document.getElementById("innerdiv").appendChild(node);
-//         }
-//     }
-//
-//     for (let suggestion of instances) {
-//         let add = document.getElementById(suggestion.instance);
-//         add.className = "col";
-//         document.getElementById("suggestions").appendChild(document.getElementById(suggestion.instance));
-//     }
-//
-//
-// }
 
 function handleCheckboxInteraction(checkbox) {
     let cardID = 'Room_' + checkbox.id;

@@ -1,7 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>H186</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -9,16 +8,10 @@
 <!--    <link rel="stylesheet" type="text/css" href="../../style/test.css">-->
 </head>
 <body>
-<h1>
-&nbsp; Suggestions for SSH
-</h1>
 <div class="container">
     <div class="row" id="suggestions">
     </div>
 </div>
-<h1>
-    &nbsp; Computers
-</h1>
 <div class="container my-3">
     <div class="row">
         <div class="col">
@@ -48,9 +41,9 @@
     </div>
 </div>
 
-<div class="container text-centre">
-    <div class="row row-cols-2 row-cols-md-6 row-cols-lg-8 g-1" id="innerdiv">
-</div>
+<div class="container">
+    <div class="row row-cols-2 row-cols-md-3 justify-content-center" id="innerdiv">
+    </div>
 </div>
 
 
@@ -58,7 +51,7 @@
 <script type="application/javascript" src="js/createWorkStationCards.js"></script>
 <script type="application/javascript" src="js/main.js"></script>
 <script type="application/javascript" src="js/requests.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <footer>
     <div th:insert="~{index:: footerFragment}"></div>

@@ -1,3 +1,4 @@
+document.body.style.backgroundColor = "lightgrey";
 let buttons = document.querySelectorAll("button[type=button]");
 buttons.forEach(function (button) {
     button.addEventListener("click", function () {

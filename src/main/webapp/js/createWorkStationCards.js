@@ -6,66 +6,71 @@ function createWorkStationDiv(workstation, room) {
     // Add the above line to the classList below
     //
     // New Main div
-    let newDivMain = document.createElement('div');
-    newDivMain.classList.add('col', 'Room_' + room);
-    newDivMain.style.width = '16%';
-    newDivMain.id = workstation;
-    newDivMain.style.display = 'block'; // style block for hiding by default!
 
-    // New Card for the workstation
-    let DivCard = document.createElement('div');
-    DivCard.classList.add('card'); DivCard.style.backgroundColor = `#CC6482`
-    DivCard.style.boxShadow = "4px 4px 15px grey";
-    DivCard.id = workstation + "_card";
+    let card = document.createElement('div');
+    //card.style.display = "flex";
+    card.style.flexDirection = "column";
+    card.style.justifyContent = "center";
+    card.style.fontWeight = "600";
+    card.style.width = "200px";
+    card.style.height = "200px";
+    card.style.borderRadius = "5px";
+    card.style.margin = "10px";
+    card.style.border = "2px solid grey";
+    card.style.backgroundColor = "#CC6482";
+    card.style.boxShadow = "4px 4px 15px grey";
+    card.classList.add("col", "Room_" + room);
+    card.style.display = 'block';
+    card.id = workstation + "_card";
 
-    // New div for the card body
-    let CardBody = document.createElement('div');
-    CardBody.classList.add('card-body');
-    // CardBody.style.maxWidth = 'fit-content';
-    //Title for which workstation
-    let PCTitle = document.createElement('h4');
-    PCTitle.textContent = `Workstation: ${workstation.split('.')[0]}`;
-    PCTitle.classList.add('card-title'); PCTitle.style.color = `#f9f9f9`; //PCTitle.style.width = '70%';
-    // Element for the current load on card (without opening the modal)
-    let currentLoadDirect = document.createElement('p');
-    currentLoadDirect.classList.add('card-text'); currentLoadDirect.textContent = 'Updating...';
-    currentLoadDirect.id = workstation + "_loadDirect";
+    let title = document.createElement("h5");
+    console.log(workstation);
+    if (workstation.length > 20) {
+        title.innerText = workstation.split('.')[0];
+    } else title.innerText = workstation;
+    title.style.fontFamily = "Lucida Sans, sans-serif";
+    title.style.textAlign = "center";
+    title.style.marginTop = "30px";
+    card.appendChild(title);
 
-    // COLOR STUFF - DEFAULT: EVERYTHING IS OFFLINE / RED
-    // Element for the status title
-    let StatusTitle = document.createElement('p');
-    StatusTitle.classList.add('card-text');StatusTitle.style.color = `#f9f9f9`;
-    StatusTitle.textContent = "Room " +  room;
-    // status element offline/online -> red/green
+    let load = document.createElement("p");
+    load.innerText = "Updating...";
+    load.id = workstation + "_loadDirect";
+    load.style.marginBottom = "0";
+    card.appendChild(load);
+
+    let status = document.createElement("p");
+    status.innerText = "Status: ";
+    let statusText = document.createElement("span");
+    statusText.innerText = "OFFLINE";
+    statusText.style.color = "rgb(110, 117, 124)"; // Change the color to red using RGB values
+    statusText.id = workstation + "_status";
+    statusText.classList.add("status");
+    status.appendChild(statusText);
+    status.id = "status";
+    card.appendChild(status);
 
     // Create the modal for the workstation
     let values = createModal(workstation, room);
     let button = values[0];
     let modal = values[1];
 
+    card.appendChild(button);
+
     // Append everything together
-    newDivMain.appendChild(DivCard);
-    DivCard.appendChild(CardBody);
-    CardBody.appendChild(PCTitle);
-    CardBody.appendChild(StatusTitle);
-    StatusTitle.appendChild(currentLoadDirect);
+    card.appendChild(modal);
 
-    // // button from modal
-    CardBody.appendChild(button);
-
-    DivCard.appendChild(modal);
-
-    return newDivMain;
+    return card;
 }
-
 
 function createModal(workstation, room) {
     // Show Status Button for the card
     let button = document.createElement('button');
-    button.className = 'btn btn-primary';
+    button.classList = "btn btn-secondary";
     button.setAttribute('data-bs-toggle', 'modal');
     button.setAttribute('data-bs-target', '#reg-modal_' + workstation.split('.')[0]);
-    button.textContent = 'Show status';
+    button.textContent = 'Show Status';
+    button.style.width = "160px";
 
     // Main Model DIV
     let modal = document.createElement('div');
@@ -156,19 +161,19 @@ function createModalBody(workstation) {
 function createModalFooter() {
     // Create a close button for the footer
     let closeButtonModal = document.createElement('button');
-    closeButtonModal.className = 'btn btn-primary'; closeButtonModal.type = 'button';
+    closeButtonModal.className = 'btn btn-secondary'; closeButtonModal.type = 'button';
     closeButtonModal.setAttribute('data-bs-dismiss', 'modal');
     closeButtonModal.textContent = 'Close';
     // Main div for the footer
     let modalFooter = document.createElement('div');
     modalFooter.className = 'modal-footer';
-
     // Append close button to footer
     modalFooter.appendChild(closeButtonModal);
 
     return modalFooter;
 }
 
+//// The functions below can be deleted if we use createMapOfRooms.js
 function mapDiv() {
     // Create the necessary elements
     let containerDiv = document.createElement('div');
@@ -211,7 +216,6 @@ let serverState = {
     currentServerIndex: 0
 };
 
-
 function getAllPCs(selectedRoom, data) {
     let servers = data.data.room[selectedRoom]
     // create a function that loops over all pcs for given room, then splits them into a label and adds the label to a list. functon returns all labels of a room
@@ -221,23 +225,4 @@ function getAllPCs(selectedRoom, data) {
         pcLabels.push(server);
     }
     return pcLabels;
-
 }
-
-
-// function getAllPCs(selectedRoom, data) {
-//     let servers = data.data.room[selectedRoom]
-//     if (serverState.currentServerIndex < servers.pc.length) {
-//         let server = servers.pc[serverState.currentServerIndex];
-//         serverState.currentServerIndex++;
-//
-//         return server;
-//     } else {
-//         // Move to the next room and reset the server index
-//         serverState.currentServerIndex = 0;
-//     }
-//
-//     // No more servers left
-//     return null;
-// }
-

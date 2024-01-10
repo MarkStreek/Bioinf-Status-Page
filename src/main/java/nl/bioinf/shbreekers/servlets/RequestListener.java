@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 
@@ -47,22 +48,13 @@ public class RequestListener extends HttpServlet {
         MakeRequests makeRequests = new MakeRequests();
         List<String> links = XmlWebListener.getQueriesList();
 
-        // not properly working
-        // TODO: Fix the link: 10 minutes in steps of 60 or 30 seconds.
-        // 1 minuut geleden
-        LocalDateTime now = LocalDateTime.now().minusMinutes(1);
-
-        // 60 minuten geleden
-        LocalDateTime tenMinutesAgo = LocalDateTime.now().minusMinutes(60);
-
-        // Convert these times to Unix timestamps
-        long nowTimestamp = now.toEpochSecond(ZoneOffset.UTC);
-        long tenMinutesAgoTimestamp = tenMinutesAgo.toEpochSecond(ZoneOffset.UTC);
+        long nowTimestamp = new Date().getTime() / 1000;
+        long tenMinutesAgoTimestamp = nowTimestamp - 600;
 
         for (int i = 0; i < links.size(); i++) {
             if (links.get(i).contains("query_range?")) {
                 links.remove(i);
-                String url = String.format("http://localhost:9090/api/v1/query_range?query=node_load1&start=%d&end=%d&step=30s",
+                String url = String.format("http://localhost:9090/api/v1/query_range?query=node_load1&start=%d&end=%d&step=60",
                         tenMinutesAgoTimestamp, nowTimestamp);
                 links.add(url);
             }
@@ -79,12 +71,5 @@ public class RequestListener extends HttpServlet {
         response.setContentType("text/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
-
-        /*
-        Request for load of the last 5 minutes
-        curl -G 'http://monitor:9090/api/v1/query_range' --data-urlencode 'query=node_load1' --data-urlencode "start=$(date -d '-5 minutes' +%s)" --data-urlencode "end=$(date +%s)" --data-urlencode 'step=30s' | jq
-
-        http://localhost:9090/api/v1/query_range?query=node_load1&start=1703674365&end=1703674429&step=30s
-         */
     }
 }

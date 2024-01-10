@@ -50,8 +50,9 @@ async function retrieveData() {
 function handling() {
     retrieveData().then(AllPCS => {
         let innerdiv = document.getElementById("innerdiv");
-        innerdiv.style.marginLeft = '10px';
-        innerdiv.style.marginRight = '10px';
+        innerdiv.style.width = "100%";
+        document.body.style.backgroundColor = "lightgrey";
+
         for (let i = 0; i < AllPCS.length; i++) {
             let workstation = AllPCS[i].workstation;
             let room = AllPCS[i].room;
