@@ -28,11 +28,32 @@ function createCard(item) {
     button.addEventListener('click', function () {
         // retrieve the original card
         let highlight = document.getElementById(item.instance + "_card");
-        highlight.style.backgroundColor = "orange";
+
+        function changeBorderColor() {
+            if (highlight.style.backgroundColor === "orange") {
+                highlight.style.backgroundColor = "#50C878";
+            } else {
+                highlight.style.backgroundColor = "orange";
+            }
+        }
+
+        let intervalId = setInterval(changeBorderColor, 300);
+
+        setTimeout(function() {
+            clearInterval(intervalId);
+            highlight.style.backgroundColor = "#50C878";
+        }, 2000);
+
+
+
         // calculate the position of the card, so that it is in the middle of the screen after scrolling
         let y = highlight.getBoundingClientRect().top + window.pageYOffset - (window.innerHeight / 2);
         // scroll to the card
         window.scrollTo({top: y, behavior: 'auto'});
+        // remove the border after 3 seconds
+        setTimeout(function () {
+            highlight.style.border = "2px solid grey"
+        }, 2500);
 
     });
 
