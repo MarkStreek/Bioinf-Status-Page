@@ -99,6 +99,13 @@ public class Workstation implements Comparator<Workstation> {
     @Override
     public int compare(Workstation o1, Workstation o2) {
 
+        if (o1.isUP() && !o2.isUP()) {
+            return -1;
+        }
+        if (!o1.isUP() && o2.isUP()) {
+            return 1;
+        }
+
         if (o1.getCurrentLoad() == null) {
             return (o2.getCurrentLoad() == null) ? 0 : 1;
         }

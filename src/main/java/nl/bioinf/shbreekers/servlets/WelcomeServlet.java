@@ -47,6 +47,6 @@ public class WelcomeServlet extends HttpServlet {
                     request.getLocale());
 
             WebConfig.createTemplateEngine(getServletContext()).
-                    process("Map", ctx, response.getWriter());
+                    process("H186", ctx, response.getWriter());
         }
 }

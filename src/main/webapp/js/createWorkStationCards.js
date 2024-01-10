@@ -8,7 +8,6 @@ function createWorkStationDiv(workstation, room) {
     // New Main div
 
     let card = document.createElement('div');
-    //card.style.display = "flex";
     card.style.flexDirection = "column";
     card.style.justifyContent = "center";
     card.style.fontWeight = "600";
@@ -24,7 +23,6 @@ function createWorkStationDiv(workstation, room) {
     card.id = workstation + "_card";
 
     let title = document.createElement("h5");
-    console.log(workstation);
     if (workstation.length > 20) {
         title.innerText = workstation.split('.')[0];
     } else title.innerText = workstation;
@@ -70,7 +68,7 @@ function createModal(workstation, room) {
     button.setAttribute('data-bs-toggle', 'modal');
     button.setAttribute('data-bs-target', '#reg-modal_' + workstation.split('.')[0]);
     button.textContent = 'Show Status';
-    button.style.width = "160px";
+    button.style.width = "95%";
 
     // Main Model DIV
     let modal = document.createElement('div');

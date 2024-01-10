@@ -6,12 +6,6 @@ async function handlingUpdate() {
     let responseConfigData = await fetch("data/config.json");
     let configData = await responseConfigData.json();
 
-    ///////////////////////////////////////
-    // TODO: Create Suggestions function
-    // let slicedArray = data.slice(0, 4);
-    // void createSuggestions(slicedArray);
-    ///////////////////////////////////////
-
     console.log("Updating the data...")
 
     const rooms = Object.values(configData.data.room);
@@ -19,6 +13,12 @@ async function handlingUpdate() {
     for (let i = 0; i < data.length; i++) {
         updateContent(data[i], allPcs);
     }
+
+    ///////////////////////////////////////
+    // TODO: Create Suggestions function
+    let slicedArray = data.slice(0, 5);
+    void createSuggestions(slicedArray);
+    ///////////////////////////////////////
 }
 
 async function configFileToHashMap() {
@@ -54,8 +54,6 @@ function updateContent(data, allPcs) {
 
                     if (data[key].length >= 1) {
                         let dataArr = data[key];
-
-                        console.log(dataArr);
 
                         let dataArrFloat = dataArr.map(parseFloat);
                         let id = instance + '_myChart';
@@ -106,6 +104,19 @@ function updateContent(data, allPcs) {
             }
         }
     }
+}
+
+function createSuggestions(slicedArray) {
+
+    let suggestions = document.getElementById("suggestions");
+    while (suggestions.firstChild) {
+        suggestions.removeChild(suggestions.firstChild);
+
+    }
+    slicedArray.forEach((item) => {
+        let cloneCard = createCard(item);
+        suggestions.appendChild(cloneCard);
+    });
 }
 
 //

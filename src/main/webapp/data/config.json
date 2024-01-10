@@ -140,7 +140,8 @@
         "rohan2018.bin.bioinf.nl",
         "salt",
         "slurm",
-        "slurm:8080"
+        "slurm:8080",
+        "nuc007.bin.bioinf.nl"
       ],
         "classRoomMatrix":
         [
