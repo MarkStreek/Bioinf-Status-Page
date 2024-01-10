@@ -17,6 +17,9 @@
         transform: scale(0.9, 0.9); /* Initial scale factor */
         transform-origin: top left; /* Set the transform origin */
     }
+    .modal-backdrop.show {
+        display: none;
+    }
 }
 
 
