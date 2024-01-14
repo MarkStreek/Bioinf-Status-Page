@@ -31,7 +31,7 @@ function createWorkStationDiv(workstation, room) {
     card.appendChild(title);
 
     let load = document.createElement("p");
-    load.innerText = "Updating...";
+    load.innerText = "Not available";
     load.id = workstation + "_loadDirect";
     load.style.marginBottom = "0";
     load.style.fontSize = "20px"; // Verhoogd naar 16px
@@ -41,7 +41,8 @@ function createWorkStationDiv(workstation, room) {
     status.innerText = "Status: ";
     let statusText = document.createElement("span");
     statusText.innerText = "OFFLINE";
-    statusText.style.color = "rgb(110, 117, 124)";
+    //statusText.style.color = "rgb(110, 117, 124)";
+    statusText.style.color = "#D9D9D9";
     statusText.id = workstation + "_status";
     statusText.classList.add("status");
     status.appendChild(statusText);
@@ -133,19 +134,19 @@ function createModalBody(workstation) {
     modalBody.className = 'modal-body';
     // Element for the current load
     let currentLoad = document.createElement('p');
-    currentLoad.textContent = 'Updating...'; currentLoad.id = workstation + "_load";
+    currentLoad.textContent = 'Not available'; currentLoad.id = workstation + "_load";
     // Element for the current free memory
     let currentFreeMemory = document.createElement('p');
-    currentFreeMemory.textContent = 'Updating...'; currentFreeMemory.id = workstation + "_currentFreeMemory";
+    currentFreeMemory.textContent = 'Not available'; currentFreeMemory.id = workstation + "_currentFreeMemory";
     // Element for the load of the last 5 minutes
     let loadLast5 = document.createElement('p');
-    loadLast5.textContent = 'Updating..'; loadLast5.id = workstation + "_loadlast5";
+    loadLast5.textContent = 'Not available'; loadLast5.id = workstation + "_loadlast5";
     // Element for the available memory
     let availableMemory = document.createElement('p');
-    availableMemory.textContent = 'Updating..'; availableMemory.id = workstation + "_availableMemory";
+    availableMemory.textContent = 'Not available'; availableMemory.id = workstation + "_availableMemory";
     // Element for the temperature
     let temperature = document.createElement('p');
-    temperature.textContent = 'Updating...'; temperature.id = workstation + "_temperature";
+    temperature.textContent = 'Not available'; temperature.id = workstation + "_temperature";
 
 
     // Element for the chart

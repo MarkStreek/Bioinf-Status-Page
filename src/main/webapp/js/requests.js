@@ -37,6 +37,7 @@ function updateContent(data, allPcs) {
                 if (key === "isUP") {
                     if (data[key] === true) {
                         document.getElementById(data.instance + "_status").innerText = "ONLINE";
+                        document.getElementById(data.instance + "_status").style.color = "rgb(110, 117, 124)";
                         document.getElementById(data.instance + "_card").style.backgroundColor = "#50C878";
                     }
                 } else if (key === "currentLoad") {

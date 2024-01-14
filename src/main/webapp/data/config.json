@@ -146,7 +146,7 @@
         "classRoomMatrix":
         [
           ["assemblix2012", "assemblix2019","mordor-vm"],
-          ["salt", "null", "null"],
+          ["salt", "null", "nuc007"],
           ["rohan2018", "slurm", "slurm:8080"]
         ]
       }

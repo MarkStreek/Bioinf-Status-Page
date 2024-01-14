@@ -106,14 +106,16 @@ async function updateMapElements(workstations) {
 
         let instance = data[i].instance;
 
+        console.log(data[i]);
+
         for (let key in data[i]) {
             if (allPcs.includes(instance)) {
                 if (workstations.includes(instance)) {
                     if (key === "isUP") {
                         if (data[i][key] === true) {
+                            console.log(instance);
                             let divElm = document.getElementById(instance + "_map");
                             divElm.style.backgroundColor = "#50C878";
-                            //console.log(divElm.children[1]);
                             divElm.children[1].textContent = "Online";
                         }
                     }
