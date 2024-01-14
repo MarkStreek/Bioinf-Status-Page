@@ -114,7 +114,7 @@ function createModalHeader(workstation) {
     // Header Title
     let title = document.createElement('h1');
     title.className = 'modal-title';
-    title.textContent = 'Status of ' + workstation.split('.')[0];
+    title.textContent = 'Status of ' + workstation.split('.')[0].toUpperCase();
     // Header Close Button
     let closeButton = document.createElement('button');
     closeButton.className = 'btn-close';
