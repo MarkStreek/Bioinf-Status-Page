@@ -32,13 +32,20 @@ function showHideAllElements(status) {
     });
 }
 
-
 let checkboxes = document.querySelectorAll("input[type='checkbox']");
 checkboxes.forEach(function(checkbox) {
     checkbox.addEventListener('change', function() {
         checkboxes.forEach(function(checkbox) {
-            // function that handles visibility of cards or map div objects
-            handleCheckboxInteraction(checkbox);
+            let cardID = 'Room_' + checkbox.id;
+            let divs = document.getElementsByClassName("col " + cardID);
+
+            for (let div of divs) {
+                if (checkbox.checked === true) {
+                    div.style.display = 'block';
+                } else {
+                    div.style.display = 'none';
+                }
+            }
         });
         let status = [];
         checkboxes.forEach(function(checkbox) {
