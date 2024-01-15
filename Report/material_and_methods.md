@@ -1,15 +1,51 @@
 ## Material & methods
 
+e status data will be read from a web server through AJAX (Asynchronous JavaScript And XML) calls in JS (JavaScript). AJAX is a technique that allows the user to access a webserver from the webpage.
 
-This project is layered with a back-end powered by AJAX calls. Structures are built using JSON (config.json) and web.xml to configure
-mapping of rooms and its computers, and stating the queries that are needed to fetch the desired data from the servers.
+This project is layered with a back-end powered by AJAX calls. 
+AJAX (Asynchronous JavaScript And XML) calls in JS (JavaScript) and enables reading status data from a web server;
+[W3Schools](https://www.w3schools.com/xml/ajax_intro.asp).
+Structures are built using JSON (config.json) to configure
+mapping of rooms and its computers, and web.xml holds the queries links that are needed to fetch the desired data from the servers.
 
-XmlWebListener" manages passing the queries from web.xml to the "RequestListener" under servlets.
+Config.json is divided in rooms by name. Each room holds a collection of pc names, that are compared to the names fetched
+from the server. Additionally, a classroom matrix is made to save the actual computer locations.
+
+"XmlWebListener" manages passing the queries from web.xml to the "RequestListener".
 These query links are then passed to "MakeRequest". MakeRequest sends the actual
 request for each query and the body of each response. At last RequestListener then saves each response as
 a "Workstation" object where all data is divided into variables. Then these object are converted to json objects
 using Gson().toJson.
 
-Request.js has async functions that fetch the json data from requestListener and map configuration from config.json.
-Here all fetching from send by the back-end is send to the front-end with a responsive structure; a structure where
-html objects holding data are updated based on the newly fetched information each x minutes.
+Request.js has async functions that handles responses to fetch json data from requestListener and the map configuration from config.json.
+Here all json data is sent to the front-end where html objects assigned to that data are updated based on the 
+newly fetched information every ten minutes.
+
+The data is divided over three div objects that are created and filled by the logic of three javascript files;
+a file that creates a room map (CreateMapOfRooms), a file that creates suggestions what pc's have the 
+lightest workload (createSuggestionCards) and a file that creates workstation cards (CreateWorkStationCards). 
+
+Each workstation card is a block that colours red of green based on the status of the computer. For more statistics
+of a computer the "Show status" button can be pressed and a model is created with several parameters and a load graph.
+
+Above the workstation cards a plain is filled with computer suggestions. A suggestion card is clickable and will start a scroll event
+to the workstation card. 
+The scroll event moves towards the calculated position of the card and will end when the card is in the middle of the screen.
+Then the card's background colour blinks in orange for three seconds, so the user knows where to look at.
+
+All workstation cards and their suggestions are inserted into H186.html in a fluid div container called innerdiv. 
+The advantage of fluid is more flexible positioning against the page size, 
+also when the div is filled the contents move along more swiftly.
+Also, the workstation cards can be filtered by checking a checkbox by room name. The checkboxes are also made using bootstrap.
+The basic website lay-out and bootstrap connection is handled in index.html using thymeleaf. 
+Next the user can navigate through the nav-sidebar to the room map page. 
+
+In each page the inserted data or base lay-out is handled through bootstrap. Bootstrap enables editing of div objects more flexible than css. 
+Though using css simpler appearance changes are managed.
+
+In Map.html two logics are applied: a button menu to change the classroom and a fluid div container called mapdiv where the created map cards are inserted.
+
+
+
+
+
