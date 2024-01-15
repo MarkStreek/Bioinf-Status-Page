@@ -15,7 +15,8 @@ function createCard(item) {
 
     let title = document.createElement("h3");
     title.innerText = item.instance.split('.')[0].toUpperCase();
-    title.style.fontSize = "25px"; // Verhoogd naar 20px
+    title.style.fontSize = "25px";
+    title.style.fontFamily = "Cambria, sans-serif";
     title.style.textAlign = "center";
     suggestionCard.appendChild(title);
 

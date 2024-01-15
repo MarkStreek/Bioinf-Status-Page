@@ -33,7 +33,8 @@ public class MakeRequests {
             System.out.println((String.format("Something went wrong while making a request (Line: %d): %s: %s",
                     e.getStackTrace()[0].getLineNumber(),
                     e.getClass().getSimpleName(), e.getMessage())));
-            System.exit(1);
+            // Don't let the program crash when a request fails.
+            // The program will continue with the next request.
         }
         return "FAILED";
     }

@@ -23,12 +23,25 @@ function createWorkStationDiv(workstation, room) {
     title.style.fontSize = "25px"; // Verhoogd naar 20px
     card.appendChild(title);
 
-    let load = document.createElement("p");
-    load.innerText = "Not available";
+    let load = document.createElement("div");
     load.id = workstation + "_loadDirect";
-    load.style.marginBottom = "0";
-    load.style.fontSize = "20px"; // Verhoogd naar 16px
+    load.style.display = "inline-block";
+    load.style.width = "20px";
+    load.style.height = "20px";
+    load.style.border = "2px solid #f3f3f3";
+    load.style.borderRadius = "50%";
+    load.style.borderTop = "2px solid #3498db";
+    load.style.animation = "spin 2s linear infinite";
     card.appendChild(load);
+
+    let style = document.createElement('style');
+    style.innerHTML = `
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`;
+    document.head.appendChild(style);
 
     let status = document.createElement("p");
     status.innerText = "Status: ";
@@ -40,7 +53,7 @@ function createWorkStationDiv(workstation, room) {
     statusText.classList.add("status");
     status.appendChild(statusText);
     status.id = "status";
-    status.style.fontSize = "20px"; // Verhoogd naar 16px
+    status.style.fontSize = "20px";
     card.appendChild(status);
 
     // Create the modal for the workstation

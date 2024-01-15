@@ -36,9 +36,19 @@ function updateContent(data, allPcs) {
                         document.getElementById(data.instance + "_card").style.backgroundColor = "#50C878";
                     }
                 } else if (key === "currentLoad") {
-                    document.getElementById(instance + "_load").innerText = "Current load: " + data[key];
-                    document.getElementById(instance + "_loadDirect").innerText = "Load: " + data[key];
-                } else if (key === "currentFreeMemory") {
+                let loadElement = document.getElementById(instance + "_load");
+                let loadDirectElement = document.getElementById(instance + "_loadDirect");
+                // Update the text
+                loadElement.innerText = "Current load: " + data[key];
+                loadDirectElement.innerText = "Load: " + data[key];
+                // Remove the spinner styles
+                loadElement.style.animation = "";
+                loadDirectElement.style.animation = "";
+                loadElement.style.border = "";
+                loadDirectElement.style.border = "";
+                loadElement.style.borderTop = "";
+                loadDirectElement.style.borderTop = "";
+            } else if (key === "currentFreeMemory") {
                     document.getElementById(instance + "_currentFreeMemory").innerText = "Current free memory: " + data[key];
                 } else if (key === "currentLoad5") {
                     document.getElementById(instance + "_loadlast5").innerText = "Load of the last 5 minutes: " + data[key];
