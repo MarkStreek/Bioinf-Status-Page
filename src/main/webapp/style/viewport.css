@@ -38,7 +38,10 @@
     #mapdiv.row {
         transform: scale(0.5); /* Initial scale factor */
         transform-origin: top left; /* Set the transform origin */
-        margin: auto;
+        margin: 0 auto;
+    }
+    #buttonbar.container {
+        margin: 0 auto;
     }
 }
 
@@ -47,6 +50,9 @@
     #mapdiv.row {
         transform: scale(0.8); /* Initial scale factor */
         transform-origin: top left; /* Set the transform origin */
-        margin: auto;
+        margin: 0 auto;
+    }
+    #buttonbar.container {
+        margin: 0 auto;
     }
 }
