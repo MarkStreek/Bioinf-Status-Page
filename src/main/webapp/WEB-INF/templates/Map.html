@@ -6,11 +6,72 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=400" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style/sidebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="../../style/viewport.css">
     <link rel="stylesheet" type="text/css" href="../../style/sidebar.css">
 </head>
 <body>
-<div class="container my-3 d-flex justify-content-center" id="buttonbar">
+<div class="container-fluid p-0 d-flex h-10 w-100">
+    <div id="bdSidebar"
+         class="d-flex flex-column
+                    flex-shrink-0
+                    p-3 custom-bg-color
+                    text-white offcanvas offcanvas-start w-10">
+        <a href="/give.welcome"
+           class="navbar-brand">
+            <img src="/images/HanzeLogo.jpeg" alt="Logo" style="width: 50px; height: auto;">
+
+        </a>
+        <hr>
+        <ul class="mynav nav nav-pills flex-column mb-1">
+            <li class="nav-item mb-1">
+                <a href="/give.welcome">
+                    Home
+                </a>
+            </li>
+            <li class="sidebar-item nav-item mb-1">
+                <a href="#"
+                   class="sidebar-link collapsed"
+                   data-bs-toggle="collapse"
+                   data-bs-target="#settings"
+                   aria-expanded="false"
+                   aria-controls="settings">
+                    <span class="topic">Map </span>
+                </a>
+                <ul id="settings"
+                    class="sidebar-dropdown list-unstyled collapse"
+                    data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a href="/map?button=D108" class="sidebar-link">
+                            <span class="topic"> D108</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item mb-1">
+                <a href="#">
+                    About
+                </a>
+            </li>
+        </ul>
+        <hr>
+    </div>
+
+    <div class="bg-light flex-fill fixed-top-navbar">
+        <div class="p-2 d-flex text-white custom-bg-color">
+            <a href="/give.welcome" class="text-white"
+               data-bs-toggle="offcanvas"
+               data-bs-target="#bdSidebar">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+            <span class="ms-3">Bio-Inf Status Page</span>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="container-fluid my-3 d-flex justify-content-center" id="buttonbar">
     <div class="row">
         <div class="col">
             <button type="button" class="btn btn-secondary m-1" id="D107">Map D1.07</button>
@@ -34,6 +95,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="application/javascript" src="js/CreateMapOfRooms.js"></script>
 </body>
 </html>
