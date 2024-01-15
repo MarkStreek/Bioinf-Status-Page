@@ -10,6 +10,11 @@ html, body {
 
 }
 
+#bdSidebar {
+    width: 150px;
+}
+
+
 .mynav {
     color: #fff;
 }
@@ -35,4 +40,21 @@ html, body {
     width: 25px;
     text-align: center;
 }
+
+.custom-bg-color {
+    background: #F07C01;
+}
+
+.fixed-top-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1030;
+}
+
+.main-content {
+    padding-top: 50px;
+}
+
 

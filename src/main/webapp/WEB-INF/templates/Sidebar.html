@@ -14,64 +14,66 @@
     </style>
 </head>
 <body>
-<div class="container-fluid p-0 d-flex h-100">
+<div class="container p-0 d-flex h-100 w-100">
     <div id="bdSidebar"
          class="d-flex flex-column
                     flex-shrink-0
-                    p-3 bg-success
-                    text-white offcanvas-md offcanvas-start">
+                    p-3 custom-bg-color
+                    text-white offcanvas offcanvas-start w-10">
         <a href="#"
            class="navbar-brand">
-        </a><hr>
-        <ul class="mynav nav nav-pills flex-column mb-auto">
+            <img src="/images/HanzeLogo.jpeg" alt="Logo" style="width: 50px; height: auto;">
+
+        </a>
+        <hr>
+        <ul class="mynav nav nav-pills flex-column mb-1">
             <li class="nav-item mb-1">
                 <a href="#">
-                    <i class="fa-regular fa-user"></i>
                     Home
                 </a>
             </li>
 
             <li class="nav-item mb-1">
                 <a href="#">
-                    <i class="fa-regular fa-bookmark"></i>
                     Rooms
                 </a>
             </li>
-            <li class="sidebar-item  nav-item mb-1">
+            <li class="sidebar-item nav-item mb-1">
                 <a href="#"
                    class="sidebar-link collapsed"
                    data-bs-toggle="collapse"
                    data-bs-target="#settings"
                    aria-expanded="false"
                    aria-controls="settings">
-                    <i class="fas fa-cog pe-2"></i>
                     <span class="topic">Map </span>
                 </a>
                 <ul id="settings"
                     class="sidebar-dropdown list-unstyled collapse"
                     data-bs-parent="#sidebar">
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fas fa-sign-in-alt pe-2"></i>
+                        <a href="/map?button=D108" class="sidebar-link">
                             <span class="topic"> D108</span>
                         </a>
                     </li>
-
-
                 </ul>
+            </li>
+            <li class="nav-item mb-1">
+                <a href="#">
+                    About
+                </a>
             </li>
         </ul>
         <hr>
     </div>
 
-    <div class="bg-light flex-fill">
-        <div class="p-2 d-md-none d-flex text-white bg-success">
+    <div class="bg-light flex-fill fixed-top-navbar">
+        <div class="p-2 d-flex text-white custom-bg-color">
             <a href="#" class="text-white"
                data-bs-toggle="offcanvas"
                data-bs-target="#bdSidebar">
                 <i class="fa-solid fa-bars"></i>
             </a>
-            <span class="ms-3">Bin Monitor</span>
+            <span class="ms-3">Bio-Inf Status Page</span>
         </div>
     </div>
 </div>
