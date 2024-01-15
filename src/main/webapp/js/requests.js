@@ -1,30 +1,27 @@
 async function handlingUpdate() {
+    let requestData, configData;
 
-    let responseRequest = await fetch("/requestListener");
-    let data = await responseRequest.json();
+    try {
+        [requestData, configData] = await getFetchData();
+    } catch (error) {
+        console.error("Failed to fetch data: ", error);
+        return;
+    }
 
-    let responseConfigData = await fetch("data/config.json");
-    let configData = await responseConfigData.json();
-
-    console.log("Updating the data...")
+    // Updating the data
+    let date = new Date();
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    console.log(`Updating the data at ${hours}:${minutes}:${seconds}`);
 
     const rooms = Object.values(configData.data.room);
     const allPcs = rooms.reduce((acc, roomData) => acc.concat(roomData.pc), []);
-    for (let i = 0; i < data.length; i++) {
-        updateContent(data[i], allPcs);
-    }
+    requestData.forEach(data => updateContent(data, allPcs));
 
     // create suggestions at top of page
-    let slicedArray = data.slice(0, 4);
+    let slicedArray = requestData.slice(0, 4);
     void createSuggestions(slicedArray);
-}
-
-async function configFileToHashMap() {
-    let allPcs = await retrieveData();
-    return allPcs.reduce((acc, item) => {
-        acc[item.workstation] = item.room;
-        return acc;
-    }, {});
 }
 
 function updateContent(data, allPcs) {
@@ -53,56 +50,24 @@ function updateContent(data, allPcs) {
 
                     if (data[key].length >= 1) {
                         let dataArr = data[key];
-
                         let dataArrFloat = dataArr.map(parseFloat);
-                        let id = instance + '_myChart';
-                        let ctx = document.getElementById(id).getContext('2d');
-
-                        if (window[id] instanceof Chart) {
-                            window[id].destroy();
-                        }
-
-                        window[id] = new Chart(ctx, {
-                            type: 'line',
-                            data: {
-                                labels: Array.from(Array(dataArrFloat.length).keys()),
-                                datasets: [{
-                                    label: 'Load last 10 minutes',
-                                    data: dataArrFloat,
-                                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                                    borderColor: 'rgba(54, 162, 235, 1)',
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                animation: {
-                                    duration: 0,
-                                },
-                                hover: {
-                                    animationDuration: 0,
-                                },
-                                responsiveAnimationDuration: 0,
-                                scales: {
-                                    y: {
-                                        title: {
-                                            display: true,
-                                            text: 'Load (%)'
-                                        }
-                                    },
-                                    x: {
-                                        title: {
-                                            display: true,
-                                            text: 'Time (minutes)'
-                                        }
-                                    }
-                                }
-                            }
-                        });
+                        void createGraph(instance, dataArrFloat);
                     }
                 }
             }
         }
     }
+}
+
+async function getFetchData() {
+    // retrvieve the workstation data
+    let responseRequest = await fetch("/requestListener");
+    let requestData = await responseRequest.json();
+    // retrieve the config file data
+    let responseConfigData = await fetch("data/config.json");
+    let configData = await responseConfigData.json();
+
+    return [requestData, configData];
 }
 
 function createSuggestions(slicedArray) {
@@ -115,5 +80,50 @@ function createSuggestions(slicedArray) {
     slicedArray.forEach((item) => {
         let cloneCard = createCard(item);
         suggestions.appendChild(cloneCard);
+    });
+}
+
+function createGraph(instance, dataArrFloat) {
+    let id = instance + '_myChart';
+    let ctx = document.getElementById(id).getContext('2d');
+
+    if (window[id] instanceof Chart) {
+        window[id].destroy();
+    }
+    window[id] = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: Array.from(Array(dataArrFloat.length).keys()),
+            datasets: [{
+                label: 'Load last 10 minutes',
+                data: dataArrFloat,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            animation: {
+                duration: 0,
+            },
+            hover: {
+                animationDuration: 0,
+            },
+            responsiveAnimationDuration: 0,
+            scales: {
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Load (%)'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Time (minutes)'
+                    }
+                }
+            }
+        }
     });
 }
