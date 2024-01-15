@@ -14,11 +14,9 @@ async function handlingUpdate() {
         updateContent(data[i], allPcs);
     }
 
-    ///////////////////////////////////////
-    // TODO: Create Suggestions function
+    // create suggestions at top of page
     let slicedArray = data.slice(0, 4);
     void createSuggestions(slicedArray);
-    ///////////////////////////////////////
 }
 
 async function configFileToHashMap() {
@@ -118,79 +116,4 @@ function createSuggestions(slicedArray) {
         let cloneCard = createCard(item);
         suggestions.appendChild(cloneCard);
     });
-}
-
-//
-// these functions below can be deleted if we use the createMapOfRooms.js file
-//
-
-async function updateElement(selectedRoom) {
-    try {
-        let response = await fetch("data/config.json");
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        let data = await response.json();
-        let searchRoom = data.data.room[selectedRoom];
-        let mapDiv = document.getElementById("mapdiv");
-
-        // serversDiv.innerHTML = ''; // Clear the div
-        mapDiv.classList.add('grid-container');
-        mapDiv.style.width = '80%';
-        mapDiv.style.margin = 'auto';
-
-
-        let serverInfo = getAllPCs(selectedRoom, data);
-
-        for (let row of searchRoom.classRoomMatrix) {
-            for (let cell of row) {
-                let newDivMain = document.createElement('div');
-                newDivMain.classList.add('col');
-                newDivMain.style.width = '16%';
-                for (let pcLabel of serverInfo) {
-                    if (cell === pcLabel.split('.')[0]) {
-                        let serverDiv = smallDiv(pcLabel);
-                        newDivMain.appendChild(serverDiv);
-                    }
-                    mapDiv.appendChild(newDivMain);
-                }
-            }
-        }
-    } catch (error) {
-        console.error('Error fetching config data: ', error);
-    }
-}
-
-function handleCheckboxInteraction(checkbox) {
-    let cardID = 'Room_' + checkbox.id;
-    let divs = document.getElementsByClassName("col " + cardID);
-
-    let mapID = document.getElementById("Map");
-    let mapdiv = document.getElementById("mapdiv");
-
-    if (mapID.checked === true && checkbox.checked === true) {
-        for (let div of divs) {
-            div.style.display = 'none';
-        }
-        // empty mapdiv if exists
-        if (mapdiv) {
-            mapdiv.innerHTML = '';
-        }
-        // create mapDiv object
-        mapDiv();
-        // create map child divs
-        updateElement(checkbox.id);
-
-    }
-
-    if (mapID.checked === false || checkbox.checked === false) {
-        if (mapdiv) {mapdiv.innerHTML = '';}
-        for (let div of divs) {
-            if (checkbox.checked === true) {
-                div.style.display = 'block';
-            } else {
-                div.style.display = 'none';
-            }
-        }
-    }
 }

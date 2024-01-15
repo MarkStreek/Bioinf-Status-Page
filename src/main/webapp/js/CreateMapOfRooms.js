@@ -1,4 +1,3 @@
-document.body.style.backgroundColor = "lightgrey";
 let buttons = document.querySelectorAll("button[type=button]");
 buttons.forEach(function (button) {
     button.addEventListener("click", function () {
@@ -18,7 +17,6 @@ async function handleMap(room) {
     maxLength += ((configData.data.room[room].classRoomMatrix[0].length) * 2 ) * 5;
     mapDiv.style.width = `${maxLength }px`;
     mapDiv.innerHTML = "";
-
 
     configData.data.room[room].classRoomMatrix.forEach(function (row) {
         row.forEach(function (cell) {
@@ -103,17 +101,12 @@ async function updateMapElements(workstations) {
     const allPcs = rooms.reduce((acc, roomData) => acc.concat(roomData.pc), []);
 
     for (let i = 0; i < data.length; i++) {
-
         let instance = data[i].instance;
-
-        console.log(data[i]);
-
         for (let key in data[i]) {
             if (allPcs.includes(instance)) {
                 if (workstations.includes(instance)) {
                     if (key === "isUP") {
                         if (data[i][key] === true) {
-                            console.log(instance);
                             let divElm = document.getElementById(instance + "_map");
                             divElm.style.backgroundColor = "#50C878";
                             divElm.children[1].textContent = "Online";

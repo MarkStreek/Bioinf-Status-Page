@@ -1,6 +1,7 @@
 html, body {
     height: 100%;
     font-family: 'Ubuntu', sans-serif;
+    background-color: lightgray;
 }
 
 .gfg {

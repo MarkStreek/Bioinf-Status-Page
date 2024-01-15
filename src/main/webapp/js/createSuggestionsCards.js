@@ -44,8 +44,6 @@ function createCard(item) {
             highlight.style.backgroundColor = "#50C878";
         }, 2000);
 
-
-
         // calculate the position of the card, so that it is in the middle of the screen after scrolling
         let y = highlight.getBoundingClientRect().top + window.pageYOffset - (window.innerHeight / 2);
         // scroll to the card

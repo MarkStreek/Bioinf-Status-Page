@@ -1,12 +1,5 @@
 function createWorkStationDiv(workstation, room) {
 
-    //
-    // For bootstrap grid system with breakpoints:
-    // 'col-xxl-2', 'col-xl-2', 'col-lg-2', 'col-md-3', 'col-sm-4', 'col-6', 'g-2'
-    // Add the above line to the classList below
-    //
-    // New Main div
-
     let card = document.createElement('div');
     card.style.flexDirection = "column";
     card.style.justifyContent = "center";
@@ -179,58 +172,4 @@ function createModalFooter() {
     modalFooter.appendChild(closeButtonModal);
 
     return modalFooter;
-}
-
-//// The functions below can be deleted if we use createMapOfRooms.js
-function mapDiv() {
-    // Create the necessary elements
-    let containerDiv = document.createElement('div');
-    containerDiv.classList.add('container', 'text-centre');
-
-    let rowDiv = document.createElement('div');
-    rowDiv.classList.add('row', 'row-cols-2', 'row-cols-md-5', 'row-cols-lg-10', 'g-1');
-    rowDiv.id = 'mapdiv'; // Set the ID
-
-    // Append the rowDiv to the containerDiv
-    containerDiv.appendChild(rowDiv);
-
-    // Append the containerDiv to the body or any other existing element
-    document.body.appendChild(containerDiv); // Example: Append to the body
-}
-
-// for map checkbox display
-function smallDiv(server) {
-    let newDivMain = document.createElement('div');
-    newDivMain.classList.add('col', '_map');
-    newDivMain.setAttribute("id", server);
-
-    let newDiv1 = document.createElement('div');
-    newDiv1.classList.add('card', 'border-2');
-    newDiv1.id = server + '_map';
-    newDiv1.style.backgroundColor = `#4a5766`;
-    newDiv1.style.borderColor = `#ff0000`;
-
-    let pcTitle = document.createElement('h4');
-    pcTitle.textContent = `${server.split('.')[0]}`;
-    pcTitle.style.color = `#ffffff`;
-
-    newDiv1.appendChild(pcTitle);
-    newDivMain.appendChild(newDiv1);
-
-    return newDivMain;
-}
-
-let serverState = {
-    currentServerIndex: 0
-};
-
-function getAllPCs(selectedRoom, data) {
-    let servers = data.data.room[selectedRoom]
-    // create a function that loops over all pcs for given room, then splits them into a label and adds the label to a list. functon returns all labels of a room
-    let pcLabels = [];
-    for (let i = 0; i < servers.pc.length; i++) {
-        let server = servers.pc[i];
-        pcLabels.push(server);
-    }
-    return pcLabels;
 }

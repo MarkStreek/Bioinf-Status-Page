@@ -28,3 +28,4 @@ replay_pid*
 *.probe
 *.MF
 *.bin
+previous-compilation-data.bin
