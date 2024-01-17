@@ -41,3 +41,21 @@
     border-color: #F07C01;
 }
 
+/* Hover effect for page up button */
+#btn-page-up:hover {
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    background: #FFFFFF;
+    border-color: #F07C01;
+}
+
+/* Main color for arrow in page up button */
+#btn-page-up .fa-arrow-up {
+    color: #FFFFFF;
+}
+
+/* Hover color for arrow in pageup button */
+#btn-page-up:hover .fa-arrow-up {
+    color: #F07C01;
+}
