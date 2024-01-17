@@ -15,7 +15,7 @@ import java.io.IOException;
  * The AboutServlet.
  * This servlet serves the about page to the user.
  */
-@WebServlet(name = "WelcomeServlet", urlPatterns = "/give.welcome", loadOnStartup = 1)
+@WebServlet(name = "WelcomeServlet", urlPatterns = "/about", loadOnStartup = 1)
 public class AboutServlet extends HttpServlet {
 
     // Create a new instance for the template engine

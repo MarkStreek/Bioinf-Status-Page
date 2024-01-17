@@ -13,7 +13,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * The RequestListener servlet.
  * This servlet is responsible for handling the requests from the front-end.
