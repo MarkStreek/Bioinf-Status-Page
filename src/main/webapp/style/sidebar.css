@@ -1,24 +1,9 @@
-html, body {
-    height: 100%;
-    font-family: 'Ubuntu', sans-serif;
-    background-color: lightgray;
-}
-
-.gfg {
-    height: 50px;
-    width: 50px;
-
-}
-
+/* Sidebar width */
 #bdSidebar {
     width: 150px;
 }
 
-
-.mynav {
-    color: #fff;
-}
-
+/* Sidebar text and decoration */
 .mynav li a {
     color: #fff;
     text-decoration: none;
@@ -28,33 +13,23 @@ html, body {
     padding: 8px 5px;
 }
 
-.mynav li a.active {
-    background: rgba(255, 255, 255, 0.2);
-}
-
+/* Hover color for sidebar text blocks */
 .mynav li a:hover {
     background: rgba(255, 255, 255, 0.2);
 }
 
-.mynav li a i {
-    width: 25px;
-    text-align: center;
-}
-
+/* Background color for side and navbar */
 .custom-bg-color {
     background: #F07C01;
 }
 
+/* Navbar positioning */
 .fixed-top-navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1030;
-}
-
-.main-content {
-    padding-top: 50px;
 }
 
 /* button page up position fixed in bottom right corner*/
@@ -66,3 +41,21 @@ html, body {
     border-color: #F07C01;
 }
 
+/* Hover effect for page up button */
+#btn-page-up:hover {
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    background: #FFFFFF;
+    border-color: #F07C01;
+}
+
+/* Main color for arrow in page up button */
+#btn-page-up .fa-arrow-up {
+    color: #FFFFFF;
+}
+
+/* Hover color for arrow in pageup button */
+#btn-page-up:hover .fa-arrow-up {
+    color: #F07C01;
+}
