@@ -36,19 +36,30 @@
         ]
       },
       "D107": { "pc" : [
-        "bin300.bin.bioinf.nl",
-        "bin301.bin.bioinf.nl",
-        "bin302.bin.bioinf.nl",
-        "bin303.bin.bioinf.nl",
-        "bin304.bin.bioinf.nl",
-        "bin305.bin.bioinf.nl",
-        "bin306.bin.bioinf.nl",
+        "nuc330.bin.bioinf.nl",
+        "nuc301.bin.bioinf.nl",
+        "nuc302.bin.bioinf.nl",
         "bin307.bin.bioinf.nl",
-        "nuc30.bin.bioinf.nl"
+        "bin306.bin.bioinf.nl",
+        "bin305.bin.bioinf.nl",
+        "bin304.bin.bioinf.nl",
+        "bin303.bin.bioinf.nl",
+        "bin302.bin.bioinf.nl",
+        "bin301.bin.bioinf.nl",
+        "bin300.bin.bioinf.nl"
       ],
         "classRoomMatrix":
-        [["null", "pc", "null", "pc", "pc", "null"],
-          ["pc", "pc", "null", "pc", "pc", "pc"]]
+        [
+          ["null", "nuc330"],
+          ["null", "null"],
+          ["nuc301", "nuc302"],
+          ["null", "null"],
+          ["bin307", "bin306"],
+          ["bin305", "bin304"],
+          ["null", "null"],
+          ["bin303", "bin302"],
+          ["bin301", "bin300"]
+        ]
       },
       "H186": { "pc" : [
         "nuc404.bin.bioinf.nl",
@@ -94,28 +105,18 @@
           ["pc", "pc", "pc", "pc", "pc", "pc"]]
       },
       "H188A": { "pc" : [
-        "nuc206.bin.bioinf.nl",
-        "nuc207.bin.bioinf.nl",
-        "nuc208.bin.bioinf.nl",
-        "nuc221.bin.bioinf.nl",
-        "nuc222.bin.bioinf.nl",
-        "nuc223.bin.bioinf.nl",
-        "nuc224.bin.bioinf.nl",
-        "nuc225.bin.bioinf.nl",
-        "nuc230.bin.bioinf.nl",
-        "nuc231.bin.bioinf.nl",
-        "nuc301.bin.bioinf.nl",
-        "nuc302.bin.bioinf.nl",
-        "nuc330.bin.bioinf.nl",
-        "nuc400.bin.bioinf.nl",
-        "nuc401.bin.bioinf.nl",
-        "nuc402.bin.bioinf.nl",
-        "nuc403.bin.bioinf.nl"
+        "nuc504.bin.bioinf.nl",
+        "nuc505.bin.bioinf.nl",
+        "nuc503.bin.bioinf.nl",
+        "nuc502.bin.bioinf.nl",
+        "nuc501.bin.bioinf.nl"
       ],
         "classRoomMatrix":
-        [["pc", "pc", "pc", "pc", "pc", "pc"],
-          ["pc", "pc", "null", "pc", "pc", "pc"],
-          ["pc", "pc", "pc", "pc", "null", "pc"]]
+        [
+          ["nuc504", "null", "null"],
+          ["nuc503", "nuc502", "nuc505"],
+          ["nuc501", "null", "null"]
+        ]
       },
       "H1122": { "pc" : [
         "nuc120.bin.bioinf.nl",
