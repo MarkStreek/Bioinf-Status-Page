@@ -2,7 +2,6 @@ package nl.bioinf.shbreekers.config;
 
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
