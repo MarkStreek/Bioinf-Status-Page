@@ -34,6 +34,19 @@ function createWorkStationDiv(workstation, room) {
     load.style.animation = "spin 2s linear infinite";
     card.appendChild(load);
 
+    // let load = document.createElement("p");
+    // load.innerText = "Not available";
+    // load.id = workstation + "_loadDirect";
+    // load.style.marginBottom = "0";
+    // load.style.fontSize = "20px"; // Verhoogd naar 16px
+    // card.appendChild(load);
+
+    // remove all the styling of the load element
+    // let loadElement = document.getElementById(workstation + "_load");
+    // loadElement.style.animation = "";
+    // loadElement.style.border = "";
+    // loadElement.style.borderTop = "";
+
     let style = document.createElement('style');
     style.innerHTML = `
   @keyframes spin {

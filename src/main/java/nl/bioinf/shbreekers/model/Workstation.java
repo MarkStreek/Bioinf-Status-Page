@@ -33,8 +33,6 @@ public class Workstation implements Comparator<Workstation> {
     }
 
     public void setCurrentLoad(List<JsonElement> currentLoad) {
-
-        // TODO: make an option to store more currentLoads
         if (currentLoad.size() <= 2) {
             if (currentLoad.get(1).toString().equals("0") || currentLoad.get(1).toString().equals("null")) {
                 this.currentLoad = currentLoad.get(1).toString();
@@ -77,15 +75,11 @@ public class Workstation implements Comparator<Workstation> {
     }
 
     public String getCurrentFreeMemory() {
-        return currentFreeMemory;
+        return this.currentFreeMemory;
     }
 
     public void setCurrentFreeMemory(String currentFreeMemory) {
-        if (currentFreeMemory.length() >= 9) {
-            this.currentFreeMemory = String.format(Locale.US, "%.1f", (Double.parseDouble(currentFreeMemory)/ 1000000000)) + "GB";
-        } else {
-            this.currentFreeMemory = String.format(Locale.US, "%.1f", (Double.parseDouble(currentFreeMemory) / 1000000)) + "MB";
-        }
+        this.currentFreeMemory = String.format(Locale.US, "%.1f", (Double.parseDouble(currentFreeMemory)/ 1000000000));
     }
 
     public String getTemperature() {

@@ -39,25 +39,26 @@ function updateContent(data, allPcs) {
                 let loadElement = document.getElementById(instance + "_load");
                 let loadDirectElement = document.getElementById(instance + "_loadDirect");
                 // Update the text
-                loadElement.innerText = "Current load: " + data[key];
-                loadDirectElement.innerText = "Load: " + data[key];
-                // Remove the spinner styles
-                loadElement.style.animation = "";
-                loadDirectElement.style.animation = "";
-                loadElement.style.border = "";
-                loadDirectElement.style.border = "";
-                loadElement.style.borderTop = "";
-                loadDirectElement.style.borderTop = "";
-            } else if (key === "currentFreeMemory") {
-                    document.getElementById(instance + "_currentFreeMemory").innerText = "Current free memory: " + data[key];
-                } else if (key === "currentLoad5") {
-                    document.getElementById(instance + "_loadlast5").innerText = "Load of the last 5 minutes: " + data[key];
-                } else if (key === "currentAvailableMemory") {
-                    document.getElementById(instance + "_availableMemory").innerText = "Current Available memory: " + data[key];
-                } else if (key === "temperature") {
-                    document.getElementById(instance + "_temperature").innerText = "Temperature: " + data[key];
-                } else if (key === "currentLoadHistory") {
+                loadElement.innerText = "Current load: " + data[key] + " %";
+                loadDirectElement.innerText = "Load: " + data[key] + " %";
 
+                // Remove the spinner styles
+                loadDirectElement.style.animation = "";
+                loadDirectElement.style.border = "";
+                loadDirectElement.style.borderTop = "";
+                loadDirectElement.style.marginBottom = "0";
+                loadDirectElement.style.fontSize = "20px"; // Verhoogd naar 16px
+                loadDirectElement.style.width = "90%";
+
+            } else if (key === "currentFreeMemory") {
+                    document.getElementById(instance + "_currentFreeMemory").innerText = "Current free memory: " + data[key] + " GB";
+                } else if (key === "currentLoad5") {
+                    document.getElementById(instance + "_loadlast5").innerText = "Load of the last 5 minutes: " + data[key] + " %";
+                } else if (key === "currentAvailableMemory") {
+                    document.getElementById(instance + "_availableMemory").innerText = "Current Available memory: " + data[key] + " GB";
+                } else if (key === "temperature") {
+                    document.getElementById(instance + "_temperature").innerText = "Temperature: " + data[key] + " °C";
+                } else if (key === "currentLoadHistory") {
                     if (data[key].length >= 1) {
                         let dataArr = data[key];
                         let dataArrFloat = dataArr.map(parseFloat);
@@ -107,8 +108,8 @@ function createGraph(instance, dataArrFloat) {
             datasets: [{
                 label: 'Load last 10 minutes',
                 data: dataArrFloat,
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: '#F07C01',
+                borderColor: '#F07C01',
                 borderWidth: 1
             }]
         },
