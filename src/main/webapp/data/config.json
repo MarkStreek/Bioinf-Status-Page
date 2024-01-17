@@ -89,12 +89,7 @@
         "nuc428.bin.bioinf.nl",
         "nuc429.bin.bioinf.nl",
         "nuc430.bin.bioinf.nl",
-        "nuc431.bin.bioinf.nl",
-        "nuc501.bin.bioinf.nl",
-        "nuc502.bin.bioinf.nl",
-        "nuc503.bin.bioinf.nl",
-        "nuc504.bin.bioinf.nl",
-        "nuc505.bin.bioinf.nl"
+        "nuc431.bin.bioinf.nl"
       ],
         "classRoomMatrix":
         [["pc", "pc", "pc", "pc", "pc", "pc"],
@@ -119,20 +114,34 @@
         ]
       },
       "H1122": { "pc" : [
-        "nuc120.bin.bioinf.nl",
-        "nuc121.bin.bioinf.nl",
-        "nuc122.bin.bioinf.nl",
-        "nuc130.bin.bioinf.nl",
+        "nuc230.bin.bioinf.nl",
+        "nuc202.bin.bioinf.nl",
+        "nuc231.bin.bioinf.nl",
         "nuc200.bin.bioinf.nl",
         "nuc201.bin.bioinf.nl",
-        "nuc202.bin.bioinf.nl",
+        "nuc206.bin.bioinf.nl",
+        "nuc205.bin.bioinf.nl",
+        "nuc224.bin.bioinf.nl",
+        "nuc223.bin.bioinf.nl",
+        "nuc208.bin.bioinf.nl",
+        "nuc207.bin.bioinf.nl",
         "nuc203.bin.bioinf.nl",
         "nuc204.bin.bioinf.nl",
-        "nuc205.bin.bioinf.nl"
+        "nuc225.bin.bioinf.nl",
+        "nuc221.bin.bioinf.nl",
+        "nuc222.bin.bioinf.nl"
       ],
         "classRoomMatrix":
-        [["pc", "pc", "pc", "pc", "pc"],
-          ["pc", "pc", "null", "pc", "pc"]]
+        [
+          ["null", "nuc230", "null", "null", "null", "null", "null", "null", "null"],
+          ["null", "null", "null", "null", "null", "null", "null", "null", "null"],
+          ["nuc202", "null", "null", "null", "null", "null", "null", "null", "null"],
+          ["nuc231", "null", "null", "null", "null", "nuc208", "null", "nuc225", "null"],
+          ["null", "null", "nuc206", "nuc205", "null", "nuc207", "null", "null", "null"],
+          ["nuc200", "null", "null", "null", "null", "null", "null", "null", "null"],
+          ["nuc201", "null", "null", "null", "null", "nuc203", "null", "null", "null"],
+          ["null", "null", "nuc224", "nuc223", "null", "nuc204", "null", "nuc221", "nuc222"]
+        ]
       },
       "Server": { "pc" : [
         "assemblix2012.bin.bioinf.nl",
