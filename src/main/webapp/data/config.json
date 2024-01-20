@@ -142,12 +142,13 @@
         "salt",
         "slurm",
         "slurm:8080",
-        "nuc007.bin.bioinf.nl"
+        "nuc007.bin.bioinf.nl",
+        "monitor"
       ],
         "classRoomMatrix":
         [
           ["assemblix2012", "assemblix2019","mordor-vm"],
-          ["salt", "null", "nuc007"],
+          ["salt", "monitor", "nuc007"],
           ["rohan2018", "slurm", "slurm:8080"]
         ]
       }
