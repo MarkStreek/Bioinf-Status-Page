@@ -21,7 +21,7 @@
                     flex-shrink-0
                     p-3 custom-bg-color
                     text-white offcanvas offcanvas-start w-10">
-    <a href="/give.welcome"
+    <a th:href="@{/give.welcome}"
        class="navbar-brand">
       <img src="/images/HanzeLogo.jpeg" alt="Logo" style="width: 50px; height: auto;">
 
@@ -29,7 +29,7 @@
     <hr>
     <ul class="mynav nav nav-pills flex-column mb-1">
       <li class="nav-item mb-1">
-        <a href="/give.welcome">
+        <a th:href="@{/give.welcome}" href="#">
           Home
         </a>
       </li>
@@ -46,39 +46,39 @@
             class="sidebar-dropdown list-unstyled collapse fw-normal pb-1 small" style="padding-left:7px; text-align: left;"
             data-bs-parent="#sidebar">
           <li class="sidebar-item">
-            <a href="/map?button=D108" class="sidebar-link">
+            <a th:href="@{/map(button=D108)}" href="#" class="sidebar-link">
               <span class="topic"> D108</span>
             </a>
           </li>
           <li class="sidebar-item">
-            <a href="/map?button=D107" class="sidebar-link">
+            <a th:href="@{/map(button=D107)}" href="#" class="sidebar-link">
               <span class="topic"> D107</span>
             </a>
           </li>
           <li class="sidebar-item">
-            <a href="/map?button=H186" class="sidebar-link">
+            <a th:href="@{/map(button=H186)}" href="#" class="sidebar-link">
               <span class="topic"> H186</span>
             </a>
           </li>
           <li class="sidebar-item">
-            <a href="/map?button=H188A" class="sidebar-link">
-              <span class="topic"> H118A</span>
+            <a th:href="@{/map(button=H188A)}" href="#" class="sidebar-link">
+              <span class="topic"> H188A</span>
             </a>
           </li>
           <li class="sidebar-item">
-            <a href="/map?button=H1122" class="sidebar-link">
+            <a th:href="@{/map(button=H1122)}" href="#" class="sidebar-link">
               <span class="topic"> H1122</span>
             </a>
           </li>
           <li class="sidebar-item">
-            <a href="/map?button=Server" class="sidebar-link">
+            <a th:href="@{/map(button=Server)}" href="#" class="sidebar-link">
               <span class="topic"> Server</span>
             </a>
           </li>
         </ul>
       </li>
       <li class="nav-item mb-1">
-        <a href="/about">
+        <a th:href="@{/about}" href="#">
           About
         </a>
       </li>

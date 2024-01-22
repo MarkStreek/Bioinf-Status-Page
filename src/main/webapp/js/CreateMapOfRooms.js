@@ -97,25 +97,16 @@ async function updateMapElements(workstations) {
     let responseConfigData = await fetch("data/config.json");
     let configData = await responseConfigData.json();
 
-    const rooms = Object.values(configData.data.room);
-    const allPcs = rooms.reduce((acc, roomData) => acc.concat(roomData.pc), []);
+    let rooms = Object.values(configData.data.room);
+    let allPcs = rooms.reduce((acc, roomData) => acc.concat(roomData.pc), []);
 
-    for (let i = 0; i < data.length; i++) {
-        let instance = data[i].instance;
-        for (let key in data[i]) {
-            if (allPcs.includes(instance)) {
-                if (workstations.includes(instance)) {
-                    if (key === "isUP") {
-                        if (data[i][key] === true) {
-                            let divElm = document.getElementById(instance + "_map");
-                            divElm.style.backgroundColor = "#50C878";
-                            divElm.children[1].textContent = "Online";
-                        }
-                    }
-                }
-            }
+    data.forEach(({ instance, isUP }) => {
+        if (allPcs.includes(instance) && workstations.includes(instance) && isUP) {
+            let divElm = document.getElementById(instance + "_map");
+            divElm.style.backgroundColor = "#50C878";
+            divElm.children[1].textContent = "Online";
         }
-    }
+    });
 }
 
 let urlParams = new URLSearchParams(window.location.search);
