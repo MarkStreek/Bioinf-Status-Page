@@ -32,11 +32,12 @@
     </div>
 </div>
 
-<button th:insert="index :: pageUpbutton"></button>
+<button th:replace="index :: pageUpbutton"></button>
 
 
 <th:block th:insert="index :: scripts"></th:block>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="application/javascript" src="js/CreateMapOfRooms.js"></script>
+<script type="application/javascript" src="js/createScrollButton.js"></script>
 </body>
 </html>
