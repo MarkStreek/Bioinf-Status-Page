@@ -86,6 +86,6 @@ checkboxes.forEach(function(checkbox) {
 
 setInterval(function () {
     void handlingUpdate();
-}, 2500);
+}, 2000);
 
 handling();
