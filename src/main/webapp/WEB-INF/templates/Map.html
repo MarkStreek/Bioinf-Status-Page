@@ -1,11 +1,12 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="index :: headerFragment">
-    <title>Classroom maps</title>
-    <meta name="viewport" content="width=400" /></head>
-<body>
+<head th:include="index :: headerFragment">
+    <title id="pageTitle">Bioinf status - Map</title>
+    <meta id="changeViewport" name="viewport" content="width=400" />
+</head>
 
+<body>
 <div th:insert="index :: menubar"></div>
 
 <br>
