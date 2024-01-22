@@ -120,7 +120,7 @@ async function updateMapElements(workstations) {
 
 let urlParams = new URLSearchParams(window.location.search);
 let buttonPressed = urlParams.get('button');
-let validLocals = ["H186", 'H188A', 'Server', 'D107', 'D108', 'H122'];
+let validLocals = ['H186', 'H188A', 'Server', 'D107', 'D108', 'H1122'];
 console.log(buttonPressed);
 
 if (buttonPressed !== null && validLocals.includes(buttonPressed)) {
