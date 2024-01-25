@@ -8,22 +8,40 @@
 <div th:insert="template :: menubar"></div>
 <br><br><br>
 <div style="padding-left: 5%">
-<h1>About This Project</h1><br>
+<h1>About This Project</h1>
 <p>
     This web application was created on behalf of the bioinformatics department of the Hanze University of Applied Sciences.<br>
     The purpose of this application is to provide a simple overview of the status of the workstations.<br>
-    Additionally, we created a function that shows the map for every room. With this map, you can see where the offline workstations are located.<br>
+    Additionally, we created a function that shows the map for every room.<br>
+    With this map, you can see where the workstations are located in the room
 </p>
-<br>
 <h2>The status function</h2>
 <p>
-    This...
-</p>
-<br>
+    Inside a config file, the information about the workstations is stored.<br>
+    This information is used to create the workstation cards.<br>
+    In addition, every workstation retrieves a modal with more information about the workstation.<br>
+    The modal can be shown by pressing a button.<br>
+
+    <br>
+
+    The status of the workstations is retrieved by a request to the back-end.<br>
+    The data from the request comes in sorted by the following properties:<br>
+
+    <ol class="list-group list-group-numbered p-2" style="max-width: 200px;">
+        <li class="list-group-item active">Status</li>
+        <li class="list-group-item">Load</li>
+        <li class="list-group-item">Memory</li>
+        <li class="list-group-item">Temperature</li>
+    </ol>
+
+    <br>
+    The first four workstations are then selected and used as a suggestion for SSH.<br>
+    Additionally, the data is used to <strong>automatically</strong> update the workstations every <strong>2 seconds</strong>.
+    </p>
 <h2>The map function</h2>
 <p>
-    The workstations are defined using a config file. For every workstation, a name and location is defined. The locations are made up of matrices.<br>
-    Therefore, this makes it easy to make adjustments when a workstation is moved.
+    For the map function, the same config file is being used. For every workstation, name and location are defined.<br>
+    The locations are made up of matrices.<br> Therefore, this makes it easy to make adjustments when a workstation is moved.
 
     <br><br>
 
@@ -32,7 +50,8 @@
 
     The main pc of every room (teacher pc) is at the top of the map.<br>
 
-    After creating the map, a request is made to the back-end for information. With this information the divs are updated.<br>
+    After creating the map, a request is made to the back-end for information.<br>
+    With this information, the divs are updated.<br>
     Please note, the data on this page is <b>not</b> automatically updated.<br><br>
 
     <strong>Example matrix below</strong>
@@ -67,7 +86,7 @@
         <li>Sibren Reekers</li>
         <li>Mark van de Streek</li>
     </ul>
-<th:block th:insert="index :: scripts"></th:block>
+<th:block th:insert="template :: scripts"></th:block>
 </div>
 </body>
 </html>

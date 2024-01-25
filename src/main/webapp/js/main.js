@@ -14,7 +14,6 @@ function handling() {
     retrieveData().then(AllPCS => {
         let innerdiv = document.getElementById("innerdiv");
         innerdiv.style.width = "100%";
-        document.body.style.backgroundColor = "lightgrey";
 
         for (let i = 0; i < AllPCS.length; i++) {
             let workstation = AllPCS[i].workstation;
