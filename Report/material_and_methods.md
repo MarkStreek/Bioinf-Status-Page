@@ -67,14 +67,14 @@ from the server. Additionally, a classroom matrix is made to save the actual com
 In the back-end "XmlWebListener" manages passing the queries from web.xml to the "RequestListener".
 These query links are then passed to "MakeRequest". MakeRequest sends the actual
 request for each query and the body of each response. At last RequestListener then saves each response as
-a "Workstation" object where all data is divided into variables. Then these object are converted to json objects
+a "Workstation" object where all data is divided into variables. Then these object are converted to JSON objects
 using Gson().toJson.
 
 **Middleware**
 
-Request.js has async functions that handles responses to fetch json data from requestListener and the map configuration from config.json.
-Here all json data is sent to the front-end where html objects assigned to that data are updated based on the 
-newly fetched information every ten minutes.
+Request.js has async functions that handles responses to fetch JSON data from requestListener and the map configuration from config.json.
+Here all JSON data is sent to the front-end where html objects assigned to that data are updated based on the 
+newly fetched information every two seconds.
 
 The data is divided over three div objects that are created and filled by the logic of three javascript files;
 a file that creates a room map (CreateMapOfRooms.js), a file that creates suggestions what pc's have the 
@@ -82,7 +82,12 @@ lightest workload (createSuggestionCards.js) and a file that creates workstation
 
 Each workstation card is a block that colours red of green based on the status of the computer. For more statistics
 of a computer the "Show status" button can be pressed and a model is created with several parameters and a load graph.
+The graph shows the work load in percentages of the last ten minutes; i.e. every minute a load is visualized as a point and a line
+connects all the dots over the ten-minute range. 
 
+The module "chart.js" is used for the visualization and is added in
+"index.html" with the same logic as normal JS scripts. The actual graph is created in "request.js" in the
+"createGraph" function.
 
 Above the workstation cards a plain is filled with computer suggestions. A suggestion card is clickable and will start a scroll event
 to the workstation card. 
@@ -122,7 +127,7 @@ Note that an icon and image are not the same type of objects; one is <link> and 
 
 In order to make the webpage responsive to window size for both desktop and phone. Two solutions are introduced.
 First by making the div containers "innerdiv" and "mapdiv" container-fluid. This means the contents and the objects shape changes more flexible.
-For innerdiv this works for all window sizes. Although this isn't a solution for the map due its unique sizes. 
+For "innerdiv" this works for all window sizes. Although this isn't a solution for the map due its unique sizes. 
 Using breakpoints the viewport is changed for the map, making it decrease in size along with a smaller window.
 
 
