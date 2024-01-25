@@ -1,21 +1,76 @@
-## Material & methods
+## Materials & methods
 
-e status data will be read from a web server through AJAX (Asynchronous JavaScript And XML) calls in JS (JavaScript). AJAX is a technique that allows the user to access a webserver from the webpage.
+### Materials
+This project is located in [github](https://github.com/MarkStreek/Bioinf-Status-Page/tree/main/src/main).
+In the directory _java/nl/bioinf/shbreekers_ is all the Java (17.0.8) code. And, in _webapp_ all
+the JavaScript (1.5), HTML5, CSS3, Bootstrap (5.3.2) and Thymeleaf (3.0.15).
 
-This project is layered with a back-end powered by AJAX calls. 
-AJAX (Asynchronous JavaScript And XML) calls in JS (JavaScript) and enables reading status data from a web server;
+First of all, the contents of _plugins{}_ and _dependencies_ from the build.gradle file are
+important for compiling the project properly and having the right dependencies; these are
+needed for being able to use software's like Thymeleaf or making server requests.
+
+Secondly, the project is structured with a back-end, middleware; translates back-end data to front-end, and a front-end.
+The back-end is Java. Here all requests are made to the server for extracting computer status data.
+Apache's _httpclient:4.5.14_ is needed for making the requests. 
+Next, _gson:2.10.1_ is used to convert the extracted server data to JSON objects; structured objects with keys and values.
+In order to use servlets, _javax.servlet-api:4.0.0_ is needed. These previously mentioned dependencies are also
+included in build.gradle.
+
+
+In the middleware JavaScript is used for fetching the JSON objects that hold the data
+and implement that data into objects which are then passed to the front-end.
+
+The front-end includes HTML, CSS, Bootstrap and Thymeleaf. JavaScripts are called in the front-end
+by adding the scripts at the bottom of HTML files. See the following example:
+```{js}
+<script type="application/javascript" src="js/createWorkStationCards.js"></script>
+```
+
+Bootstrap is added in a similar manner to template.html (the template file) in the following example: 
+```{js}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+```
+
+Ultimately all the styling is managed through JavaScript, CSS and Bootstrap; a framework for styling HTML objects more flexibly.
+And, the templating is managed through _thymeleaf:3.0.15.RELEASE_ which is included in build.gradle.
+
+### Existing Methods
+
+The status data will be read from a web server through AJAX (Asynchronous JavaScript And XML) calls in JS (JavaScript).
+AJAX is a technique that allows the user to access a webserver from the webpage.
+
+This project is layered with a back-end powered by AJAX calls.
+AJAX calls in JS (JavaScript) and enables reading pc status data from the web server;
 [W3Schools](https://www.w3schools.com/xml/ajax_intro.asp).
+
+For styling Bootstrap enables editing of div objects more flexible than css.
+Meaningful keywords can be added to the class of an object to change its behaviour.
+For example adding "w-100" in the class of a div, causes that div to widen fully.
+Although, using css simpler appearance changes are managed. 
+
+Furthermore, for templating which reduces duplicated code Thymeleaf connects 
+a template page with the functional pages through the use of fragments. 
+These fragments will contain only basic objects like a header, navigation bar
+or footer.
+
+
+### Applied Methods
+
+**Back-end** 
+
 Structures are built using JSON (config.json) to configure
-mapping of rooms and its computers, and web.xml holds the queries links that are needed to fetch the desired data from the servers.
+mapping of rooms and its computers, and web.xml holds the queries links that are needed to query (ask) the desired data from the server.
 
 Config.json is divided in rooms by name. Each room holds a collection of pc names, that are compared to the names fetched
 from the server. Additionally, a classroom matrix is made to save the actual computer locations.
 
-"XmlWebListener" manages passing the queries from web.xml to the "RequestListener".
+In the back-end "XmlWebListener" manages passing the queries from web.xml to the "RequestListener".
 These query links are then passed to "MakeRequest". MakeRequest sends the actual
 request for each query and the body of each response. At last RequestListener then saves each response as
 a "Workstation" object where all data is divided into variables. Then these object are converted to json objects
 using Gson().toJson.
+
+**Middleware**
 
 Request.js has async functions that handles responses to fetch json data from requestListener and the map configuration from config.json.
 Here all json data is sent to the front-end where html objects assigned to that data are updated based on the 
@@ -34,7 +89,7 @@ to the workstation card.
 The scroll event moves towards the calculated position of the card and will end when the card is in the middle of the screen.
 Then the card's background colour blinks in orange for three seconds, so the user knows where to look at.
 
-All workstation cards and their suggestions are inserted into H186.html in a fluid div container called innerdiv. 
+All workstation cards and their suggestions are inserted into index.html in a fluid div container called innerdiv. 
 The advantage of fluid is more flexible positioning against the page size, 
 also when the div is filled the contents move along more swiftly.
 Also, the workstation cards can be filtered by checking a checkbox by room name. The checkboxes are also made using bootstrap.
@@ -43,23 +98,33 @@ The logic for making cards appears on-click or disappear is managed in main.js. 
 When scrolling page down a button appears with a scroll page up event if the user wants to return to the top of the page.
 This event is managed through a 'click' eventListener in main.js.
 
-The basic website lay-out and bootstrap connection is handled in index.html using thymeleaf.
-Next the user can navigate through the nav-sidebar to the room map, home or about page. The appearance of the nav is managed in sidebar.css.
-In each page the data inserted div objects or base lay-out is handled through bootstrap. Bootstrap enables editing of div objects more flexible than css. 
-Though using css simpler appearance changes are managed.
+**Front-end**
+
+In each page the lay-out of the functional div objects like "innerdiv", "mapdiv" or "menubar" is handled through bootstrap.
+The basic website lay-out and bootstrap connection, is handled in template.html using Thymeleaf.
+By adding _th:fragments_ to the template file, blocks of objects are created that can be added to other pages.
+This can be done either with _th:replace_ or _th:insert_ which depends on, if you want to change to contents of 
+objects on a page or only want to add objects to a page. 
+
+Next the user can navigate through the "menubar" in template.html to the room map, home or about page. 
+The linking is managed with Thymeleaf links to other pages. A link consists of the urlPattern of
+the servlet* that loads the corresponding page. For example, the servlet of the about page has an urlpattern "/about".
+The appearance of the nav is managed in sidebar.css. 
+*servlets serve for getting, posting data from and to webpages, and processing the webpages.
+
 
 In Map.html two logics are applied: a button menu to change the classroom and a fluid div container called mapdiv where the created map cards are inserted.
 By extracting the classroom matrix from config.json map card objects are created for each index that holds a computer name.
 Additionally, for indices with no computer name empty map cards are made. By applying these logics a classroom map is created from a configuration matrix.
 
-Two images were added to the webpage, one favicon and the Hanze icon inside the nav-sidebar.
+Two images were added to the template page, one favicon and the Hanze icon as image inside the menubar.
+Note that an icon and image are not the same type of objects; one is <link> and one is <img>.
 
 In order to make the webpage responsive to window size for both desktop and phone. Two solutions are introduced.
 First by making the div containers "innerdiv" and "mapdiv" container-fluid. This means the contents and the objects shape changes more flexible.
-For innerdiv this works for all window sizez. Although this isn't a solution for the map due its unique size. 
+For innerdiv this works for all window sizes. Although this isn't a solution for the map due its unique sizes. 
 Using breakpoints the viewport is changed for the map, making it decrease in size along with a smaller window.
 
-TODO: Structure of m&m e.g. core structure, data extracting methods, java object creation, eventListeners.
 
 
 

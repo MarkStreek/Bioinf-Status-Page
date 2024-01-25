@@ -74,6 +74,6 @@ public class MainServlet extends HttpServlet {
         // Use the template engine that was created in the init() method
         // and render the main page
         this.templateEngine.process(
-                "H186", ctx, response.getWriter());
+                "index", ctx, response.getWriter());
     }
 }
