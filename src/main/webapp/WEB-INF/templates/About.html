@@ -7,15 +7,20 @@
 <body>
 <div th:insert="index :: menubar"></div>
 <br><br><br>
-<h1 class="text-center">About This Project</h1>
-<br><br>
+<div style="padding-left: 5%">
+<h1>About This Project</h1><br>
 <p>
     This web application was created on behalf of the bioinformatics department of the Hanze University of Applied Sciences.<br>
     The purpose of this application is to provide a simple overview of the status of the workstations.<br>
     Additionally, we created a function that shows the map for every room. With this map, you can see where the offline workstations are located.<br>
-
 </p>
-<h3>The map function</h3>
+<br>
+<h2>The status function</h2>
+<p>
+    This...
+</p>
+<br>
+<h2>The map function</h2>
 <p>
     The workstations are defined using a config file. For every workstation, a name and location is defined. The locations are made up of matrices.<br>
     Therefore, this makes it easy to make adjustments when a workstation is moved.
@@ -28,23 +33,26 @@
     The main pc of every room (teacher pc) is at the top of the map.<br>
 
     After creating the map, a request is made to the back-end for information. With this information the divs are updated.<br>
-    Please note, the data on this page is <b>not</b> automatically updated.
+    Please note, the data on this page is <b>not</b> automatically updated.<br><br>
+
+    <strong>Example matrix below</strong>
 </p>
-<div class="container">
-    <h2>Classroom H1.88A Example Matrix</h2>
-    <table class="table table-bordered">
+<br>
+<div class="container w-50 pl-2" style="padding-left: 5%;">
+    <table class="table table-striped table-bordered table-sm">
+        <caption>Table 1. Example matrix of classroom H1.88A</caption>
         <tbody>
-            <tr class="table-primary">
+            <tr>
                 <td>nuc504</td>
                 <td>null</td>
                 <td>null</td>
             </tr>
-            <tr class="table-primary">
+            <tr>
                 <td>nuc503</td>
                 <td>nuc502</td>
                 <td>nuc505</td>
             </tr>
-            <tr class="table-primary">
+            <tr>
                 <td>nuc501</td>
                 <td>null</td>
                 <td>null</td>
@@ -52,7 +60,7 @@
         </tbody>
     </table>
 </div>
-<br><br>
+<br>
     <b>Developers:</b><br>
     <ul>
         <li>Luka Stein</li>
@@ -60,5 +68,6 @@
         <li>Mark van de Streek</li>
     </ul>
 <th:block th:insert="index :: scripts"></th:block>
+</div>
 </body>
 </html>
