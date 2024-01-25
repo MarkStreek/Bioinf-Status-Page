@@ -4,13 +4,61 @@
 <head th:replace="index :: headerFragment (fragmentTitle='Bioinf status - About')">
     <title>Text title</title>
 </head>
-
 <body>
 <div th:insert="index :: menubar"></div>
-<br>
-<br>
-<br>
-<h1 class="text-center">About</h1>
+<br><br><br>
+<h1 class="text-center">About This Project</h1>
+<br><br>
+<p>
+    This web application was created on behalf of the bioinformatics department of the Hanze University of Applied Sciences.<br>
+    The purpose of this application is to provide a simple overview of the status of the workstations.<br>
+    Additionally, we created a function that shows the map for every room. With this map, you can see where the offline workstations are located.<br>
+
+</p>
+<h3>The map function</h3>
+<p>
+    The workstations are defined using a config file. For every workstation, a name and location is defined. The locations are made up of matrices.<br>
+    Therefore, this makes it easy to make adjustments when a workstation is moved.
+
+    <br><br>
+
+    When pressing a button, the information of the config file is retrieved for the given room.<br>
+    For every workstation, a div is being created and for empty spaces in the matrix, an empty div is being created.<br>
+
+    The main pc of every room (teacher pc) is at the top of the map.<br>
+
+    After creating the map, a request is made to the back-end for information. With this information the divs are updated.<br>
+    Please note, the data on this page is <b>not</b> automatically updated.
+</p>
+<div class="container">
+    <h2>Classroom H1.88A Example Matrix</h2>
+    <table class="table table-bordered">
+        <tbody>
+            <tr class="table-primary">
+                <td>nuc504</td>
+                <td>null</td>
+                <td>null</td>
+            </tr>
+            <tr class="table-primary">
+                <td>nuc503</td>
+                <td>nuc502</td>
+                <td>nuc505</td>
+            </tr>
+            <tr class="table-primary">
+                <td>nuc501</td>
+                <td>null</td>
+                <td>null</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br><br>
+    <b>Developers:</b><br>
+    <ul>
+        <li>Luka Stein</li>
+        <li>Sibren Reekers</li>
+        <li>Mark van de Streek</li>
+    </ul>
 <th:block th:insert="index :: scripts"></th:block>
 </body>
 </html>
