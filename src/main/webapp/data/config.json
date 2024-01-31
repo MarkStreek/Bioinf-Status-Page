@@ -132,7 +132,7 @@
         "nuc206.bin.bioinf.nl",
         "nuc205.bin.bioinf.nl",
         "nuc224.bin.bioinf.nl",
-        "nuc223.bin.bioinf.nl",
+        "nuc209.bin.bioinf.nl",
         "nuc208.bin.bioinf.nl",
         "nuc207.bin.bioinf.nl",
         "nuc203.bin.bioinf.nl",
@@ -150,7 +150,7 @@
           ["null", "null", "nuc206", "nuc205", "null", "nuc207", "null", "null", "null"],
           ["nuc200", "null", "null", "null", "null", "null", "null", "null", "null"],
           ["nuc201", "null", "null", "null", "null", "nuc203", "null", "null", "null"],
-          ["null", "null", "nuc224", "nuc223", "null", "nuc204", "null", "nuc221", "nuc222"]
+          ["null", "null", "nuc224", "nuc209", "null", "nuc204", "null", "nuc221", "nuc222"]
         ]
       },
       "Server": { "pc" : [
