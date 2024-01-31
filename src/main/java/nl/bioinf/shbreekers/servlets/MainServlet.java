@@ -17,7 +17,7 @@ import java.io.IOException;
  * It is responsible for serving the main page to the user.
  * It is also responsible for handling the post/get requests from the main page.
  */
-@WebServlet(name = "MainServlet", urlPatterns = "/give.welcome", loadOnStartup = 1)
+@WebServlet(name = "MainServlet", urlPatterns = "/home", loadOnStartup = 1)
 public class MainServlet extends HttpServlet {
 
     // Create a new instance for the template engine
