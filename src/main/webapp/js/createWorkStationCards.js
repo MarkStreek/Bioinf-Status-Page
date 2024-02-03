@@ -19,8 +19,8 @@ function createWorkStationDiv(workstation, room) {
     let title = document.createElement("h5");
     title.innerText = workstation.split('.')[0].toUpperCase();
     title.style.fontFamily = "Cambria, sans-serif";
-    title.style.marginTop = "35px"; // Verhoogd naar 35px
-    title.style.fontSize = "25px"; // Verhoogd naar 20px
+    title.style.marginTop = "35px";
+    title.style.fontSize = "25px";
     card.appendChild(title);
 
     let load = document.createElement("div");
@@ -34,33 +34,18 @@ function createWorkStationDiv(workstation, room) {
     load.style.animation = "spin 2s linear infinite";
     card.appendChild(load);
 
-    // let load = document.createElement("p");
-    // load.innerText = "Not available";
-    // load.id = workstation + "_loadDirect";
-    // load.style.marginBottom = "0";
-    // load.style.fontSize = "20px"; // Verhoogd naar 16px
-    // card.appendChild(load);
-
-    // remove all the styling of the load element
-    // let loadElement = document.getElementById(workstation + "_load");
-    // loadElement.style.animation = "";
-    // loadElement.style.border = "";
-    // loadElement.style.borderTop = "";
-
     let style = document.createElement('style');
     style.innerHTML = `
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-`;
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }`;
     document.head.appendChild(style);
 
     let status = document.createElement("p");
     status.innerText = "Status: ";
     let statusText = document.createElement("span");
     statusText.innerText = "OFFLINE";
-    //statusText.style.color = "rgb(110, 117, 124)";
     statusText.style.color = "#D9D9D9";
     statusText.id = workstation + "_status";
     statusText.classList.add("status");
@@ -171,7 +156,6 @@ function createModalBody(workstation) {
     // Element for the chart
     let canvasChart = document.createElement('canvas');
     canvasChart.id = workstation + '_myChart';
-    //<canvas id="myChart"></canvas>
 
     // Append all elements to modal body
     modalBody.appendChild(currentLoad);

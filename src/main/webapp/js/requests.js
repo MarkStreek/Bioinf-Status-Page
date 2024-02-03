@@ -8,13 +8,6 @@ async function handlingUpdate() {
         return;
     }
 
-    // Updating the data
-    let date = new Date();
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let seconds = date.getSeconds();
-    console.log(`Updating the data at ${hours}:${minutes}:${seconds}`);
-
     const rooms = Object.values(configData.data.room);
     const allPcs = rooms.reduce((acc, roomData) => acc.concat(roomData.pc), []);
     requestData.forEach(data => updateContent(data, allPcs));
@@ -39,7 +32,7 @@ function updateContent(data, allPcs) {
                 let loadElement = document.getElementById(instance + "_load");
                 let loadDirectElement = document.getElementById(instance + "_loadDirect");
                 // Update the text
-                loadElement.innerText = "Current load: " + data[key] + " %";
+                loadElement.innerText = "Current Load: " + data[key] + " %";
                 loadDirectElement.innerText = "Load: " + data[key] + " %";
 
                 // Remove the spinner styles
@@ -47,15 +40,15 @@ function updateContent(data, allPcs) {
                 loadDirectElement.style.border = "";
                 loadDirectElement.style.borderTop = "";
                 loadDirectElement.style.marginBottom = "0";
-                loadDirectElement.style.fontSize = "20px"; // Verhoogd naar 16px
+                loadDirectElement.style.fontSize = "20px";
                 loadDirectElement.style.width = "90%";
 
             } else if (key === "currentFreeMemory") {
-                    document.getElementById(instance + "_currentFreeMemory").innerText = "Current free memory: " + data[key] + " GB";
+                    document.getElementById(instance + "_currentFreeMemory").innerText = "Current Free Memory: " + data[key] + " GB";
                 } else if (key === "currentLoad5") {
-                    document.getElementById(instance + "_loadlast5").innerText = "Load of the last 5 minutes: " + data[key] + " %";
+                    document.getElementById(instance + "_loadlast5").innerText = "Load Last 5 Minutes: " + data[key] + " %";
                 } else if (key === "currentAvailableMemory") {
-                    document.getElementById(instance + "_availableMemory").innerText = "Current Available memory: " + data[key] + " GB";
+                    document.getElementById(instance + "_availableMemory").innerText = "Total Available Memory: " + data[key] + " GB";
                 } else if (key === "temperature") {
                     document.getElementById(instance + "_temperature").innerText = "Temperature: " + data[key] + " °C";
                 } else if (key === "currentLoadHistory") {
