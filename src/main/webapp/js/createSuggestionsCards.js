@@ -64,5 +64,6 @@ function createCard(item) {
         // Scroll to the card
         window.scrollTo({top: y, behavior: 'auto'});
     });
+    
     return suggestionCard;
 }

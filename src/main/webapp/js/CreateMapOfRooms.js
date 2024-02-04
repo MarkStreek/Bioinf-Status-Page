@@ -135,10 +135,10 @@ async function updateMapElements(workstations) {
 }
 
 // Get information about the button's state of being pressed and set up a validation list for the classroom
+// These buttons are present in the navigation bar
 let urlParams = new URLSearchParams(window.location.search);
 let buttonPressed = urlParams.get('button');
 let validLocals = ['H186', 'H188A', 'Server', 'D107', 'D108', 'H1122'];
-console.log(buttonPressed);
 
 // If the button is pressed and that button is in an existing classroom,
 // then invoke the creation of the classroom map
