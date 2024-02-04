@@ -3,6 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+<!-- All context parameters contain links that query for specific parameters containing data about the workstations    -->
     <context-param>
         <param-name>up</param-name>
         <param-value>http://localhost:9090/api/v1/query?query=up</param-value>

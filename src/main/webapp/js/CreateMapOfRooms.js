@@ -1,4 +1,6 @@
+// Search for all buttons in html (Map) page
 let buttons = document.querySelectorAll("button[type=button]");
+// Pass buttonID to handleMap function if button is clicked
 buttons.forEach(function (button) {
     button.addEventListener("click", function () {
         let buttonID = button.id;
@@ -6,16 +8,23 @@ buttons.forEach(function (button) {
     });
 });
 
+/*
+Creates a map structure for a given room (buttonID) from the matrix of the config file
+@param room A buttonID that is received when that button is clicked
+*/
 async function handleMap(room) {
+    // Fetch data from config.json
     let configFile = await fetch("data/config.json");
     let configData = await configFile.json();
-
+    // Get all workstations for the given room
     let workstations = getAllWorkstations(configData, room);
-
+    // Get div object (to be filled with the matrix later on)
     let mapDiv = document.getElementById("mapdiv");
+    // Specify the maximum width for the mapDiv object
     let maxLength = (configData.data.room[room].classRoomMatrix[0].length) * 150;
     maxLength += ((configData.data.room[room].classRoomMatrix[0].length) * 2 ) * 5;
     mapDiv.style.width = `${maxLength }px`;
+    // Empty innerHTML to prevent piling of data
     mapDiv.innerHTML = "";
 
     configData.data.room[room].classRoomMatrix.forEach(function (row) {

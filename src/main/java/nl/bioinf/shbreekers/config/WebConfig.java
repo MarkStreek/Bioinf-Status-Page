@@ -6,6 +6,11 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
 public class WebConfig {
+    /**
+     * Processes Thymeleaf templating to html
+     * @param servletContext
+     * @return templateEngine
+     */
     public static TemplateEngine createTemplateEngine(ServletContext servletContext) {
         ServletContextTemplateResolver templateResolver =
                 new ServletContextTemplateResolver(servletContext);

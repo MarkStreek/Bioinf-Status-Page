@@ -1,19 +1,22 @@
 package nl.bioinf.shbreekers.model;
 
 import org.apache.http.client.utils.URIBuilder;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
 import java.util.List;
 
-
 public class MakeRequests {
-
+    /**
+     * Logic for making requests
+     * Receives a query link and then sends a request with that link.
+     * A response body is returned, that contains all data for that request
+     * @param queryLink a single query link
+     * @return the response body
+     */
     public String getData(String queryLink) {
         HttpClient client = HttpClient.newHttpClient();
         try {
@@ -52,28 +55,16 @@ public class MakeRequests {
         ParseJsonRequests parseJsonRequests = new ParseJsonRequests();
             for (String link : queryLinks) {
                 try {
+                    // Send request per link
                     String data = getData(link);
+                    // Convert the request-JSON object for that request to a workstation with a selection of values
                     parseJsonRequests.parseJsonToRecord(data);
                 } catch (Exception e) {
-                    System.out.println((String.format("Something went wrong while start a request (Line: %d): %s: %s",
+                    System.out.println((String.format("Something went wrong starting a request (Line: %d): %s: %s",
                             e.getStackTrace()[0].getLineNumber(),
                             e.getClass().getSimpleName(), e.getMessage())));
                 }
             }
         return parseJsonRequests.getWorkstations();
-    }
-
-    public static void main(String[] args) {
-        MakeRequests makeRequests = new MakeRequests();
-
-        List<String> links = List.of("http://localhost:9090/api/v1/query_range?query=node_load1&start=1703674265&end=1703674465&step=30s",
-                "http://localhost:9090/api/v1/query?query=node_load1", "http://localhost:9090/api/v1/query?query=up");
-
-        List<Workstation> workstations = makeRequests.startRequests(links);
-        System.out.println(workstations.size());
-        for (int i = 0; i < workstations.size(); i++) {
-            System.out.println(i + " " + workstations.get(i).getInstance());
-            System.out.println(i + " " + workstations.get(i).getCurrentLoadHistory());
-        }
     }
 }

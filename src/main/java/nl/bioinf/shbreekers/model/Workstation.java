@@ -1,10 +1,12 @@
 package nl.bioinf.shbreekers.model;
 
 import com.google.gson.JsonElement;
-import nl.bioinf.shbreekers.config.XmlWebListener;
-
 import java.util.*;
 
+/**
+ * Workstation (record-like) object
+ * Holds all important variables that will be sent to the front-end
+ */
 public class Workstation implements Comparator<Workstation> {
 
     private String instance;
@@ -32,6 +34,11 @@ public class Workstation implements Comparator<Workstation> {
         return currentLoadHistory;
     }
 
+    /**
+     * Prepares formatting of load values with one decimal
+     * Also adds a currentLoad to the currentLoadHistory
+     * @param currentLoad workload of the CPU of a workstation
+     */
     public void setCurrentLoad(List<JsonElement> currentLoad) {
         if (currentLoad.size() <= 2) {
             if (currentLoad.get(1).toString().equals("0") || currentLoad.get(1).toString().equals("null")) {
@@ -40,8 +47,8 @@ public class Workstation implements Comparator<Workstation> {
                 this.currentLoad = String.format(Locale.US, "%.1f", (currentLoad.get(1).getAsDouble()) * 100);
             }
         } else {
-            for (int i = 0; i < currentLoad.size(); i++) {
-                this.currentLoadHistory.add(String.format(Locale.US, "%.1f", (currentLoad.get(i).getAsJsonArray().get(1).getAsDouble()) * 100));
+            for (JsonElement jsonElement : currentLoad) {
+                this.currentLoadHistory.add(String.format(Locale.US, "%.1f", (jsonElement.getAsJsonArray().get(1).getAsDouble()) * 100));
             }
         }
     }
@@ -50,6 +57,10 @@ public class Workstation implements Comparator<Workstation> {
         return currentLoad5;
     }
 
+    /**
+     * Prepares formatting of load values with one decimal
+     * @param currentLoad5 workload of the CPU from the last five minutes of a workstation
+     */
     public void setCurrentLoad5(String currentLoad5) {
         if (currentLoad5.equals("0") || currentLoad5.equals("null")) {
             this.currentLoad5 = currentLoad5;
@@ -70,6 +81,10 @@ public class Workstation implements Comparator<Workstation> {
         return currentAvailableMemory;
     }
 
+    /**
+     * Prepares formatting of memory values with one decimal
+     * @param currentAvailableMemory value that describes the total amount of memory of a workstation
+     */
     public void setCurrentAvailableMemory(String currentAvailableMemory) {
         this.currentAvailableMemory = String.format(Locale.US, "%.1f", (Double.parseDouble(currentAvailableMemory) / 1000000000));
     }
@@ -78,6 +93,10 @@ public class Workstation implements Comparator<Workstation> {
         return this.currentFreeMemory;
     }
 
+    /**
+     * Prepares formatting of memory values with one decimal
+     * @param currentFreeMemory value that describes the amount of memory that's free
+     */
     public void setCurrentFreeMemory(String currentFreeMemory) {
         this.currentFreeMemory = String.format(Locale.US, "%.1f", (Double.parseDouble(currentFreeMemory)/ 1000000000));
     }
