@@ -1,3 +1,5 @@
+<a name="readme-top"></a>
+
 # Bioinf-Status-Page
 
 In this repository,
@@ -8,9 +10,27 @@ The website constains two main functions:
 1. A status page (/home) that displays all workstations. Filtering, show additional information, hiding offline workstations is available here.
 2. A map page (/map) that can display a map of workstations for each room separately
 
+# Table of contents
+
+- [Bioinf-Status-Page](#bioinf-status-page)
+- [Table of contents](#table-of-contents)
+  - [About the project](#about-the-project)
+  - [Tools used in this project](#tools-used-in-this-project)
+  - [Using the website](#using-the-website)
+    - [SSH Suggestions](#ssh-suggestions)
+  - [Contributors](#contributors)
+  - [Config file](#config-file)
+    - [Moving a workstation](#moving-a-workstation)
+  - [Project tree](#project-tree)
+  - [Progress](#progress)
+    - [Design-SNAPSHOT-1.0](#design-snapshot-10)
+    - [design-SNAPSHOT-1.1](#design-snapshot-11)
+
 ## About the project
 
 The project was made by third year bioinformatics students. The task was to create a functional status page for the bioinformatics department.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Tools used in this project
 
@@ -28,6 +48,8 @@ The project was made by third year bioinformatics students. The task was to crea
 This website is easy to use and most features speak for themselves. The main page (/home) contains the main functionality of the website. Every workstation from a configuration file is visible. For every workstation, additional information can be shown by pressing a button "show status".
 
 The map page (/map) displays a map of workstations for a given room. The map page can be reached using the navbar navigation. Simply press the button of the room you want to see the map from.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### SSH Suggestions
 
@@ -47,6 +69,8 @@ By pressing the button "show me " you can get aditional information about the wo
 - [Luka Stein - l.t.stein@st.hanze.nl](https://github.com/Coldbirdie)
 - [Sibren Reekers - s.h.b.reekers@st.hanze.nl](https://github.com/SibrenReekers)
 - [Mark Van de Streek - m.van.de.streek@st.hanze.nl](https://github.com/MarkStreek)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Config file
 
@@ -76,6 +100,8 @@ The "null" inside the matrix means there is no workstaion at that place in the r
 
 > Every room has the main projecting worksation (i.e., the teacher pc) at the top of the matrix. This way, every map can be readed in the same way.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ### Moving a workstation
 
 Beacuase we use a configuration file, it is very easy to move a workstation. The steps for moving a workstaion:
@@ -88,7 +114,9 @@ However, a number of things must be met:
 > 1. Make sure the classRoomMatrix does not contain a workstation that does not exist. This is the same for the "pc" list.
 > 2. After moving a workstation, make sure the matrix dimensions are still the same. For example, you are moving a workstation that contains originally 6 rows with every row having 6 columns. After moving a workstation (removing), one row has 5 columns. Fill this gap with "null" to meet the conditions again.
 > 3. It is possible to edit the dimensions of a classRoomMatrix, but make sure every row has the same amount of columns with no gaps.
->
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Project tree
 
 Below is the main project tree
@@ -144,6 +172,8 @@ src/
 
 The design of the status page changed a couple of times. Below are some examples of the first versions.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ### Design-SNAPSHOT-1.0
 
 ![Frontpage](demo_design.png "Statuses")
@@ -151,3 +181,5 @@ The design of the status page changed a couple of times. Below are some examples
 ### design-SNAPSHOT-1.1
 
 ![SNAPSHOT-0 19](https://github.com/MarkStreek/Bioinf-Status-Page/assets/60214213/3ddf20db-ca51-49b1-a2dc-7675bc64ef17)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
