@@ -1,12 +1,13 @@
+/* Center all container and row objects */
 .container, .row {
     margin: 0;
     padding: 0;
 }
-
+/* Set sizing of all elements to border-box */
 * {
     box-sizing: border-box;
 }
-
+/* Disable the default grey filter behind the modal */
 .modal-backdrop.show {
     display: none;
 }

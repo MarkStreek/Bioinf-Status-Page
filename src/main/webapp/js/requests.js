@@ -1,3 +1,8 @@
+/*
+Handle new request to fetch recent data from the server.
+Then get allPcs and invoke to update their contents
+Also pass an array with sequence length of four from a s
+*/
 async function handlingUpdate() {
     let requestData, configData;
 
@@ -7,9 +12,11 @@ async function handlingUpdate() {
         console.error("Failed to fetch data: ", error);
         return;
     }
-
+    // Get all rooms
     const rooms = Object.values(configData.data.room);
-    const allPcs = rooms.reduce((acc, roomData) => acc.concat(roomData.pc), []);
+    // Get all pcs and put their full labels in a list
+    const allPcs = rooms.reduce((pcValue, roomData) => pcValue.concat(roomData.pc), []);
+    // Invoke content updating
     requestData.forEach(data => updateContent(data, allPcs));
 
     // create suggestions at top of page

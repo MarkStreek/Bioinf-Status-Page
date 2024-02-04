@@ -134,7 +134,7 @@ async function updateMapElements(workstations) {
     });
 }
 
-// Get information about the button's state of being pressed and set up a validation list for the classroom.
+// Get information about the button's state of being pressed and set up a validation list for the classroom
 let urlParams = new URLSearchParams(window.location.search);
 let buttonPressed = urlParams.get('button');
 let validLocals = ['H186', 'H188A', 'Server', 'D107', 'D108', 'H1122'];

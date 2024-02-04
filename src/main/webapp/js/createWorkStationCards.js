@@ -1,7 +1,7 @@
 /*
 Creates a workstation div object. This includes a card, title, front information, a button that opens a modal,
 a modal with more information + a canvasChart displaying a load history.
-@param item: workstation name, corresponding room name
+@param workstation, room: workstation name, corresponding room name
 @return card: a final div object (workstation card) containing all data and styling
 */
 function createWorkStationDiv(workstation, room) {
@@ -52,6 +52,7 @@ function createWorkStationDiv(workstation, room) {
       }`;
     document.head.appendChild(style);
 
+    // Default status style when a workstation is offline
     let status = document.createElement("p");
     status.innerText = "Status: ";
     let statusText = document.createElement("span");
@@ -64,31 +65,35 @@ function createWorkStationDiv(workstation, room) {
     status.style.fontSize = "20px";
     card.appendChild(status);
 
-    // Create the modal for the workstation
-    let values = createModal(workstation, room);
+    // Create the modal for the workstation and add clickable button
+    let values = createModal(workstation);
     let button = values[0];
     let modal = values[1];
 
     card.appendChild(button);
-
-    // Append everything together
+    // Append finalized modal to card
     card.appendChild(modal);
 
     return card;
 }
 
-function createModal(workstation, room) {
-    // Show Status Button for the card
+/*
+Creates a modal (pop-up window) with extra info about a workstation
+@param workstation: workstation name
+@return [button, modal]: a list with the button and the modal for the workstation card
+*/
+function createModal(workstation) {
+    // Show Status Button for the card (shaping)
     let button = document.createElement('button');
     button.classList = "btn btn-secondary";
     button.setAttribute('data-bs-toggle', 'modal');
     button.setAttribute('data-bs-target', '#reg-modal_' + workstation.split('.')[0]);
     button.textContent = 'Show Status';
     button.style.width = "90%";
-    button.style.position = "absolute"; // Zet de positie van de knop op absoluut
+    button.style.position = "absolute";
     button.style.bottom = "30px";
 
-    // Main Model DIV
+    // Main Model DIV (shaping)
     let modal = document.createElement('div');
     modal.className = 'modal'; modal.id = 'reg-modal_' + workstation.split('.')[0];
     modal.tabIndex = '-1';
@@ -117,10 +122,14 @@ function createModal(workstation, room) {
     modalDialog.appendChild(modalContent);
     modal.appendChild(modalDialog);
 
-    // Return the button and the modal for the cards
     return [button, modal]
 }
 
+/*
+Creates a modal header
+@param workstation: workstation name
+@return modalHeader: final header object
+*/
 function createModalHeader(workstation) {
     // Create modal header
     let modalHeader = document.createElement('div');
@@ -142,6 +151,11 @@ function createModalHeader(workstation) {
     return modalHeader;
 }
 
+/*
+Creates a modal body
+@param workstation: workstation name
+@return modalBody: final body object
+*/
 function createModalBody(workstation) {
     // Create modal body div
     let modalBody = document.createElement('div');
@@ -174,13 +188,16 @@ function createModalBody(workstation) {
     modalBody.appendChild(temperature);
     modalBody.appendChild(availableMemory);
     modalBody.appendChild(canvasChart)
-    // Chart element
 
     return modalBody;
 }
 
+/*
+Creates a modal footer
+@return modalFooter: final footer object
+*/
 function createModalFooter() {
-    // Create a close button for the footer
+    // Create a close button in the footer
     let closeButtonModal = document.createElement('button');
     closeButtonModal.className = 'btn btn-secondary'; closeButtonModal.type = 'button';
     closeButtonModal.setAttribute('data-bs-dismiss', 'modal');

@@ -18,7 +18,7 @@ function createCard(item) {
     suggestionCard.style.backgroundColor = "#50C878";
     suggestionCard.style.boxShadow = "4px 4px 15px grey";
 
-    // Assign workstation name as title and set a custom font appearance.
+    // Assign workstation name as title and set a custom font appearance
     let title = document.createElement("h3");
     title.innerText = item.instance.split('.')[0].toUpperCase();
     title.style.fontSize = "25px";
@@ -63,10 +63,6 @@ function createCard(item) {
         let y = highlight.getBoundingClientRect().top + window.pageYOffset - (window.innerHeight / 2);
         // Scroll to the card
         window.scrollTo({top: y, behavior: 'auto'});
-        // Remove the border after 3 seconds
-        // setTimeout(function () {
-        //     highlight.style.border = "2px solid grey"
-        // }, 2500);
     });
     return suggestionCard;
 }
