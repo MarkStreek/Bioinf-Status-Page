@@ -102,7 +102,6 @@ function createSuggestions(slicedArray) {
     let suggestions = document.getElementById("suggestions");
     // Remove previous suggestions
     while (suggestions.firstChild) {
-        console.log(suggestions.firstChild)
         suggestions.removeChild(suggestions.firstChild);
 
     }

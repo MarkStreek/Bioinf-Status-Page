@@ -81,12 +81,42 @@ let statusSlider = document.getElementById("statusSlider");
 // and if 'OFFLINE' then set their display to none (not viewable)
 statusSlider.addEventListener('change', function() {
     let divs = document.getElementsByClassName("col ");
+    // Get roomCheckbox objects
+    const roomCheckboxes = document.querySelectorAll("input[type='checkbox'][name='room']");
+
+    /*
+    Count roomCheckboxes that are checked. The statusSlider is per default disabled. But if a roomCheckbox
+    is checked the statusSlider becomes enabled.
+    */
+    function updateSliderAccessibility() {
+        const checkedRoomCount = Array.from(roomCheckboxes).filter(cb => cb.checked).length;
+        // Disable map checkbox by default
+        statusSlider.disabled = true;
+
+        // Enable map checkbox if at least one room is selected
+        if (checkedRoomCount > 0) {
+            statusSlider.disabled = false;
+        } // If all checkboxes are unchecked then uncheck the statusSlider
+        else {
+            statusSlider.checked = false;
+        }
+    }
+
+    // Attach event listeners to room checkboxes
+    roomCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateSliderAccessibility);
+    });
+
+    // Initial check to set the slider status
+    updateSliderAccessibility();
+
     for (let i = 0; i < divs.length; i++) {
         // Check if offline and statusSlider is checked i.e. true
         if (divs[i].children[2].innerText === "Status: OFFLINE") {
             if (statusSlider.checked) {
                 divs[i].style.display = 'none';
-            } else {   // Checked status false? Then redeploy the normal checkbox (filter by room) logic
+            } else {
+                // Checked status false? Then redeploy the normal checkbox (filter by room) logic
                 Array.from(checkboxes).forEach(checkbox => {
                     let cardID = 'Room_' + checkbox.id;
                     let divs = document.getElementsByClassName("col " + cardID);
@@ -101,7 +131,9 @@ statusSlider.addEventListener('change', function() {
             }
         }
     }
+
 });
+
 // Interval of 2000ms for fetching and updating the div card contents
 setInterval(function () {
     void handlingUpdate();
