@@ -6,36 +6,35 @@
 </head>
 
 <body style="background-color: lightgrey">
-<div th:insert="template :: menubar"></div>
+    <div th:insert="template :: menubar"></div>
+    <br><br>
 
-<br>
-<br>
-<div class="container-fluid my-3 d-flex justify-content-center" id="buttonbar">
-    <div class="row">
-        <div class="col">
-            <button type="button" class="btn btn-secondary m-1" id="D107">Map D1.07</button>
-            <button type="button" class="btn btn-secondary m-1" id="D108">Map D1.08</button>
-            <button type="button" class="btn btn-secondary m-1" id="H1122">Map H1.122</button>
-            <button type="button" class="btn btn-secondary m-1" id="H186">Map H1.86</button>
-            <button type="button" class="btn btn-secondary m-1" id="H188A">Map H1.88A</button>
-            <button type="button" class="btn btn-secondary m-1" id="Server">Map Servers</button>
+    <div class="container-fluid my-3 d-flex justify-content-center" id="buttonbar">
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-secondary m-1" id="D107">Map D1.07</button>
+                <button type="button" class="btn btn-secondary m-1" id="D108">Map D1.08</button>
+                <button type="button" class="btn btn-secondary m-1" id="H1122">Map H1.122</button>
+                <button type="button" class="btn btn-secondary m-1" id="H186">Map H1.86</button>
+                <button type="button" class="btn btn-secondary m-1" id="H188A">Map H1.88A</button>
+                <button type="button" class="btn btn-secondary m-1" id="Server">Map Servers</button>
+            </div>
         </div>
     </div>
-</div>
-<p class="text-danger text-center">The main projecting pc (teacher pc) is always at the top of the map. See the about page for more information.</p>
 
-<div class="container-fluid w-100 custom-container">
-    <div class="row" id="mapdiv">
-            <!-- Map fragments are being inserted here... -->
+    <p class="text-danger text-center">The main projecting pc (teacher pc) is always at the top of the map. See the about page for more information.</p>
+
+    <div class="container-fluid w-100 custom-container">
+        <div class="row" id="mapdiv">
+                <!-- Map fragments are being inserted here... -->
+        </div>
     </div>
-</div>
 
-<button th:replace="template :: pageUpbutton"></button>
+    <button th:replace="template :: pageUpbutton"></button>
 
-
-<th:block th:insert="template :: scripts"></th:block>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script type="application/javascript" src="js/CreateMapOfRooms.js"></script>
-<script type="application/javascript" src="js/createScrollButton.js"></script>
+    <th:block th:insert="template :: scripts"></th:block>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="application/javascript" src="js/CreateMapOfRooms.js"></script>
+    <script type="application/javascript" src="js/createScrollButton.js"></script>
 </body>
 </html>

@@ -4,90 +4,92 @@
 <head th:replace="template :: headerFragment (fragmentTitle='Bioinf status - About')">
     <title>Text title</title>
 </head>
+
 <body>
-<div th:insert="template :: menubar"></div>
-<br><br><br>
-<div style="padding-left: 5%">
-<h1>About This Project</h1>
-<p>
-    This web application was created on behalf of the bioinformatics department of the Hanze University of Applied Sciences.<br>
-    The purpose of this application is to provide a simple overview of the status of the workstations.<br>
-    Additionally, we created a function that shows the map for every room.<br>
-    With this map, you can see where the workstations are located in the room.<br>
-    <a href="https://github.com/MarkStreek/Bioinf-Status-Page">Github Page of the project</a>
-</p>
-<h2>The status function</h2>
-<p>
-    Inside a config file, the information about the workstations is stored.<br>
-    This information is used to create the workstation cards.<br>
-    In addition, every workstation retrieves a modal with more information about the workstation.<br>
-    The modal can be shown by pressing a button.<br>
+    <div th:insert="template :: menubar"></div>
+    <br><br><br>
+    <div style="padding-left: 5%">
 
+    <h1>About This Project</h1>
+        <p>
+            This web application was created on behalf of the bioinformatics department of the Hanze University of Applied Sciences.<br>
+            The purpose of this application is to provide a simple overview of the status of the workstations.<br>
+            Additionally, we created a function that shows the map for every room.<br>
+            With this map, you can see where the workstations are located in the room.<br>
+            <a href="https://github.com/MarkStreek/Bioinf-Status-Page">Github Page of the project</a>
+        </p>
+    <h2>The status function</h2>
+        <p>
+            Inside a config file, the information about the workstations is stored.<br>
+            This information is used to create the workstation cards.<br>
+            In addition, every workstation retrieves a modal with more information about the workstation.<br>
+            The modal can be shown by pressing a button.<br>
+
+            <br>
+
+            The status of the workstations is retrieved by a request to the back-end.<br>
+            The data from the request comes in sorted by the following properties:<br>
+
+            <ol class="list-group list-group-numbered p-2" style="max-width: 200px;">
+                <li class="list-group-item active">Status</li>
+                <li class="list-group-item">Load</li>
+                <li class="list-group-item">Memory</li>
+                <li class="list-group-item">Temperature</li>
+            </ol>
+
+            <br>
+            The first four workstations are then selected and used as a suggestion for SSH.<br>
+            Additionally, the data is used to <strong>automatically</strong> update the workstations every <strong>2 seconds</strong>.
+        </p>
+    <h2>The map function</h2>
+        <p>
+            For the map function, the same config file is being used. For every workstation, name and location are defined.<br>
+            The locations are made up of matrices.<br> Therefore, this makes it easy to make adjustments when a workstation is moved.
+
+            <br><br>
+
+            When pressing a button, the information of the config file is retrieved for the given room.<br>
+            For every workstation, a div is being created and for empty spaces in the matrix, an empty div is being created.<br>
+
+            The main pc of every room (teacher pc) is at the top of the map.<br>
+
+            After creating the map, a request is made to the back-end for information.<br>
+            With this information, the divs are updated.<br>
+            Please note, the data on this page is <b>not</b> automatically updated.<br><br>
+
+            <strong>Example matrix below</strong>
+        </p>
     <br>
-
-    The status of the workstations is retrieved by a request to the back-end.<br>
-    The data from the request comes in sorted by the following properties:<br>
-
-    <ol class="list-group list-group-numbered p-2" style="max-width: 200px;">
-        <li class="list-group-item active">Status</li>
-        <li class="list-group-item">Load</li>
-        <li class="list-group-item">Memory</li>
-        <li class="list-group-item">Temperature</li>
-    </ol>
-
+    <div class="container w-50 pl-2" style="padding-left: 5%;">
+        <table class="table table-striped table-bordered table-sm">
+            <caption>Table 1. Example matrix of classroom H1.88A</caption>
+            <tbody>
+                <tr>
+                    <td>nuc504</td>
+                    <td>null</td>
+                    <td>null</td>
+                </tr>
+                <tr>
+                    <td>nuc503</td>
+                    <td>nuc502</td>
+                    <td>nuc505</td>
+                </tr>
+                <tr>
+                    <td>nuc501</td>
+                    <td>null</td>
+                    <td>null</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <br>
-    The first four workstations are then selected and used as a suggestion for SSH.<br>
-    Additionally, the data is used to <strong>automatically</strong> update the workstations every <strong>2 seconds</strong>.
-    </p>
-<h2>The map function</h2>
-<p>
-    For the map function, the same config file is being used. For every workstation, name and location are defined.<br>
-    The locations are made up of matrices.<br> Therefore, this makes it easy to make adjustments when a workstation is moved.
-
-    <br><br>
-
-    When pressing a button, the information of the config file is retrieved for the given room.<br>
-    For every workstation, a div is being created and for empty spaces in the matrix, an empty div is being created.<br>
-
-    The main pc of every room (teacher pc) is at the top of the map.<br>
-
-    After creating the map, a request is made to the back-end for information.<br>
-    With this information, the divs are updated.<br>
-    Please note, the data on this page is <b>not</b> automatically updated.<br><br>
-
-    <strong>Example matrix below</strong>
-</p>
-<br>
-<div class="container w-50 pl-2" style="padding-left: 5%;">
-    <table class="table table-striped table-bordered table-sm">
-        <caption>Table 1. Example matrix of classroom H1.88A</caption>
-        <tbody>
-            <tr>
-                <td>nuc504</td>
-                <td>null</td>
-                <td>null</td>
-            </tr>
-            <tr>
-                <td>nuc503</td>
-                <td>nuc502</td>
-                <td>nuc505</td>
-            </tr>
-            <tr>
-                <td>nuc501</td>
-                <td>null</td>
-                <td>null</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<br>
-    <b>Developers:</b><br>
-    <ul>
-        <li>Luka Stein</li>
-        <li>Sibren Reekers</li>
-        <li>Mark van de Streek</li>
-    </ul>
-<th:block th:insert="template :: scripts"></th:block>
-</div>
+        <b>Developers:</b><br>
+        <ul>
+            <li>Luka Stein</li>
+            <li>Sibren Reekers</li>
+            <li>Mark van de Streek</li>
+        </ul>
+    </div>
+    <th:block th:insert="template :: scripts"></th:block>
 </body>
 </html>
