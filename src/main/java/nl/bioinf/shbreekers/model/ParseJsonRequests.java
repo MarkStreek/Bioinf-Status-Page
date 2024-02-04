@@ -1,3 +1,11 @@
+/**
+ * Title: ParseJsonRequests.java
+ * Authors: Sibren, Luka and Mark
+ * Copyright: Bioinf-Status-Page, 2023-2024
+ *
+ * Class that parses the request-JSON object to a workstation object
+ */
+
 package nl.bioinf.shbreekers.model;
 
 import com.google.gson.*;

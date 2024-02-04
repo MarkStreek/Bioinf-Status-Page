@@ -1,3 +1,11 @@
+/**
+ * Title: MakeRequests.java
+ * Authors: Sibren, Luka and Mark
+ * Copyright: Bioinf-Status-Page, 2023-2024
+ *
+ * Class that makes the requests to the prometheus server
+ */
+
 package nl.bioinf.shbreekers.model;
 
 import org.apache.http.client.utils.URIBuilder;

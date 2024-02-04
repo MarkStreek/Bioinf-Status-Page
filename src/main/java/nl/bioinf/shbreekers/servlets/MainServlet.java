@@ -1,3 +1,11 @@
+/**
+ * Title: MainServlet.java
+ * Authors: Sibren, Luka and Mark
+ * Copyright: Bioinf-Status-Page, 2023-2024
+ *
+ * Main file that servers the home page of the application
+ */
+
 package nl.bioinf.shbreekers.servlets;
 
 import nl.bioinf.shbreekers.config.WebConfig;

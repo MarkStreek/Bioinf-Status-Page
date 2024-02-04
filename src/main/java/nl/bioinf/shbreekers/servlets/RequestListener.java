@@ -1,3 +1,11 @@
+/**
+ * Title: RequestListener.java
+ * Authors: Sibren, Luka and Mark
+ * Copyright: Bioinf-Status-Page, 2023-2024
+ *
+ * Request file that handles the requests from the front-end.
+ */
+
 package nl.bioinf.shbreekers.servlets;
 
 import com.google.gson.Gson;

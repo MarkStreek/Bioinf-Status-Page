@@ -1,3 +1,11 @@
+/**
+ * Title: MapServlet.java
+ * Authors: Sibren, Luka and Mark
+ * Copyright: Bioinf-Status-Page, 2023-2024
+ *
+ * This file serves the map page to the user
+ */
+
 package nl.bioinf.shbreekers.servlets;
 
 import nl.bioinf.shbreekers.config.WebConfig;

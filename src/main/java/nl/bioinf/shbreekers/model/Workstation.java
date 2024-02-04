@@ -1,3 +1,12 @@
+/**
+ * Title: Workstation.java
+ * Authors: Sibren, Luka and Mark
+ * Copyright: Bioinf-Status-Page, 2023-2024
+ *
+ * The Workstation class is a record-like object
+ * that holds all important variables that will be sent to the front-end.
+ */
+
 package nl.bioinf.shbreekers.model;
 
 import com.google.gson.JsonElement;
@@ -109,9 +118,16 @@ public class Workstation implements Comparator<Workstation> {
         this.temperature = temperature;
     }
 
+    /**
+    *  Implementation of the compare method from the Comparator interface
+     * Sorting by the following order:
+     * 1. Status
+     * 2. CurrentLoad
+     * 3. CurrentAvailableMemory
+     * 4. Temperature
+     */
     @Override
     public int compare(Workstation o1, Workstation o2) {
-
         if (o1.isUP() && !o2.isUP()) {
             return -1;
         }

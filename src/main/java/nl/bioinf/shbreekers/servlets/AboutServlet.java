@@ -1,3 +1,11 @@
+/**
+ * Title: AboutServlet.java
+ * Authors: Sibren, Luka and Mark
+ * Copyright: Bioinf-Status-Page, 2023-2024
+ *
+ * File that servers the about page of the application
+ */
+
 package nl.bioinf.shbreekers.servlets;
 
 import nl.bioinf.shbreekers.config.WebConfig;

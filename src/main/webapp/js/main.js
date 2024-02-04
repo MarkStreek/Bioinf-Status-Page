@@ -1,3 +1,12 @@
+/**
+ * Title: main.js
+ * Authors: Sibren, Luka and Mark
+ * Copyright: Bioinf-Status-Page, 2023-2024
+ *
+ * Main Javascript file that handles the event listeners and
+ * the main functionality of the home page.
+ */
+
 /*
 Retrieve data from config.json file
 @return AllPCS: list with all pc objects; each object holds a room name value and a workstation name value

@@ -1,3 +1,12 @@
+/**
+ * Title: createSuggestionsCards.js
+ * Authors: Sibren, Luka and Mark
+ * Copyright: Bioinf-Status-Page, 2023-2024
+ *
+ * This file is responsible for creating the suggestions
+ * cards that appear at the top of the page
+ */
+
 /*
 Creates a suggestion card object with a given workstation name
 @param item: label that contains a workstation name

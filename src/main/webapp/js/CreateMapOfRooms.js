@@ -1,3 +1,12 @@
+/**
+ * Title: CreateMapOfRooms.js
+ * Authors: Sibren, Luka and Mark
+ * Copyright: Bioinf-Status-Page, 2023-2024
+ *
+ * This file is responsible for creating a map of a room.
+ */
+
+
 // Search for all buttons in html (Map) page
 let buttons = document.querySelectorAll("button[type=button]");
 // Pass buttonID to handleMap function if button is clicked

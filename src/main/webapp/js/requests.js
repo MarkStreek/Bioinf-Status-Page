@@ -1,3 +1,13 @@
+/**
+ * Title: requests.js
+ * Authors: Sibren, Luka and Mark
+ * Copyright: Bioinf-Status-Page, 2023-2024
+ *
+ * This file is responsible for updating the status
+ * of every workstation. That also includes making the plot
+ * of the load history
+ */
+
 /*
 Handle new request to fetch recent data from the server and
 data from the config file by invoking 'getFetchData()' function.

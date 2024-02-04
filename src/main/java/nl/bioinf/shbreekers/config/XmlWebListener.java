@@ -1,3 +1,12 @@
+/**
+ * Title: XmlWebListener.java
+ * Authors: Sibren, Luka and Mark
+ * Copyright: Bioinf-Status-Page, 2023-2024
+ *
+ * Class that is activated when the application is started.
+ * All the query links are added to a list and can be used in the application.
+ */
+
 package nl.bioinf.shbreekers.config;
 
 import javax.servlet.ServletContext;
@@ -26,7 +35,6 @@ public class XmlWebListener implements ServletContextListener {
         queriesList.add(ctx.getInitParameter("currentFreeMemory"));
         queriesList.add(ctx.getInitParameter("availableMemory"));
         queriesList.add(ctx.getInitParameter("currentLoadHistory"));
-
         System.out.println("DatabaseWebListener.contextIntitialized");
     }
 

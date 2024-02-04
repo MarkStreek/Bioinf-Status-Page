@@ -1,3 +1,12 @@
+/**
+ * Title: createWorkStationCards.js
+ * Authors: Sibren, Luka and Mark
+ * Copyright: Bioinf-Status-Page, 2023-2024
+ *
+ * This file is responsible for creating a workstation card
+ * for every workstation on the home page
+ */
+
 /*
 Creates a workstation div object. This includes a card, title, front information, a button that opens a modal,
 a modal with more information + a canvasChart displaying a load history.

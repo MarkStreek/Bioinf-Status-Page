@@ -1,3 +1,12 @@
+/**
+ * Title: CreateScrollButton.js
+ * Authors: Sibren, Luka and Mark
+ * Copyright: Bioinf-Status-Page, 2023-2024
+ *
+ * This file is responsible for the scroll button,
+ * that appears when the user scrolls down the page.
+ */
+
 let scrollButton = document.getElementById("btn-page-up");
 
 // Start show button event after scroll

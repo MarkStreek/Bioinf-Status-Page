@@ -1,3 +1,11 @@
+/**
+ * Title: WebConfig.java
+ * Authors: Sibren, Luka and Mark
+ * Copyright: Bioinf-Status-Page, 2023-2024
+ *
+ * Class that handles the template engine and response configuration
+ */
+
 package nl.bioinf.shbreekers.config;
 
 import org.thymeleaf.TemplateEngine;
