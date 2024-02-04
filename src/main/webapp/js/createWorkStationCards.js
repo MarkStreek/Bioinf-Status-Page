@@ -1,6 +1,12 @@
+/*
+Creates a workstation div object. This includes a card, title, front information, a button that opens a modal,
+a modal with more information + a canvasChart displaying a load history.
+@param item: workstation name, corresponding room name
+@return card: a final div object (workstation card) containing all data and styling
+*/
 function createWorkStationDiv(workstation, room) {
-
     let card = document.createElement('div');
+    // Styling custom shape of div card
     card.style.flexDirection = "column";
     card.style.justifyContent = "center";
     card.style.position = "relative";
@@ -16,6 +22,7 @@ function createWorkStationDiv(workstation, room) {
     card.style.display = 'block';
     card.id = workstation + "_card";
 
+    // Add title and custom font appearance
     let title = document.createElement("h5");
     title.innerText = workstation.split('.')[0].toUpperCase();
     title.style.fontFamily = "Cambria, sans-serif";
@@ -23,6 +30,7 @@ function createWorkStationDiv(workstation, room) {
     title.style.fontSize = "25px";
     card.appendChild(title);
 
+    // Add load value and manage positioning inside the card
     let load = document.createElement("div");
     load.id = workstation + "_loadDirect";
     load.style.display = "inline-block";
@@ -31,9 +39,11 @@ function createWorkStationDiv(workstation, room) {
     load.style.border = "2px solid #f3f3f3";
     load.style.borderRadius = "50%";
     load.style.borderTop = "2px solid #3498db";
+    // Make the styles of 'style' change (animate the loading circle)
     load.style.animation = "spin 2s linear infinite";
     card.appendChild(load);
 
+    // A spinning wheel element when no data of load are present
     let style = document.createElement('style');
     style.innerHTML = `
       @keyframes spin {
